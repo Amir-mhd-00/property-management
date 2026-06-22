@@ -1,6 +1,7 @@
 package com.example.property_management.controller;
 
 import com.example.property_management.DTO.PropertyDTO;
+import com.example.property_management.DTO.PropertyUpdateDTO;
 import com.example.property_management.service.PropertyServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,13 @@ public class PropertyController {
     public ResponseEntity<PropertyDTO> updateProperty(@PathVariable Long id, @RequestBody PropertyDTO propertyDTO){
         PropertyDTO updatedProperty = propertyService.updateProperty(id, propertyDTO);
 
-        return new ResponseEntity<>(updatedProperty, HttpStatus.OK);
+        return ResponseEntity.ok(updatedProperty);
+    }
+
+    @PatchMapping("/property/{id}")
+    public ResponseEntity<PropertyDTO> updateProperty(@PathVariable Long id, @RequestBody PropertyUpdateDTO propertyUpdateDTO){
+        PropertyDTO updatedProperty = propertyService.updateProperty(id, propertyUpdateDTO);
+
+        return ResponseEntity.ok(updatedProperty);
     }
 }

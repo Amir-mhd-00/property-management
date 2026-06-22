@@ -24,5 +24,7 @@ public class PropertyEntity {
     private String propertyStatus;
     private String ownerName;
     private String ownerEmail;
+    private Integer rooms;
+    private String location;
 
 }

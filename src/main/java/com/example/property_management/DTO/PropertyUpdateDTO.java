@@ -5,15 +5,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PropertyDTO {
-    private Long id;
+public class PropertyUpdateDTO {
     private String propertyName;
     private Double propertyValue;
     private String propertyType;
     private String propertyStatus;
-    private String ownerName;
     private String ownerEmail;
     private Integer rooms;
     private String location;
-    private String createdDate;
 }
