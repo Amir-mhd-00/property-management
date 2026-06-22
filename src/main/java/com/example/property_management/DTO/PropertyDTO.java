@@ -14,5 +14,6 @@ public class PropertyDTO {
     private String propertyStatus;
     private String ownerName;
     private String ownerEmail;
-
+    private int rooms;
+    private String location;
 }
