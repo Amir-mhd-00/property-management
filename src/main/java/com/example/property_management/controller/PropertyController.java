@@ -33,11 +33,13 @@ public class PropertyController {
 
     @GetMapping("/properties")
     public ResponseEntity<List<PropertyDTO>> getAllProperties(){
+
         return ResponseEntity.ok(propertyService.getAllProperties());
     }
 
     @PutMapping("/updateproperty/{id}")
     public ResponseEntity<PropertyDTO> updateProperty(@PathVariable Long id, @RequestBody PropertyDTO propertyDTO){
+
         PropertyDTO updatedProperty = propertyService.updateProperty(id, propertyDTO);
 
         return ResponseEntity.ok(updatedProperty);
@@ -45,6 +47,7 @@ public class PropertyController {
 
     @PatchMapping("/property/{id}")
     public ResponseEntity<PropertyDTO> updateProperty(@PathVariable Long id, @RequestBody PropertyUpdateDTO propertyUpdateDTO){
+
         PropertyDTO updatedProperty = propertyService.updateProperty(id, propertyUpdateDTO);
 
         return ResponseEntity.ok(updatedProperty);
