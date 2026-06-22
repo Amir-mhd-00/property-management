@@ -99,4 +99,17 @@ public class PropertyServiceImpl implements PropertyService {
 
         return updatedPropertyDTO;
     }
+
+    @Override
+    public void deleteProperty(Long id) {
+
+        PropertyEntity property = propertyRepository.findById(id)
+                        .orElseThrow(() -> new ResponseStatusException(
+                                HttpStatus.NOT_FOUND,
+                                "Property with id " + id + " does not exist"
+                        ));
+
+        propertyRepository.delete(property);
+
+    }
 }

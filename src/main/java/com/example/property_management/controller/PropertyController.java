@@ -49,4 +49,12 @@ public class PropertyController {
 
         return ResponseEntity.ok(updatedProperty);
     }
+    
+    @DeleteMapping("/deleteProperty/{id}")
+    public ResponseEntity<Void>  deleteProperty(@PathVariable Long id){
+
+        propertyService.deleteProperty(id);
+
+        return ResponseEntity.noContent().build();
+    }
 }
