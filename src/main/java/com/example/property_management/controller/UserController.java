@@ -1,5 +1,6 @@
 package com.example.property_management.controller;
 
+import com.example.property_management.dto.LoginRequestDTO;
 import com.example.property_management.dto.UserDTO;
 import com.example.property_management.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -25,5 +26,13 @@ public class UserController {
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(createdUser);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserDTO> login(@RequestBody LoginRequestDTO dto) {
+
+        UserDTO user = userService.login(dto);
+
+        return ResponseEntity.ok(user);
     }
 }
