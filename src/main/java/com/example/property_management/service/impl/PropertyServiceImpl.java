@@ -1,4 +1,4 @@
-package com.example.property_management.service.Impl;
+package com.example.property_management.service.impl;
 
 import com.example.property_management.dto.PropertyDTO;
 import com.example.property_management.dto.PropertyUpdateDTO;
