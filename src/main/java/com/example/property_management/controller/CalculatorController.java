@@ -1,6 +1,6 @@
 package com.example.property_management.controller;
 
-import com.example.property_management.DTO.CalculatorDTO;
+import com.example.property_management.dto.CalculatorDTO;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

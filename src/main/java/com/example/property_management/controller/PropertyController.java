@@ -1,7 +1,7 @@
 package com.example.property_management.controller;
 
-import com.example.property_management.DTO.PropertyDTO;
-import com.example.property_management.DTO.PropertyUpdateDTO;
+import com.example.property_management.dto.PropertyDTO;
+import com.example.property_management.dto.PropertyUpdateDTO;
 import com.example.property_management.service.Impl.PropertyServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

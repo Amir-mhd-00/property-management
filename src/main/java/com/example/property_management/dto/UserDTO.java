@@ -1,4 +1,4 @@
-package com.example.property_management.DTO;
+package com.example.property_management.dto;
 
 import lombok.Getter;
 import lombok.Setter;

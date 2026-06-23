@@ -1,6 +1,6 @@
 package com.example.property_management.mapper;
 
-import com.example.property_management.DTO.PropertyDTO;
+import com.example.property_management.dto.PropertyDTO;
 import com.example.property_management.entity.PropertyEntity;
 import org.springframework.beans.BeanUtils;
 

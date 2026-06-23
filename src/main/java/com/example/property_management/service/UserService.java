@@ -1,6 +1,6 @@
 package com.example.property_management.service;
 
-import com.example.property_management.DTO.UserDTO;
+import com.example.property_management.dto.UserDTO;
 
 public interface UserService {
 

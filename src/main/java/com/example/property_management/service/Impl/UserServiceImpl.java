@@ -1,6 +1,6 @@
 package com.example.property_management.service.Impl;
 
-import com.example.property_management.DTO.UserDTO;
+import com.example.property_management.dto.UserDTO;
 import com.example.property_management.entity.UserEntity;
 import com.example.property_management.repository.UserRepository;
 import com.example.property_management.service.UserService;

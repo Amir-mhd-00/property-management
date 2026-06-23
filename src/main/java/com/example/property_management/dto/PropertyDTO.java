@@ -1,16 +1,19 @@
-package com.example.property_management.DTO;
+package com.example.property_management.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class PropertyUpdateDTO {
+public class PropertyDTO {
+
+    private Long id;
     private String propertyName;
     private Double propertyValue;
     private String propertyType;
     private String propertyStatus;
-    private String ownerEmail;
     private Integer rooms;
     private String location;
+    private String createdDate;
+
 }
