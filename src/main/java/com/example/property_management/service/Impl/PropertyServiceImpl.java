@@ -1,9 +1,10 @@
-package com.example.property_management.service;
+package com.example.property_management.service.Impl;
 
 import com.example.property_management.DTO.PropertyDTO;
 import com.example.property_management.DTO.PropertyUpdateDTO;
 import com.example.property_management.entity.PropertyEntity;
 import com.example.property_management.repository.PropertyRepository;
+import com.example.property_management.service.PropertyService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -82,9 +83,6 @@ public class PropertyServiceImpl implements PropertyService {
         }
         if  (dto.getPropertyStatus() != null){
             property.setPropertyStatus(dto.getPropertyStatus());
-        }
-        if (dto.getOwnerEmail() != null){
-            property.setOwnerEmail(dto.getOwnerEmail());
         }
         if (dto.getRooms() != null){
             property.setRooms(dto.getRooms());
