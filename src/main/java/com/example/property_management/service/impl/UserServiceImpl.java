@@ -1,7 +1,6 @@
 package com.example.property_management.service.impl;
 
-import com.example.property_management.dto.LoginRequestDTO;
-import com.example.property_management.dto.UserDTO;
+import com.example.property_management.dto.*;
 import com.example.property_management.entity.UserEntity;
 import com.example.property_management.repository.UserRepository;
 import com.example.property_management.service.UserService;
@@ -12,7 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -26,28 +24,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO register(UserDTO userDTO) {
+    public UserResponseDTO register(RegisterUserDTO dto) {
 
-        if (userRepository.existsByEmail(userDTO.getEmail())) {
+        if (userRepository.existsByEmail(dto.getEmail())) {
             throw new ResponseStatusException(HttpStatus.
                     UNPROCESSABLE_ENTITY, "Email already in use");
         }
 
         UserEntity user = new UserEntity();
-        BeanUtils.copyProperties(userDTO, user);
+        BeanUtils.copyProperties(dto, user);
 
-        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
 
         UserEntity savedUser = userRepository.save(user);
 
-        UserDTO response = new UserDTO();
+        UserResponseDTO response = new UserResponseDTO();
         BeanUtils.copyProperties(savedUser, response);
 
         return response;
     }
 
     @Override
-    public UserDTO login(LoginRequestDTO loginRequestDTO) {
+    public LoginResponseDTO login(LoginRequestDTO loginRequestDTO) {
 
         UserEntity user = userRepository.findByEmail(loginRequestDTO.getEmail()).orElseThrow(
                 () -> new ResponseStatusException(
@@ -61,9 +59,9 @@ public class UserServiceImpl implements UserService {
                     "Invalid email or password");
         }
 
-        UserDTO userDTO = new UserDTO();
-        BeanUtils.copyProperties(user, userDTO);
+        LoginResponseDTO response = new LoginResponseDTO();
+        BeanUtils.copyProperties(user, response);
 
-        return userDTO;
+        return response;
     }
 }

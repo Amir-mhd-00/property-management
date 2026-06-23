@@ -1,7 +1,6 @@
 package com.example.property_management.controller;
 
-import com.example.property_management.dto.LoginRequestDTO;
-import com.example.property_management.dto.UserDTO;
+import com.example.property_management.dto.*;
 import com.example.property_management.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -21,19 +20,20 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserDTO> createUser(
-            @Valid @RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserResponseDTO> createUser(
+            @Valid @RequestBody RegisterUserDTO dto) {
 
-        UserDTO createdUser = userService.register(userDTO);
+        UserResponseDTO createdUser = userService.register(dto);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(createdUser);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserDTO> login(@RequestBody LoginRequestDTO dto) {
+    public ResponseEntity<LoginResponseDTO> login(
+            @Valid@RequestBody LoginRequestDTO dto) {
 
-        UserDTO user = userService.login(dto);
+        LoginResponseDTO user = userService.login(dto);
 
         return ResponseEntity.ok(user);
     }
