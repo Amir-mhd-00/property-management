@@ -9,6 +9,7 @@ public class propertyMapper {
     public PropertyEntity toEntity(PropertyDTO propertyDTO) {
 
         PropertyEntity propertyEntity = new PropertyEntity();
+
         BeanUtils.copyProperties(propertyDTO, propertyEntity);
 
         return propertyEntity;

@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 
         UserEntity user = userRepository.findByEmail(loginRequestDTO.getEmail()).orElseThrow(
                 () -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND,
+                        HttpStatus.UNAUTHORIZED,
                         "Invalid email or password"
                 ));
 
