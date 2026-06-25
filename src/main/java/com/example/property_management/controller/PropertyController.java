@@ -3,6 +3,7 @@ package com.example.property_management.controller;
 import com.example.property_management.dto.PropertyDTO;
 import com.example.property_management.dto.PropertyUpdateDTO;
 import com.example.property_management.service.impl.PropertyServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,18 +21,18 @@ public class PropertyController {
     }
 
     @GetMapping("/property/{id}")
-    public String property(@PathVariable Long id){
+    public ResponseEntity<PropertyDTO> property(@PathVariable Long id){
 
         PropertyDTO property = propertyService.getProperty(id);
 
-        return property.toString();
+        return ResponseEntity.ok(property);
     }
 
     @PostMapping("/property")
-    public ResponseEntity<PropertyDTO> property(@RequestBody PropertyDTO propertyDTO){
+    public ResponseEntity<PropertyDTO> property(@Valid @RequestBody PropertyDTO propertyDTO){
 
         PropertyDTO savedProperty = propertyService.createProperty(propertyDTO);
-        return new ResponseEntity<>(savedProperty, HttpStatus.CREATED);
+        return new ResponseEntity<>(savedProperty, HttpStatus.CREATED); // new response -> return Response
     }
 
     @GetMapping("/properties")
@@ -48,15 +49,15 @@ public class PropertyController {
         return ResponseEntity.ok(updatedProperty);
     }
 
-    @PatchMapping("/updateProperty/{id}")
-    public ResponseEntity<PropertyDTO> updateProperty(@PathVariable Long id, @RequestBody PropertyUpdateDTO propertyUpdateDTO){
+    @PatchMapping("/updateproperty/{id}")
+    public ResponseEntity<PropertyDTO> partialUpdateProperty(@PathVariable Long id, @RequestBody PropertyUpdateDTO propertyUpdateDTO){
 
-        PropertyDTO updatedProperty = propertyService.updateProperty(id, propertyUpdateDTO);
+        PropertyDTO updatedProperty = propertyService.partialUpdateProperty(id, propertyUpdateDTO);
 
         return ResponseEntity.ok(updatedProperty);
     }
     
-    @DeleteMapping("/deleteProperty/{id}")
+    @DeleteMapping("/deleteProperty/{id}")//deleteProperty or deleteproperty
     public ResponseEntity<Void>  deleteProperty(@PathVariable Long id){
 
         propertyService.deleteProperty(id);

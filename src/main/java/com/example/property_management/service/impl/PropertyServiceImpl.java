@@ -24,23 +24,6 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public PropertyDTO createProperty(PropertyDTO propertyDTO){
-
-        if (propertyRepository.findByName(propertyDTO.getPropertyName()).isPresent()) {
-            throw  new PropertyAlreadyExists(
-                    String.format("Property with name %s already exists", propertyDTO.getPropertyName()));
-        }///check shavad
-
-        PropertyEntity entity = new PropertyEntity();
-        BeanUtils.copyProperties(propertyDTO, entity);
-        PropertyEntity responseEntity = propertyRepository.save(entity);
-        PropertyDTO responseDTO = new PropertyDTO();
-        BeanUtils.copyProperties(responseEntity, responseDTO);
-
-        return responseDTO;
-    }
-
-    @Override
     public PropertyDTO getProperty(Long id) {
 
         PropertyEntity property = getPropertyOrThrow(id);
@@ -52,11 +35,26 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
+    public PropertyDTO createProperty(PropertyDTO propertyDTO){
+
+        if (propertyRepository.findByPropertyName(propertyDTO.getPropertyName()).isPresent()) {
+            throw  new PropertyAlreadyExists(
+                    String.format("Property with name %s already exists", propertyDTO.getPropertyName()));
+        }
+
+        PropertyEntity entity = new PropertyEntity();
+        BeanUtils.copyProperties(propertyDTO, entity);
+        PropertyEntity responseEntity = propertyRepository.save(entity);
+        PropertyDTO responseDTO = new PropertyDTO();
+        BeanUtils.copyProperties(responseEntity, responseDTO);
+
+        return responseDTO;
+    }
+
+    @Override
     public List<PropertyDTO> getAllProperties(){
 
         List<PropertyEntity> properties = propertyRepository.findAll();
-
-
 
         List<PropertyDTO> propertiesDTO = new ArrayList<>();
 
@@ -84,7 +82,7 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public PropertyDTO updateProperty(Long id, PropertyUpdateDTO dto) {
+    public PropertyDTO partialUpdateProperty(Long id, PropertyUpdateDTO dto) {
         PropertyEntity property = getPropertyOrThrow(id);
 
         if (dto.getPropertyName() != null){

@@ -1,9 +1,6 @@
 package com.example.property_management.error;
 
-import com.example.property_management.error.exception.InvalidCredentialsException;
-import com.example.property_management.error.exception.PropertyAlreadyExists;
-import com.example.property_management.error.exception.PropertyNotFoundException;
-import com.example.property_management.error.exception.UserNotFoundException;
+import com.example.property_management.error.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -28,7 +25,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
-    @ExceptionHandler(UserNotFoundException.class)
+    @ExceptionHandler(UserAlreadyExistsException.class)
     public  ResponseEntity<ErrorResponse> handleUserAlreadyExistsException(Exception ex) {
         ErrorResponse errorResponse = new ErrorResponse(
                 LocalDateTime.now(ZoneId.of("UTC")),
