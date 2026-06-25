@@ -3,7 +3,7 @@ package com.example.property_management.service.impl;
 import com.example.property_management.dto.PropertyDTO;
 import com.example.property_management.dto.PropertyUpdateDTO;
 import com.example.property_management.entity.PropertyEntity;
-import com.example.property_management.error.exception.PropertyAlreadyExists;
+import com.example.property_management.error.exception.PropertyAlreadyExistsException;
 import com.example.property_management.error.exception.PropertyNotFoundException;
 import com.example.property_management.repository.PropertyRepository;
 import com.example.property_management.service.PropertyService;
@@ -38,7 +38,7 @@ public class PropertyServiceImpl implements PropertyService {
     public PropertyDTO createProperty(PropertyDTO propertyDTO){
 
         if (propertyRepository.findByPropertyName(propertyDTO.getPropertyName()).isPresent()) {
-            throw  new PropertyAlreadyExists(
+            throw  new PropertyAlreadyExistsException(
                     String.format("Property with name %s already exists", propertyDTO.getPropertyName()));
         }
 
