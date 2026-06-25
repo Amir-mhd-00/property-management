@@ -1,5 +1,6 @@
 package com.example.property_management.dto;
 
+import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,7 @@ import lombok.Setter;
 public class PropertyDTO {
 
     private Long id;
+    @Column(unique = true)
     private String propertyName;
     private Double propertyValue;
     private String propertyType;

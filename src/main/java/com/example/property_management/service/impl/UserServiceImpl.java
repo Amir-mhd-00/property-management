@@ -2,14 +2,15 @@ package com.example.property_management.service.impl;
 
 import com.example.property_management.dto.*;
 import com.example.property_management.entity.UserEntity;
+import com.example.property_management.error.exception.InvalidCredentialsException;
+import com.example.property_management.error.exception.UserAlreadyExistsException;
+import com.example.property_management.error.exception.UserNotFoundException;
 import com.example.property_management.repository.UserRepository;
 import com.example.property_management.service.UserService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 
 @Service
@@ -27,8 +28,7 @@ public class UserServiceImpl implements UserService {
     public UserResponseDTO register(RegisterUserDTO dto) {
 
         if (userRepository.existsByEmail(dto.getEmail())) {
-            throw new ResponseStatusException(HttpStatus.
-                    UNPROCESSABLE_ENTITY, "Email already in use");
+            throw new UserAlreadyExistsException("Email Already Exists");
         }
 
         UserEntity user = new UserEntity();
@@ -48,15 +48,10 @@ public class UserServiceImpl implements UserService {
     public LoginResponseDTO login(LoginRequestDTO loginRequestDTO) {
 
         UserEntity user = userRepository.findByEmail(loginRequestDTO.getEmail()).orElseThrow(
-                () -> new ResponseStatusException(
-                        HttpStatus.UNAUTHORIZED,
-                        "Invalid email or password"
-                ));
+                () -> new UserNotFoundException("User not found with email: " + loginRequestDTO.getEmail()));
 
         if(!passwordEncoder.matches(loginRequestDTO.getPassword(), user.getPassword())) {
-            throw new ResponseStatusException(
-                    HttpStatus.UNAUTHORIZED,
-                    "Invalid email or password");
+            throw new InvalidCredentialsException("Invalid Credentials");
         }
 
         LoginResponseDTO response = new LoginResponseDTO();
