@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Log directory -->
+    <springProperty scope="context"
+                    name="LOG_PATH"
+                    source="logging.file.path"/>
+
+    <!-- Console log format -->
+    <property name="CONSOLE_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+
+    <!-- File log format -->
+    <property name="FILE_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+
+    <!-- ========================= -->
+    <!-- Console Appender -->
+    <!-- ========================= -->
+    <appender name="CONSOLE"
+              class="ch.qos.logback.core.ConsoleAppender">
+
+        <encoder>
+            <pattern>${CONSOLE_PATTERN}</pattern>
+        </encoder>
+
+    </appender>
+
+    <!-- ========================= -->
+    <!-- Rolling File Appender -->
+    <!-- ========================= -->
+    <appender name="FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!-- Current log -->
+        <file>${LOG_PATH}/application.log</file>
+
+        <encoder>
+            <pattern>${FILE_PATTERN}</pattern>
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+
+            <!-- Daily rolling + compressed -->
+            <fileNamePattern>
+                ${LOG_PATH}/application-%d{yyyy-MM-dd}.%i.log.gz
+            </fileNamePattern>
+
+            <!-- Maximum size before creating another file -->
+            <maxFileSize>100MB</maxFileSize>
+
+            <!-- Keep logs for 30 days -->
+            <maxHistory>30</maxHistory>
+
+            <!-- Optional total size limit -->
+            <totalSizeCap>5GB</totalSizeCap>
+
+        </rollingPolicy>
+
+    </appender>
+
+    <!-- ========================= -->
+    <!-- Spring Logs -->
+    <!-- ========================= -->
+    <logger name="org.springframework" level="INFO"/>
+
+    <!-- Hibernate -->
+    <logger name="org.hibernate" level="WARN"/>
+
+    <!-- Your application -->
+    <logger name="com.example.property_management"
+            level="DEBUG"/>
+
+    <!-- Root Logger -->
+    <root level="INFO">
+
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+
+    </root>
+
+</configuration>

@@ -1,0 +1,70 @@
+2026-06-26 16:14:39.973 [main] INFO  c.e.p.PropertyManagementApplication - Starting PropertyManagementApplication using Java 25.0.2 with PID 21716 (C:\Users\lenovo\Desktop\projects\spring boot\property-management\target\classes started by lenovo in C:\Users\lenovo\Desktop\projects\spring boot\property-management)
+2026-06-26 16:14:39.975 [main] DEBUG c.e.p.PropertyManagementApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
+2026-06-26 16:14:39.976 [main] INFO  c.e.p.PropertyManagementApplication - The following 1 profile is active: "dev"
+2026-06-26 16:14:40.717 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-26 16:14:40.789 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 63 ms. Found 2 JPA repository interfaces.
+2026-06-26 16:14:41.344 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-26 16:14:41.359 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-26 16:14:41.362 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-26 16:14:41.362 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-26 16:14:41.437 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-06-26 16:14:41.437 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1415 ms
+2026-06-26 16:14:42.018 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-26 16:14:42.054 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-06-26 16:14:42.228 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@67b8d45
+2026-06-26 16:14:42.230 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-06-26 16:14:43.229 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-26 16:14:43.624 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-26 16:14:43.719 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+2026-06-26 16:14:43.801 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2026-06-26 16:14:43.819 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 43ff2a1b-0729-45bc-96ac-dffcde3c6ee3
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-06-26 16:14:43.827 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-06-26 16:14:43.981 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-06-26 16:14:44.028 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-06-26 16:14:44.111 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-06-26 16:14:44.130 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-06-26 16:14:44.139 [main] INFO  c.e.p.PropertyManagementApplication - Started PropertyManagementApplication in 4.888 seconds (process running for 5.411)
+2026-06-26 16:14:47.214 [http-nio-8080-exec-4] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-26 16:14:47.214 [http-nio-8080-exec-4] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-26 16:14:47.215 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2026-06-26 16:14:47.215 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2026-06-26 16:14:47.215 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2026-06-26 16:14:47.216 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@3f910f36
+2026-06-26 16:14:47.218 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@363ee411
+2026-06-26 16:14:47.218 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-06-26 16:14:47.218 [http-nio-8080-exec-4] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-06-26 16:14:47.248 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/v1/properties", parameters={}
+2026-06-26 16:14:47.250 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#property(PropertyDTO)
+2026-06-26 16:14:47.347 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.property_management.dto.PropertyDTO@5cd297b]
+2026-06-26 16:14:47.390 [http-nio-8080-exec-4] INFO  c.e.p.controller.PropertyController - POST request for creating property whoreHouse
+2026-06-26 16:14:47.533 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.id,
+        pe1_0.location,
+        pe1_0.property_name,
+        pe1_0.property_status,
+        pe1_0.property_type,
+        pe1_0.property_value,
+        pe1_0.rooms 
+    from
+        properties pe1_0 
+    where
+        pe1_0.property_name=?
+2026-06-26 16:14:47.540 [http-nio-8080-exec-4] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:VARCHAR) <- [whoreHouse]
+2026-06-26 16:14:47.574 [http-nio-8080-exec-4] WARN  c.e.p.s.impl.PropertyServiceImpl - property creation failed property whoreHouse already exists
+2026-06-26 16:14:47.578 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.property_management.error.GlobalExceptionHandler#handlePropertyAlreadyExistsException(PropertyAlreadyExistsException)
+2026-06-26 16:14:47.579 [http-nio-8080-exec-4] WARN  c.e.p.error.GlobalExceptionHandler - Property already exists Property with name whoreHouse already exists
+2026-06-26 16:14:47.603 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-06-26 16:14:47.608 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(timestamp=2026-06-26T23:14:47.579399500, status=409, error=Conflict, message=Property  (truncated)...]
+2026-06-26 16:14:47.623 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.example.property_management.error.exception.PropertyAlreadyExistsException: Property with name whoreHouse already exists]
+2026-06-26 16:14:47.624 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 409 CONFLICT
+2026-06-26 16:15:24.894 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-26 16:15:24.901 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-06-26 16:15:24.906 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-26 16:15:24.909 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-06-26 16:15:24.917 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
