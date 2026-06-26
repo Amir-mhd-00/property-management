@@ -11,11 +11,14 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 @Service
 public class UserServiceImpl implements UserService {
 
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -26,6 +29,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDTO register(RegisterUserDTO dto) {
+
+        logger.info("Registering user with email = {}", dto.getEmail());
 
         if (userRepository.existsByEmail(dto.getEmail())) {
             throw new UserAlreadyExistsException("Email Already Exists");
@@ -38,6 +43,9 @@ public class UserServiceImpl implements UserService {
 
         UserEntity savedUser = userRepository.save(user);
 
+        logger.info("User registered successfully. email = {} id = {}",
+                savedUser.getEmail(),  savedUser.getId());
+
         UserResponseDTO response = new UserResponseDTO();
         BeanUtils.copyProperties(savedUser, response);
 
@@ -47,12 +55,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public LoginResponseDTO login(LoginRequestDTO loginRequestDTO) {
 
+        logger.info("Authenticating user with email={}", loginRequestDTO.getEmail());
+
         UserEntity user = userRepository.findByEmail(loginRequestDTO.getEmail()).orElseThrow(
                 () -> new UserNotFoundException("User not found with email: " + loginRequestDTO.getEmail()));
 
         if(!passwordEncoder.matches(loginRequestDTO.getPassword(), user.getPassword())) {
+
+            logger.warn("Authentication Failed for {}", loginRequestDTO.getEmail());
+
             throw new InvalidCredentialsException("Invalid Credentials");
         }
+
+        logger.info("User Authenticated successfully id  = {}", user.getId());
 
         LoginResponseDTO response = new LoginResponseDTO();
         BeanUtils.copyProperties(user, response);

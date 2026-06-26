@@ -7,11 +7,13 @@ import com.example.property_management.error.exception.PropertyAlreadyExistsExce
 import com.example.property_management.error.exception.PropertyNotFoundException;
 import com.example.property_management.repository.PropertyRepository;
 import com.example.property_management.service.PropertyService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Service
 public class PropertyServiceImpl implements PropertyService {
@@ -23,10 +25,16 @@ public class PropertyServiceImpl implements PropertyService {
         this.propertyRepository = propertyRepository;
     }
 
+    private static final Logger logger = LoggerFactory.getLogger(PropertyServiceImpl.class);
+
     @Override
     public PropertyDTO getProperty(Long id) {
 
+        logger.debug("Fetching property id={}", id);
+
         PropertyEntity property = getPropertyOrThrow(id);
+
+        logger.debug("property id={} fetched successfully", id);
 
         PropertyDTO responseDTO = new PropertyDTO();
         BeanUtils.copyProperties(property, responseDTO);
@@ -38,13 +46,26 @@ public class PropertyServiceImpl implements PropertyService {
     public PropertyDTO createProperty(PropertyDTO propertyDTO){
 
         if (propertyRepository.findByPropertyName(propertyDTO.getPropertyName()).isPresent()) {
+
+            logger.warn("property creation failed property {} already exists", propertyDTO.getPropertyName());
+
             throw  new PropertyAlreadyExistsException(
                     String.format("Property with name %s already exists", propertyDTO.getPropertyName()));
         }
 
         PropertyEntity entity = new PropertyEntity();
         BeanUtils.copyProperties(propertyDTO, entity);
+
+        logger.info("creating property {}", propertyDTO.getPropertyName());
+
         PropertyEntity responseEntity = propertyRepository.save(entity);
+
+        logger.info(
+                "Property '{}' created successfully. id={}",
+                entity.getPropertyName(),
+                entity.getId()
+        );
+
         PropertyDTO responseDTO = new PropertyDTO();
         BeanUtils.copyProperties(responseEntity, responseDTO);
 
@@ -54,7 +75,11 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public List<PropertyDTO> getAllProperties(){
 
+        logger.info("fetching all properties");
+
         List<PropertyEntity> properties = propertyRepository.findAll();
+
+        logger.info("fetched {} properties", properties.size());
 
         List<PropertyDTO> propertiesDTO = new ArrayList<>();
 
@@ -73,7 +98,11 @@ public class PropertyServiceImpl implements PropertyService {
 
         BeanUtils.copyProperties(propertyDTO, existingProperty, "id");
 
+        logger.info("updating property id={}", id);
+
         PropertyEntity updatedProperty = propertyRepository.save(existingProperty);
+
+        logger.info("Property updated successfully. id={}", id);
 
         PropertyDTO updatedPropertyDTO = new PropertyDTO();
         BeanUtils.copyProperties(updatedProperty, updatedPropertyDTO);
@@ -104,7 +133,11 @@ public class PropertyServiceImpl implements PropertyService {
             property.setLocation(dto.getLocation());
         }
 
+        logger.info("updating property id={}", id);
+
         PropertyEntity savedProperty = propertyRepository.save(property);
+
+        logger.info("Property updated successfully. id={}", id);
 
         PropertyDTO response = new PropertyDTO();
         BeanUtils.copyProperties(savedProperty, response);
@@ -115,11 +148,16 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public void deleteProperty(Long id) {
 
+        logger.info("deleting property id={}", id);
+
         PropertyEntity property = getPropertyOrThrow(id);
 
         propertyRepository.delete(property);
 
+        logger.info("Property deleted successfully. id={}", id);
+
     }
+
 
     private PropertyEntity getPropertyOrThrow(Long id){
 

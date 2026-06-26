@@ -1,6 +1,9 @@
 package com.example.property_management.error;
 
 import com.example.property_management.error.exception.*;
+import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -15,8 +18,12 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleUserNotFoundException(UserNotFoundException ex) {
+
+        logger.warn("User not found {}", ex.getMessage());
 
         ErrorResponse errorResponse = new ErrorResponse(
                 LocalDateTime.now(ZoneId.of("UTC")),
@@ -31,6 +38,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserAlreadyExistsException.class)
     public  ResponseEntity<ErrorResponse> handleUserAlreadyExistsException(UserAlreadyExistsException ex) {
+
+        logger.warn("User already exists {}", ex.getMessage());
+
         ErrorResponse errorResponse = new ErrorResponse(
                 LocalDateTime.now(ZoneId.of("UTC")),
                 HttpStatus.CONFLICT.value(),
@@ -44,6 +54,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(InvalidCredentialsException.class)
     public ResponseEntity<ErrorResponse> handleInvalidCredentialsException(InvalidCredentialsException ex) {
+
+        logger.warn("Invalid credentials: {}", ex.getMessage());
+
         ErrorResponse errorResponse = new ErrorResponse(
                 LocalDateTime.now(ZoneId.of("UTC")),
                 HttpStatus.UNAUTHORIZED.value(),
@@ -57,6 +70,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(PropertyNotFoundException.class)
     public ResponseEntity<ErrorResponse> handlePropertyNotFoundException(PropertyNotFoundException ex) {
+
+        logger.warn("Property not found: {}", ex.getMessage());
+
         ErrorResponse errorResponse = new ErrorResponse(
                 LocalDateTime.now(ZoneId.of("UTC")),
                 HttpStatus.NOT_FOUND.value(),
@@ -70,6 +86,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(PropertyAlreadyExistsException.class)
     public ResponseEntity<ErrorResponse> handlePropertyAlreadyExistsException(PropertyAlreadyExistsException ex) {
+
+        logger.warn("Property already exists {}", ex.getMessage());
+
         ErrorResponse errorResponse = new ErrorResponse(
                 LocalDateTime.now(ZoneId.of("UTC")),
                 HttpStatus.CONFLICT.value(),
@@ -93,6 +112,7 @@ public class GlobalExceptionHandler {
                                 error.getDefaultMessage()
                         ));
 
+        logger.warn("Validation failed : {}", errors);
 
         ErrorResponse errorResponse = new ErrorResponse(
             LocalDateTime.now(ZoneId.of("UTC")),
@@ -103,5 +123,26 @@ public class GlobalExceptionHandler {
         );
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleException(Exception ex, HttpServletRequest request) {
+
+        logger.error(
+                "Unhandled exception. method={}, url={}, exception={}",
+                request.getMethod(),
+                request.getRequestURI(),
+                ex.getClass().getSimpleName(),
+                ex
+        );
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                LocalDateTime.now(ZoneId.of("UTC")),
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                "INTERNAL SERVER ERROR",
+                "INTERNAL SERVER ERROR",
+                null
+        );
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 }

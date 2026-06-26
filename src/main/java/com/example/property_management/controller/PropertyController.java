@@ -7,7 +7,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.List;
 
 @RestController
@@ -20,45 +21,60 @@ public class PropertyController {
         this.propertyService = propertyService;
     }
 
-    @GetMapping("/property/{id}")
+    private static final Logger logger = LoggerFactory.getLogger(PropertyController.class);
+
+    @GetMapping("/properties/{id}")
     public ResponseEntity<PropertyDTO> property(@PathVariable Long id){
+
+        logger.info("GET request for property with id {}", id);
 
         PropertyDTO property = propertyService.getProperty(id);
 
         return ResponseEntity.ok(property);
     }
 
-    @PostMapping("/property")
+    @PostMapping("/properties")
     public ResponseEntity<PropertyDTO> property(@Valid @RequestBody PropertyDTO propertyDTO){
 
+        logger.info("POST request for creating property {}", propertyDTO.getPropertyName());
+
         PropertyDTO savedProperty = propertyService.createProperty(propertyDTO);
+
         return new ResponseEntity<>(savedProperty, HttpStatus.CREATED); // new response -> return Response
     }
 
     @GetMapping("/properties")
     public ResponseEntity<List<PropertyDTO>> getAllProperties(){
 
+        logger.info("GET request for getting all properties");
+
         return ResponseEntity.ok(propertyService.getAllProperties());
     }
 
-    @PutMapping("/updateproperty/{id}")
+    @PutMapping("/properties/{id}")
     public ResponseEntity<PropertyDTO> updateProperty(@PathVariable Long id, @RequestBody PropertyDTO propertyDTO){
+
+        logger.info("PUT request for updating property with id {}", id);
 
         PropertyDTO updatedProperty = propertyService.updateProperty(id, propertyDTO);
 
         return ResponseEntity.ok(updatedProperty);
     }
 
-    @PatchMapping("/updateproperty/{id}")
+    @PatchMapping("/properties/{id}")
     public ResponseEntity<PropertyDTO> partialUpdateProperty(@PathVariable Long id, @RequestBody PropertyUpdateDTO propertyUpdateDTO){
+
+        logger.info("PATCH request for updating property with id {}", id);
 
         PropertyDTO updatedProperty = propertyService.partialUpdateProperty(id, propertyUpdateDTO);
 
         return ResponseEntity.ok(updatedProperty);
     }
     
-    @DeleteMapping("/deleteProperty/{id}")//deleteProperty or deleteproperty
+    @DeleteMapping("/properties/{id}")//deleteProperty or deleteproperty
     public ResponseEntity<Void>  deleteProperty(@PathVariable Long id){
+
+        logger.info("DELETE request for deleting property with id {}", id);
 
         propertyService.deleteProperty(id);
 
