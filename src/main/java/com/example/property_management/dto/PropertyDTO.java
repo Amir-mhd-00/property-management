@@ -29,7 +29,7 @@ public class PropertyDTO {
     )
     private String propertyName;
 
-    @NotNull(message = "value cannot be empty")
+    @NotNull(message = "Property value cannot be empty")
     @Schema(
             description = "Estimated market value of the property.",
             example = "350000.00",

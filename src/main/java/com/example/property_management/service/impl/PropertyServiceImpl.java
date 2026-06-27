@@ -93,16 +93,20 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public PropertyDTO updateProperty(Long id, PropertyUpdateDTO dto) {
+    public PropertyDTO updateProperty(Long id, PropertyDTO dto) {
         PropertyEntity existingProperty = getPropertyOrThrow(id);
 
         BeanUtils.copyProperties(dto, existingProperty, "id");
-
-        //u can update a property name to a name that already exits
-        //u can partialy update with this witch shouldnt be allowed
-        //the code is 200 even if u send a empty json
-
+        
         logger.info("PUT updating property id={}", id);
+
+        if (propertyRepository.findByPropertyName(dto.getPropertyName()).isPresent()) {
+
+            logger.warn("Updating failed property {} already exists", dto.getPropertyName());
+
+            throw  new PropertyAlreadyExistsException(
+                    String.format("Property with name %s already exists", dto.getPropertyName()));
+        }
 
         PropertyEntity updatedProperty = propertyRepository.save(existingProperty);
 

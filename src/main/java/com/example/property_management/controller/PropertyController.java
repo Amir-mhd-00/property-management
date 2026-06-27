@@ -105,11 +105,13 @@ public class PropertyController {
     @ApiResponse(responseCode = "404", description = "Property not found",
             content =  @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @ApiResponse(responseCode = "400", description = "Invalid request body")
+    @ApiResponse(responseCode = "404", description = "user not found",
+            content =  @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @PutMapping("/properties/{id}")
     public ResponseEntity<PropertyDTO> updateProperty(
             @Parameter(description = "Unique identifier of the property", example = "1")
             @PathVariable Long id,
-            @RequestBody PropertyUpdateDTO propertyDTO){
+            @Valid @RequestBody PropertyDTO propertyDTO){
 
         logger.info("PUT request for updating property with id {}", id);
 
@@ -125,7 +127,7 @@ public class PropertyController {
             description = "Property updated successfully",
             content = @Content(schema = @Schema(implementation = PropertyDTO.class))
     )
-    @ApiResponse(responseCode = "404", description = "Property not found",
+    @ApiResponse(responseCode = "409", description = "Property already exists",
             content =  @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @ApiResponse(responseCode = "400", description = "Invalid request body")
     @ApiResponse(responseCode = "500", description = "Internal server error")

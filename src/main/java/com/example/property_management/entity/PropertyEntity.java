@@ -17,6 +17,7 @@ public class PropertyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String propertyName;
     private Double propertyValue;
     private String propertyType;
