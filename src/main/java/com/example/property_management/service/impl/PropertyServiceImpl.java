@@ -93,16 +93,20 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public PropertyDTO updateProperty(Long id, PropertyDTO propertyDTO) {
+    public PropertyDTO updateProperty(Long id, PropertyUpdateDTO dto) {
         PropertyEntity existingProperty = getPropertyOrThrow(id);
 
-        BeanUtils.copyProperties(propertyDTO, existingProperty, "id");
+        BeanUtils.copyProperties(dto, existingProperty, "id");
 
-        logger.info("updating property id={}", id);
+        //u can update a property name to a name that already exits
+        //u can partialy update with this witch shouldnt be allowed
+        //the code is 200 even if u send a empty json
+
+        logger.info("PUT updating property id={}", id);
 
         PropertyEntity updatedProperty = propertyRepository.save(existingProperty);
 
-        logger.info("Property updated successfully. id={}", id);
+        logger.info("PUT Property updated successfully. id={}", id);
 
         PropertyDTO updatedPropertyDTO = new PropertyDTO();
         BeanUtils.copyProperties(updatedProperty, updatedPropertyDTO);
@@ -133,11 +137,11 @@ public class PropertyServiceImpl implements PropertyService {
             property.setLocation(dto.getLocation());
         }
 
-        logger.info("updating property id={}", id);
+        logger.info("PATCH Updating property id={}", id);
 
         PropertyEntity savedProperty = propertyRepository.save(property);
 
-        logger.info("Property updated successfully. id={}", id);
+        logger.info("PATCH Property updated successfully. id={}", id);
 
         PropertyDTO response = new PropertyDTO();
         BeanUtils.copyProperties(savedProperty, response);

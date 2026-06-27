@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
 
         UserEntity savedUser = userRepository.save(user);
 
-        logger.info("User registered successfully. email = {} id = {}",
+        logger.info("User registered successfully.   email = {} id = {}",
                 savedUser.getEmail(),  savedUser.getId());
 
         UserResponseDTO response = new UserResponseDTO();

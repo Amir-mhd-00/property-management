@@ -1,7 +1,13 @@
 package com.example.property_management.controller;
 
 import com.example.property_management.dto.*;
+import com.example.property_management.error.ErrorResponse;
 import com.example.property_management.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(
+        name = "User Management",
+        description = "Operations for managing users"
+)
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserController {
@@ -23,6 +33,20 @@ public class UserController {
         this.userService = userService;
     }
 
+    @Operation(
+            summary = "Register a new user",
+            description = "Creates a new user account."
+    )
+    @ApiResponse(responseCode = "201",
+            description = "User registered successfully",
+            content = @Content(
+                    schema = @Schema(implementation = UserResponseDTO.class)
+            )
+    )
+    @ApiResponse(responseCode = "409", description = "user already exists")
+    @ApiResponse(responseCode = "400", description = "validation error")
+    @ApiResponse(responseCode = "500", description = "Internal server error")
+    @ApiResponse(responseCode = "400", description = "invalid fields")
     @PostMapping("/register")
     public ResponseEntity<UserResponseDTO> createUser(
             @Valid @RequestBody RegisterUserDTO dto) {
@@ -35,11 +59,25 @@ public class UserController {
                 .body(createdUser);
     }
 
+
+    @Operation(
+            summary = "Authenticate user",
+        description = "Authenticates a user using their email and password."
+    )
+    @ApiResponse(responseCode = "200",
+            description = "user authenticated successfully"
+            // content = JWT Token
+    )
+    @ApiResponse(responseCode = "404", description = "user not found",
+        content =  @Content(schema = @Schema(implementation = ErrorResponse.class)))
+    @ApiResponse(responseCode = "401", description = "Invalid credentials")
+    @ApiResponse(responseCode = "500", description = "Internal server error")
+    @ApiResponse(responseCode = "400", description = "invalid fields")
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> login(
             @Valid @RequestBody LoginRequestDTO dto) {
 
-        logger.info("POST request for login ");
+        logger.info("Login attempt for email {}", dto.getEmail());
 
         LoginResponseDTO user = userService.login(dto);
 
