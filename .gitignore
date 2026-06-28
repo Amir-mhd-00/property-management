@@ -37,3 +37,6 @@ logs/
 *.log
 logs/prod/application.log
 *.log
+logs/dev/application.log
+*.log
+/logs

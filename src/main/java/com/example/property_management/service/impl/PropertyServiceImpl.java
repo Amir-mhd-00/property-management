@@ -97,7 +97,7 @@ public class PropertyServiceImpl implements PropertyService {
         PropertyEntity existingProperty = getPropertyOrThrow(id);
 
         BeanUtils.copyProperties(dto, existingProperty, "id");
-        
+
         logger.info("PUT updating property id={}", id);
 
         if (propertyRepository.findByPropertyName(dto.getPropertyName()).isPresent()) {
@@ -117,7 +117,7 @@ public class PropertyServiceImpl implements PropertyService {
 
         return updatedPropertyDTO;
     }
-
+    tests tests implement tests TESTS TSET TEST
     @Override
     public PropertyDTO partialUpdateProperty(Long id, PropertyUpdateDTO dto) {
         PropertyEntity property = getPropertyOrThrow(id);
