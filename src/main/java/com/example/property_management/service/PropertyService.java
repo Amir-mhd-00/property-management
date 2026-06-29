@@ -2,7 +2,6 @@ package com.example.property_management.service;
 
 import com.example.property_management.dto.PropertyDTO;
 import com.example.property_management.dto.PropertyUpdateDTO;
-
 import java.util.List;
 
 public interface PropertyService {
@@ -12,5 +11,6 @@ public interface PropertyService {
     PropertyDTO updateProperty(Long id, PropertyDTO dto);
     PropertyDTO partialUpdateProperty(Long id, PropertyUpdateDTO dto);
     void deleteProperty(Long id);
+    List<PropertyDTO> getAllPropertiesByStatus(String propertyStatus);
 
 }

@@ -117,7 +117,7 @@ public class PropertyServiceImpl implements PropertyService {
 
         return updatedPropertyDTO;
     }
-    tests tests implement tests TESTS TSET TEST
+    //tests tests implement tests TESTS TSET TEST
     @Override
     public PropertyDTO partialUpdateProperty(Long id, PropertyUpdateDTO dto) {
         PropertyEntity property = getPropertyOrThrow(id);
@@ -164,6 +164,26 @@ public class PropertyServiceImpl implements PropertyService {
 
         logger.info("Property deleted successfully. id={}", id);
 
+    }
+
+    @Override
+    public List<PropertyDTO> getAllPropertiesByStatus(String propertyStatus) {
+
+        logger.info("fetching all properties with status : {}", propertyStatus);
+
+        List<PropertyEntity> properties = propertyRepository.findAllByPropertyStatus(propertyStatus);
+
+        logger.info("fetched {} properties with status : {}", properties.size(),  propertyStatus);
+
+        List<PropertyDTO> propertiesDTO = new ArrayList<>();
+
+        for (PropertyEntity propertyEntity : properties) {
+            PropertyDTO propertyDTO = new PropertyDTO();
+            BeanUtils.copyProperties(propertyEntity, propertyDTO);
+            propertiesDTO.add(propertyDTO);
+        }
+
+        return propertiesDTO;
     }
 
 

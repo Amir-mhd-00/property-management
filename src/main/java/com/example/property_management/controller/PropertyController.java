@@ -23,7 +23,7 @@ import java.util.List;
         description = "operations for managing properties"
 )
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/properties")
 public class PropertyController {
 
     private final PropertyServiceImpl propertyService;
@@ -45,7 +45,7 @@ public class PropertyController {
     )
     @ApiResponse(responseCode = "404", description = "Property not found",
             content =  @Content(schema = @Schema(implementation = ErrorResponse.class)))
-    @GetMapping("/properties/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<PropertyDTO> getProperty(
             @Parameter(description = "Unique identifier of the property", example = "1")
             @PathVariable Long id) {
@@ -68,7 +68,7 @@ public class PropertyController {
     )
     @ApiResponse(responseCode = "400", description = "Invalid request body")
     @ApiResponse(responseCode = "409", description = "property already exists")
-    @PostMapping("/properties")
+    @PostMapping
     public ResponseEntity<PropertyDTO> createProperty(
             @Valid @RequestBody PropertyDTO propertyDTO) {
 
@@ -88,7 +88,7 @@ public class PropertyController {
                             schema = @Schema(implementation = PropertyDTO.class)))
     )
     @ApiResponse(responseCode = "500", description = "internal server error")
-    @GetMapping("/properties")
+    @GetMapping
     public ResponseEntity<List<PropertyDTO>> getAllProperties(){
 
         logger.info("GET request for getting all properties");
@@ -107,7 +107,7 @@ public class PropertyController {
     @ApiResponse(responseCode = "400", description = "Invalid request body")
     @ApiResponse(responseCode = "404", description = "user not found",
             content =  @Content(schema = @Schema(implementation = ErrorResponse.class)))
-    @PutMapping("/properties/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<PropertyDTO> updateProperty(
             @Parameter(description = "Unique identifier of the property", example = "1")
             @PathVariable Long id,
@@ -131,7 +131,7 @@ public class PropertyController {
             content =  @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @ApiResponse(responseCode = "400", description = "Invalid request body")
     @ApiResponse(responseCode = "500", description = "Internal server error")
-    @PatchMapping("/properties/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<PropertyDTO> partialUpdateProperty(
             @Parameter(description = "Unique identifier of the property", example = "1")
             @PathVariable Long id, @RequestBody PropertyUpdateDTO propertyUpdateDTO){
@@ -151,7 +151,7 @@ public class PropertyController {
     @ApiResponse(responseCode = "404", description = "Property not found",
             content =  @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @ApiResponse(responseCode = "500", description = "Internal server error")
-    @DeleteMapping("/properties/{id}")//deleteProperty or deleteproperty
+    @DeleteMapping("/{id}")//deleteProperty or deleteproperty
     public ResponseEntity<Void>  deleteProperty(@PathVariable Long id){
 
         logger.info("DELETE request for deleting property with id {}", id);
@@ -159,5 +159,22 @@ public class PropertyController {
         propertyService.deleteProperty(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "Getting properties by status", description = "Returns a list of all registered properties grouped by status.")
+    @ApiResponse(responseCode = "200",
+            description = "properties fetched successfully",
+            content = @Content(
+                    mediaType = "application/json",
+                    array = @io.swagger.v3.oas.annotations.media.ArraySchema(
+                            schema = @Schema(implementation = PropertyDTO.class)))
+    )
+    @ApiResponse(responseCode = "500", description = "internal server error")
+    @GetMapping(params = "status")
+    public ResponseEntity<List<PropertyDTO>> findAllByPropertyStatus(@RequestParam String status){
+
+        logger.info("GET request for finding all properties with status {}", status);
+
+        return ResponseEntity.ok(propertyService.getAllPropertiesByStatus(status));
     }
 }

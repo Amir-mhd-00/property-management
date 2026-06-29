@@ -1,919 +1,401 @@
-2026-06-27 09:36:03.881 [main] INFO  c.e.p.PropertyManagementApplication - Starting PropertyManagementApplication using Java 25.0.2 with PID 3028 (C:\Users\lenovo\Desktop\projects\spring boot\property-management\target\classes started by lenovo in C:\Users\lenovo\Desktop\projects\spring boot\property-management)
-2026-06-27 09:36:03.886 [main] DEBUG c.e.p.PropertyManagementApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
-2026-06-27 09:36:03.886 [main] INFO  c.e.p.PropertyManagementApplication - The following 1 profile is active: "dev"
-2026-06-27 09:36:04.670 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-27 09:36:04.723 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 43 ms. Found 2 JPA repository interfaces.
-2026-06-27 09:36:05.215 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-06-27 09:36:05.227 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2026-06-27 09:36:05.230 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-06-27 09:36:05.230 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
-2026-06-27 09:36:05.281 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-06-27 09:36:05.281 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1351 ms
-2026-06-27 09:36:05.806 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-27 09:36:05.835 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-06-27 09:36:06.005 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@31880efa
-2026-06-27 09:36:06.006 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-06-27 09:36:06.864 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-27 09:36:07.253 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-27 09:36:07.339 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 14 mappings in 'requestMappingHandlerMapping'
-2026-06-27 09:36:07.404 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
-2026-06-27 09:36:07.417 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+2026-06-29 10:39:47.817 [main] INFO  c.e.p.PropertyManagementApplication - Starting PropertyManagementApplication using Java 25.0.2 with PID 20220 (C:\Users\lenovo\Desktop\projects\spring boot\property-management\target\classes started by lenovo in C:\Users\lenovo\Desktop\projects\spring boot\property-management)
+2026-06-29 10:39:47.829 [main] DEBUG c.e.p.PropertyManagementApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
+2026-06-29 10:39:47.830 [main] INFO  c.e.p.PropertyManagementApplication - The following 1 profile is active: "dev"
+2026-06-29 10:39:49.040 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-29 10:39:49.106 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 54 ms. Found 2 JPA repository interfaces.
+2026-06-29 10:39:49.685 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-29 10:39:49.713 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-29 10:39:49.716 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-29 10:39:49.717 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-29 10:39:49.783 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-06-29 10:39:49.784 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1875 ms
+2026-06-29 10:39:50.507 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-29 10:39:50.547 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-06-29 10:39:50.796 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2cadcff6
+2026-06-29 10:39:50.797 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-06-29 10:39:51.759 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 10:39:52.154 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-29 10:39:52.230 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Injection of autowired dependencies failed
+2026-06-29 10:39:52.231 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 10:39:52.233 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-06-29 10:39:52.243 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-06-29 10:39:52.246 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2026-06-29 10:39:52.261 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
 
-Using generated security password: abc6428e-3a23-43b6-99b6-9acbc94bf917
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-2026-06-27 09:36:07.423 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
-2026-06-27 09:36:07.546 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2026-06-27 09:36:07.583 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-2026-06-27 09:36:07.698 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2026-06-27 09:36:07.712 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2026-06-27 09:36:07.717 [main] INFO  c.e.p.PropertyManagementApplication - Started PropertyManagementApplication in 4.392 seconds (process running for 4.795)
-2026-06-27 09:36:28.353 [http-nio-8080-exec-1] INFO  o.a.coyote.http11.Http11Processor - Error parsing HTTP request header
- Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
-java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x060xd20x010x000x060xce0x030x030xc10xf5I#0x18p0xcf0x03P}OC0x0f0x09C0xd3L0xa50x9b0xd90xde0xb60xf0x0x980x860x05xM[B0x83 ]. HTTP method names must be tokens
-	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:402)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:272)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1797)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
-	at java.base/java.lang.Thread.run(Thread.java:1474)
-2026-06-27 09:36:28.353 [http-nio-8080-exec-2] INFO  o.a.coyote.http11.Http11Processor - Error parsing HTTP request header
- Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
-java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x060xd20x010x000x060xce0x030x030x1eh0xda0xeba0xef30xf10x940x150xd4=60x11B0xf0q0xe3h0x8da0xe3 ]. HTTP method names must be tokens
-	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:402)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:272)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1797)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
-	at java.base/java.lang.Thread.run(Thread.java:1474)
-2026-06-27 09:37:13.225 [http-nio-8080-exec-5] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-06-27 09:37:13.225 [http-nio-8080-exec-5] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-06-27 09:37:13.226 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
-2026-06-27 09:37:13.226 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
-2026-06-27 09:37:13.226 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
-2026-06-27 09:37:13.227 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@5c00de0d
-2026-06-27 09:37:13.227 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@1609ed55
-2026-06-27 09:37:13.227 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2026-06-27 09:37:13.227 [http-nio-8080-exec-5] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2026-06-27 09:37:13.251 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/index.html", parameters={}
-2026-06-27 09:37:13.253 [http-nio-8080-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-06-27 09:37:13.278 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2026-06-27 09:37:13.302 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui.css", parameters={}
-2026-06-27 09:37:13.303 [http-nio-8080-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-06-27 09:37:13.308 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2026-06-27 09:37:13.308 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/index.css", parameters={}
-2026-06-27 09:37:13.308 [http-nio-8080-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-06-27 09:37:13.309 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-bundle.js", parameters={}
-2026-06-27 09:37:13.309 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-initializer.js", parameters={}
-2026-06-27 09:37:13.309 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={}
-2026-06-27 09:37:13.309 [http-nio-8080-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-06-27 09:37:13.309 [http-nio-8080-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-06-27 09:37:13.310 [http-nio-8080-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-06-27 09:37:13.311 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2026-06-27 09:37:13.324 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2026-06-27 09:37:13.332 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2026-06-27 09:37:13.363 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2026-06-27 09:37:13.816 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-bundle.js", parameters={}
-2026-06-27 09:37:13.817 [http-nio-8080-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-06-27 09:37:13.817 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={}
-2026-06-27 09:37:13.817 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-initializer.js", parameters={}
-2026-06-27 09:37:13.817 [http-nio-8080-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-06-27 09:37:13.818 [http-nio-8080-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-06-27 09:37:13.822 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2026-06-27 09:37:13.823 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2026-06-27 09:37:13.834 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2026-06-27 09:37:14.006 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/v3/api-docs/swagger-config", parameters={}
-2026-06-27 09:37:14.006 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
-2026-06-27 09:37:14.024 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json]
-2026-06-27 09:37:14.047 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{configUrl=/v3/api-docs/swagger-config, oauth2RedirectUrl=http://localhost:8080/swagger-ui/oauth2-re (truncated)...]
-2026-06-27 09:37:14.053 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2026-06-27 09:37:14.059 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/v3/api-docs", parameters={}
-2026-06-27 09:37:14.060 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
-2026-06-27 09:37:14.462 [http-nio-8080-exec-5] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 390 ms
-2026-06-27 09:37:14.491 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, */*] and supported [application/json]
-2026-06-27 09:37:14.493 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{123, 34, 111, 112, 101, 110, 97, 112, 105, 34, 58, 34, 51, 46, 49, 46, 48, 34, 44, 34, 105, 110, 10 (truncated)...]
-2026-06-27 09:37:14.494 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2026-06-27 09:39:17.406 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/api/v1/properties/9", parameters={}
-2026-06-27 09:39:17.406 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#updateProperty(Long, PropertyDTO)
-2026-06-27 09:39:17.426 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.property_management.dto.PropertyDTO@2bc9da12]
-2026-06-27 09:39:17.426 [http-nio-8080-exec-8] INFO  c.e.p.controller.PropertyController - PUT request for updating property with id 9
-2026-06-27 09:39:17.454 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.id=?
-2026-06-27 09:39:17.454 [http-nio-8080-exec-8] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [9]
-2026-06-27 09:39:17.486 [http-nio-8080-exec-8] INFO  c.e.p.s.impl.PropertyServiceImpl - PUT updating property id=9
-2026-06-27 09:39:17.541 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.property_name=?
-2026-06-27 09:39:17.541 [http-nio-8080-exec-8] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:VARCHAR) <- [Sunset Villa]
-2026-06-27 09:39:17.556 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.property_management.error.GlobalExceptionHandler#handleException(Exception, HttpServletRequest)
-2026-06-27 09:39:17.556 [http-nio-8080-exec-8] ERROR c.e.p.error.GlobalExceptionHandler - Unhandled exception. method=PUT, url=/api/v1/properties/9, exception=IncorrectResultSizeDataAccessException
-org.springframework.dao.IncorrectResultSizeDataAccessException: Query did not return a unique result: 3 results were returned
-	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:305)
-	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:256)
-	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:244)
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:560)
-	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
-	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:343)
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:160)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:136)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223)
-	at jdk.proxy2/jdk.proxy2.$Proxy144.findByPropertyName(Unknown Source)
-	at com.example.property_management.service.impl.PropertyServiceImpl.updateProperty(PropertyServiceImpl.java:107)
-	at com.example.property_management.controller.PropertyController.updateProperty(PropertyController.java:116)
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-06-29 10:39:52.276 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Injection of autowired dependencies failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:515)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1459)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:606)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1228)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1130)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:991)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:628)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.example.property_management.PropertyManagementApplication.main(PropertyManagementApplication.java:11)
+Caused by: java.lang.RuntimeException: Could not postProcess org.springframework.security.config.annotation.web.builders.WebSecurity@1773faf8 of type class org.springframework.security.config.annotation.web.builders.WebSecurity
+	at org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor.postProcess(AutowireBeanFactoryObjectPostProcessor.java:71)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration.setFilterChainProxySecurityConfigurer(WebSecurityConfiguration.java:159)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
-	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:925)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:593)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
-	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:370)
-	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
-	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
-	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
-	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
-	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
-	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
-	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1797)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
-	at java.base/java.lang.Thread.run(Thread.java:1474)
-Caused by: org.hibernate.NonUniqueResultException: Query did not return a unique result: 3 results were returned
-	at org.hibernate.query.spi.AbstractSelectionQuery.uniqueElement(AbstractSelectionQuery.java:298)
-	at org.hibernate.query.spi.AbstractSelectionQuery.getSingleResult(AbstractSelectionQuery.java:281)
-	at org.springframework.data.jpa.repository.query.JpaQueryExecution$SingleEntityExecution.doExecute(JpaQueryExecution.java:226)
-	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:95)
-	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:160)
-	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:148)
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170)
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:170)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:149)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138)
-	... 102 common frames omitted
-2026-06-27 09:39:17.556 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-06-27 09:39:17.556 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(timestamp=2026-06-27T16:39:17.556985400, status=500, error=INTERNAL SERVER ERROR, mess (truncated)...]
-2026-06-27 09:39:17.565 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.IncorrectResultSizeDataAccessException: Query did not return a unique result: 3 results were returned]
-2026-06-27 09:39:17.565 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
-2026-06-27 09:41:22.254 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2026-06-27 09:41:22.258 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2026-06-27 09:41:22.261 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-06-27 09:41:22.264 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-06-27 09:41:22.275 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-06-27 09:49:10.330 [main] INFO  c.e.p.PropertyManagementApplication - Starting PropertyManagementApplication using Java 25.0.2 with PID 22056 (C:\Users\lenovo\Desktop\projects\spring boot\property-management\target\classes started by lenovo in C:\Users\lenovo\Desktop\projects\spring boot\property-management)
-2026-06-27 09:49:10.332 [main] DEBUG c.e.p.PropertyManagementApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
-2026-06-27 09:49:10.332 [main] INFO  c.e.p.PropertyManagementApplication - The following 1 profile is active: "dev"
-2026-06-27 09:49:10.950 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-27 09:49:10.996 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39 ms. Found 2 JPA repository interfaces.
-2026-06-27 09:49:11.378 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-06-27 09:49:11.389 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2026-06-27 09:49:11.391 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-06-27 09:49:11.391 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
-2026-06-27 09:49:11.441 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-06-27 09:49:11.442 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1062 ms
-2026-06-27 09:49:11.900 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-27 09:49:11.921 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-06-27 09:49:12.035 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@533e2f4
-2026-06-27 09:49:12.036 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-06-27 09:49:12.668 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-27 09:49:12.942 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-27 09:49:13.016 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 14 mappings in 'requestMappingHandlerMapping'
-2026-06-27 09:49:13.074 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
-2026-06-27 09:49:13.086 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:853)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509)
+	... 19 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospectorRequestTransformer': Cannot resolve reference to bean 'mvcHandlerMappingIntrospector' while setting constructor argument
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:691)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:206)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:227)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1623)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1581)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:564)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory$1.getIfUnique(DefaultListableBeanFactory.java:490)
+	at org.springframework.security.config.annotation.web.builders.WebSecurity.setApplicationContext(WebSecurity.java:433)
+	at org.springframework.context.support.ApplicationContextAwareProcessor.invokeAwareInterfaces(ApplicationContextAwareProcessor.java:110)
+	at org.springframework.context.support.ApplicationContextAwareProcessor.postProcessBeforeInitialization(ApplicationContextAwareProcessor.java:85)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:429)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1818)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:419)
+	at org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor.initializeBeanIfNeeded(AutowireBeanFactoryObjectPostProcessor.java:98)
+	at org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor.postProcess(AutowireBeanFactoryObjectPostProcessor.java:67)
+	... 25 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'propertyController' method 
+com.example.property_management.controller.PropertyController#findAllByPropertyStatus(String)
+to {GET [/api/v1/properties]}: There is already 'propertyController' bean method
+com.example.property_management.controller.PropertyController#getAllProperties() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1826)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365)
+	... 48 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'propertyController' method 
+com.example.property_management.controller.PropertyController#findAllByPropertyStatus(String)
+to {GET [/api/v1/properties]}: There is already 'propertyController' bean method
+com.example.property_management.controller.PropertyController#getAllProperties() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1826)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:748)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1450)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:372)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.initHandlerMappings(HandlerMappingIntrospector.java:159)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.afterPropertiesSet(HandlerMappingIntrospector.java:146)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822)
+	... 55 common frames omitted
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'propertyController' method 
+com.example.property_management.controller.PropertyController#findAllByPropertyStatus(String)
+to {GET [/api/v1/properties]}: There is already 'propertyController' bean method
+com.example.property_management.controller.PropertyController#getAllProperties() mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:677)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:637)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:331)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:507)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:84)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:298)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:987)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:296)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:237)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822)
+	... 68 common frames omitted
+2026-06-29 10:56:53.812 [main] INFO  c.e.p.PropertyManagementApplication - Starting PropertyManagementApplication using Java 25.0.2 with PID 624 (C:\Users\lenovo\Desktop\projects\spring boot\property-management\target\classes started by lenovo in C:\Users\lenovo\Desktop\projects\spring boot\property-management)
+2026-06-29 10:56:53.814 [main] DEBUG c.e.p.PropertyManagementApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
+2026-06-29 10:56:53.814 [main] INFO  c.e.p.PropertyManagementApplication - The following 1 profile is active: "dev"
+2026-06-29 10:56:54.431 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-29 10:56:54.475 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 36 ms. Found 2 JPA repository interfaces.
+2026-06-29 10:56:54.847 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-29 10:56:54.856 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-29 10:56:54.857 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-29 10:56:54.857 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-29 10:56:54.902 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-06-29 10:56:54.902 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1044 ms
+2026-06-29 10:56:55.291 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-29 10:56:55.315 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-06-29 10:56:55.437 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@72f24a84
+2026-06-29 10:56:55.439 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-06-29 10:56:56.133 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 10:56:56.434 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-29 10:56:56.505 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 15 mappings in 'requestMappingHandlerMapping'
+2026-06-29 10:56:56.566 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2026-06-29 10:56:56.578 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
 
-Using generated security password: 9305c762-a390-458b-b2fb-6e3174e67cd9
+Using generated security password: 4cfaf0db-96f7-4484-979b-f220eaa56786
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2026-06-27 09:49:13.090 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
-2026-06-27 09:49:13.188 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2026-06-27 09:49:13.221 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-2026-06-27 09:49:13.320 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2026-06-27 09:49:13.332 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2026-06-27 09:49:13.339 [main] INFO  c.e.p.PropertyManagementApplication - Started PropertyManagementApplication in 3.501 seconds (process running for 3.871)
-2026-06-27 09:49:22.339 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-06-27 09:49:22.339 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-06-27 09:49:22.339 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
-2026-06-27 09:49:22.339 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
-2026-06-27 09:49:22.339 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
-2026-06-27 09:49:22.340 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@5a110e7d
-2026-06-27 09:49:22.340 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@21dbd651
-2026-06-27 09:49:22.340 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2026-06-27 09:49:22.341 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2026-06-27 09:49:22.358 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/api/v1/properties/9", parameters={}
-2026-06-27 09:49:22.359 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#updateProperty(Long, PropertyDTO)
-2026-06-27 09:49:22.424 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.property_management.dto.PropertyDTO@74f2cfd]
-2026-06-27 09:49:22.425 [http-nio-8080-exec-1] INFO  c.e.p.controller.PropertyController - PUT request for updating property with id 9
-2026-06-27 09:49:22.450 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.id=?
-2026-06-27 09:49:22.453 [http-nio-8080-exec-1] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [9]
-2026-06-27 09:49:22.472 [http-nio-8080-exec-1] INFO  c.e.p.s.impl.PropertyServiceImpl - PUT updating property id=9
-2026-06-27 09:49:22.528 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.property_name=?
-2026-06-27 09:49:22.528 [http-nio-8080-exec-1] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:VARCHAR) <- [Sunset Villa]
-2026-06-27 09:49:22.535 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.property_management.error.GlobalExceptionHandler#handleException(Exception, HttpServletRequest)
-2026-06-27 09:49:22.535 [http-nio-8080-exec-1] ERROR c.e.p.error.GlobalExceptionHandler - Unhandled exception. method=PUT, url=/api/v1/properties/9, exception=IncorrectResultSizeDataAccessException
-org.springframework.dao.IncorrectResultSizeDataAccessException: Query did not return a unique result: 3 results were returned
-	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:305)
-	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:256)
-	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:244)
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:560)
-	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
-	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:343)
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:160)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:136)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223)
-	at jdk.proxy2/jdk.proxy2.$Proxy144.findByPropertyName(Unknown Source)
-	at com.example.property_management.service.impl.PropertyServiceImpl.updateProperty(PropertyServiceImpl.java:107)
-	at com.example.property_management.controller.PropertyController.updateProperty(PropertyController.java:118)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
-	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:925)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:593)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
-	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:370)
-	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379)
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
-	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
-	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
-	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
-	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
-	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
-	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1797)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
-	at java.base/java.lang.Thread.run(Thread.java:1474)
-Caused by: org.hibernate.NonUniqueResultException: Query did not return a unique result: 3 results were returned
-	at org.hibernate.query.spi.AbstractSelectionQuery.uniqueElement(AbstractSelectionQuery.java:298)
-	at org.hibernate.query.spi.AbstractSelectionQuery.getSingleResult(AbstractSelectionQuery.java:281)
-	at org.springframework.data.jpa.repository.query.JpaQueryExecution$SingleEntityExecution.doExecute(JpaQueryExecution.java:226)
-	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:95)
-	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:160)
-	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:148)
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170)
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:170)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:149)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138)
-	... 102 common frames omitted
-2026-06-27 09:49:22.552 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-06-27 09:49:22.554 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(timestamp=2026-06-27T16:49:22.538218400, status=500, error=INTERNAL SERVER ERROR, mess (truncated)...]
-2026-06-27 09:49:22.565 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.IncorrectResultSizeDataAccessException: Query did not return a unique result: 3 results were returned]
-2026-06-27 09:49:22.566 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
-2026-06-27 09:51:59.835 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - DELETE "/api/v1/properties/6", parameters={}
-2026-06-27 09:51:59.835 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#deleteProperty(Long)
-2026-06-27 09:51:59.837 [http-nio-8080-exec-2] INFO  c.e.p.controller.PropertyController - DELETE request for deleting property with id 6
-2026-06-27 09:51:59.837 [http-nio-8080-exec-2] INFO  c.e.p.s.impl.PropertyServiceImpl - deleting property id=6
-2026-06-27 09:51:59.838 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.id=?
-2026-06-27 09:51:59.839 [http-nio-8080-exec-2] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [6]
-2026-06-27 09:51:59.873 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
-    delete 
-    from
-        properties 
-    where
-        id=?
-2026-06-27 09:51:59.873 [http-nio-8080-exec-2] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [6]
-2026-06-27 09:51:59.879 [http-nio-8080-exec-2] INFO  c.e.p.s.impl.PropertyServiceImpl - Property deleted successfully. id=6
-2026-06-27 09:51:59.881 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-06-27 09:51:59.881 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Nothing to write: null body
-2026-06-27 09:51:59.881 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 204 NO_CONTENT
-2026-06-27 09:52:23.724 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - DELETE "/api/v1/properties/2", parameters={}
-2026-06-27 09:52:23.724 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#deleteProperty(Long)
-2026-06-27 09:52:23.725 [http-nio-8080-exec-4] INFO  c.e.p.controller.PropertyController - DELETE request for deleting property with id 2
-2026-06-27 09:52:23.725 [http-nio-8080-exec-4] INFO  c.e.p.s.impl.PropertyServiceImpl - deleting property id=2
-2026-06-27 09:52:23.726 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.id=?
-2026-06-27 09:52:23.727 [http-nio-8080-exec-4] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [2]
-2026-06-27 09:52:23.730 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
-    delete 
-    from
-        properties 
-    where
-        id=?
-2026-06-27 09:52:23.730 [http-nio-8080-exec-4] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [2]
-2026-06-27 09:52:23.733 [http-nio-8080-exec-4] INFO  c.e.p.s.impl.PropertyServiceImpl - Property deleted successfully. id=2
-2026-06-27 09:52:23.733 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-06-27 09:52:23.733 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Nothing to write: null body
-2026-06-27 09:52:23.734 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 204 NO_CONTENT
-2026-06-27 09:53:00.778 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/api/v1/properties/9", parameters={}
-2026-06-27 09:53:00.779 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#updateProperty(Long, PropertyDTO)
-2026-06-27 09:53:00.780 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.property_management.dto.PropertyDTO@64c39e3c]
-2026-06-27 09:53:00.780 [http-nio-8080-exec-3] INFO  c.e.p.controller.PropertyController - PUT request for updating property with id 9
-2026-06-27 09:53:00.782 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.id=?
-2026-06-27 09:53:00.783 [http-nio-8080-exec-3] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [9]
-2026-06-27 09:53:00.785 [http-nio-8080-exec-3] INFO  c.e.p.s.impl.PropertyServiceImpl - PUT updating property id=9
-2026-06-27 09:53:00.787 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.property_name=?
-2026-06-27 09:53:00.787 [http-nio-8080-exec-3] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:VARCHAR) <- [Sunset Villa]
-2026-06-27 09:53:00.802 [http-nio-8080-exec-3] WARN  c.e.p.s.impl.PropertyServiceImpl - Updating failed property Sunset Villa already exists
-2026-06-27 09:53:00.803 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.property_management.error.GlobalExceptionHandler#handlePropertyAlreadyExistsException(PropertyAlreadyExistsException)
-2026-06-27 09:53:00.804 [http-nio-8080-exec-3] WARN  c.e.p.error.GlobalExceptionHandler - Property already exists Property with name Sunset Villa already exists
-2026-06-27 09:53:00.804 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-06-27 09:53:00.804 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(timestamp=2026-06-27T16:53:00.804685, status=409, error=Conflict, message=Property wit (truncated)...]
-2026-06-27 09:53:00.805 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.example.property_management.error.exception.PropertyAlreadyExistsException: Property with name Sunset Villa already exists]
-2026-06-27 09:53:00.805 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 409 CONFLICT
-2026-06-27 09:54:51.733 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/api/v1/properties/9", parameters={}
-2026-06-27 09:54:51.734 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#updateProperty(Long, PropertyDTO)
-2026-06-27 09:54:51.734 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.property_management.dto.PropertyDTO@3f05f064]
-2026-06-27 09:54:51.735 [http-nio-8080-exec-8] INFO  c.e.p.controller.PropertyController - PUT request for updating property with id 9
-2026-06-27 09:54:51.736 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.id=?
-2026-06-27 09:54:51.736 [http-nio-8080-exec-8] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [9]
-2026-06-27 09:54:51.738 [http-nio-8080-exec-8] INFO  c.e.p.s.impl.PropertyServiceImpl - PUT updating property id=9
-2026-06-27 09:54:51.741 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.property_name is null
-2026-06-27 09:54:51.749 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
-    update
-        properties 
-    set
-        location=?,
-        property_name=?,
-        property_status=?,
-        property_type=?,
-        property_value=?,
-        rooms=? 
-    where
-        id=?
-2026-06-27 09:54:51.749 [http-nio-8080-exec-8] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:VARCHAR) <- [123]
-2026-06-27 09:54:51.749 [http-nio-8080-exec-8] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:VARCHAR) <- [null]
-2026-06-27 09:54:51.749 [http-nio-8080-exec-8] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [null]
-2026-06-27 09:54:51.749 [http-nio-8080-exec-8] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [null]
-2026-06-27 09:54:51.749 [http-nio-8080-exec-8] TRACE org.hibernate.orm.jdbc.bind - binding parameter (5:DOUBLE) <- [null]
-2026-06-27 09:54:51.749 [http-nio-8080-exec-8] TRACE org.hibernate.orm.jdbc.bind - binding parameter (6:INTEGER) <- [null]
-2026-06-27 09:54:51.749 [http-nio-8080-exec-8] TRACE org.hibernate.orm.jdbc.bind - binding parameter (7:BIGINT) <- [9]
-2026-06-27 09:54:51.753 [http-nio-8080-exec-8] INFO  c.e.p.s.impl.PropertyServiceImpl - PUT Property updated successfully. id=9
-2026-06-27 09:54:51.760 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-06-27 09:54:51.761 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [com.example.property_management.dto.PropertyDTO@7ee42018]
-2026-06-27 09:54:51.762 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
-2026-06-27 09:59:15.926 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/api/v1/properties/9", parameters={}
-2026-06-27 09:59:15.926 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#updateProperty(Long, PropertyDTO)
-2026-06-27 09:59:15.927 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.property_management.dto.PropertyDTO@4f4bbfac]
-2026-06-27 09:59:15.927 [http-nio-8080-exec-10] INFO  c.e.p.controller.PropertyController - PUT request for updating property with id 9
-2026-06-27 09:59:15.929 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.id=?
-2026-06-27 09:59:15.929 [http-nio-8080-exec-10] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [9]
-2026-06-27 09:59:15.931 [http-nio-8080-exec-10] INFO  c.e.p.s.impl.PropertyServiceImpl - PUT updating property id=9
-2026-06-27 09:59:15.932 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.property_name is null
-2026-06-27 09:59:15.933 [http-nio-8080-exec-10] WARN  c.e.p.s.impl.PropertyServiceImpl - Updating failed property null already exists
-2026-06-27 09:59:15.934 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.property_management.error.GlobalExceptionHandler#handlePropertyAlreadyExistsException(PropertyAlreadyExistsException)
-2026-06-27 09:59:15.934 [http-nio-8080-exec-10] WARN  c.e.p.error.GlobalExceptionHandler - Property already exists Property with name null already exists
-2026-06-27 09:59:15.934 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-06-27 09:59:15.934 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(timestamp=2026-06-27T16:59:15.934824100, status=409, error=Conflict, message=Property  (truncated)...]
-2026-06-27 09:59:15.935 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.example.property_management.error.exception.PropertyAlreadyExistsException: Property with name null already exists]
-2026-06-27 09:59:15.935 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 409 CONFLICT
-2026-06-27 09:59:26.965 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/api/v1/properties/9", parameters={}
-2026-06-27 09:59:26.965 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#updateProperty(Long, PropertyDTO)
-2026-06-27 09:59:26.966 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.property_management.dto.PropertyDTO@7512ebc]
-2026-06-27 09:59:26.967 [http-nio-8080-exec-1] INFO  c.e.p.controller.PropertyController - PUT request for updating property with id 9
-2026-06-27 09:59:26.968 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.id=?
-2026-06-27 09:59:26.969 [http-nio-8080-exec-1] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [9]
-2026-06-27 09:59:26.970 [http-nio-8080-exec-1] INFO  c.e.p.s.impl.PropertyServiceImpl - PUT updating property id=9
-2026-06-27 09:59:26.972 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.property_name is null
-2026-06-27 09:59:26.974 [http-nio-8080-exec-1] WARN  c.e.p.s.impl.PropertyServiceImpl - Updating failed property null already exists
-2026-06-27 09:59:26.974 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.property_management.error.GlobalExceptionHandler#handlePropertyAlreadyExistsException(PropertyAlreadyExistsException)
-2026-06-27 09:59:26.974 [http-nio-8080-exec-1] WARN  c.e.p.error.GlobalExceptionHandler - Property already exists Property with name null already exists
-2026-06-27 09:59:26.974 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-06-27 09:59:26.975 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(timestamp=2026-06-27T16:59:26.974742, status=409, error=Conflict, message=Property wit (truncated)...]
-2026-06-27 09:59:26.975 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.example.property_management.error.exception.PropertyAlreadyExistsException: Property with name null already exists]
-2026-06-27 09:59:26.976 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 409 CONFLICT
-2026-06-27 10:00:05.152 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/api/v1/properties/90", parameters={}
-2026-06-27 10:00:05.152 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#updateProperty(Long, PropertyDTO)
-2026-06-27 10:00:05.153 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.property_management.dto.PropertyDTO@a70370d]
-2026-06-27 10:00:05.154 [http-nio-8080-exec-2] INFO  c.e.p.controller.PropertyController - PUT request for updating property with id 90
-2026-06-27 10:00:05.154 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.id=?
-2026-06-27 10:00:05.154 [http-nio-8080-exec-2] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [90]
-2026-06-27 10:00:05.154 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.property_management.error.GlobalExceptionHandler#handlePropertyNotFoundException(PropertyNotFoundException)
-2026-06-27 10:00:05.154 [http-nio-8080-exec-2] WARN  c.e.p.error.GlobalExceptionHandler - Property not found: Property with id 90 not found
-2026-06-27 10:00:05.154 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-06-27 10:00:05.154 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(timestamp=2026-06-27T17:00:05.154811100, status=404, error=NOT_FOUND, message=Property (truncated)...]
-2026-06-27 10:00:05.154 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.example.property_management.error.exception.PropertyNotFoundException: Property with id 90 not found]
-2026-06-27 10:00:05.154 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 404 NOT_FOUND
-2026-06-27 10:00:16.106 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/api/v1/properties/7", parameters={}
-2026-06-27 10:00:16.107 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#updateProperty(Long, PropertyDTO)
-2026-06-27 10:00:16.107 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.property_management.dto.PropertyDTO@147922e5]
-2026-06-27 10:00:16.108 [http-nio-8080-exec-6] INFO  c.e.p.controller.PropertyController - PUT request for updating property with id 7
-2026-06-27 10:00:16.109 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.id=?
-2026-06-27 10:00:16.110 [http-nio-8080-exec-6] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [7]
-2026-06-27 10:00:16.111 [http-nio-8080-exec-6] INFO  c.e.p.s.impl.PropertyServiceImpl - PUT updating property id=7
-2026-06-27 10:00:16.112 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.property_name is null
-2026-06-27 10:00:16.114 [http-nio-8080-exec-6] WARN  c.e.p.s.impl.PropertyServiceImpl - Updating failed property null already exists
-2026-06-27 10:00:16.114 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.property_management.error.GlobalExceptionHandler#handlePropertyAlreadyExistsException(PropertyAlreadyExistsException)
-2026-06-27 10:00:16.115 [http-nio-8080-exec-6] WARN  c.e.p.error.GlobalExceptionHandler - Property already exists Property with name null already exists
-2026-06-27 10:00:16.115 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-06-27 10:00:16.115 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(timestamp=2026-06-27T17:00:16.115516700, status=409, error=Conflict, message=Property  (truncated)...]
-2026-06-27 10:00:16.116 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.example.property_management.error.exception.PropertyAlreadyExistsException: Property with name null already exists]
-2026-06-27 10:00:16.116 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 409 CONFLICT
-2026-06-27 10:00:52.905 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/api/v1/properties/7", parameters={}
-2026-06-27 10:00:52.906 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#updateProperty(Long, PropertyDTO)
-2026-06-27 10:00:52.907 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.property_management.dto.PropertyDTO@4020b61a]
-2026-06-27 10:00:52.907 [http-nio-8080-exec-4] INFO  c.e.p.controller.PropertyController - PUT request for updating property with id 7
-2026-06-27 10:00:52.909 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.id=?
-2026-06-27 10:00:52.909 [http-nio-8080-exec-4] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [7]
-2026-06-27 10:00:52.911 [http-nio-8080-exec-4] INFO  c.e.p.s.impl.PropertyServiceImpl - PUT updating property id=7
-2026-06-27 10:00:52.912 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.property_name is null
-2026-06-27 10:00:52.914 [http-nio-8080-exec-4] WARN  c.e.p.s.impl.PropertyServiceImpl - Updating failed property null already exists
-2026-06-27 10:00:52.914 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.property_management.error.GlobalExceptionHandler#handlePropertyAlreadyExistsException(PropertyAlreadyExistsException)
-2026-06-27 10:00:52.914 [http-nio-8080-exec-4] WARN  c.e.p.error.GlobalExceptionHandler - Property already exists Property with name null already exists
-2026-06-27 10:00:52.915 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-06-27 10:00:52.915 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(timestamp=2026-06-27T17:00:52.914355500, status=409, error=Conflict, message=Property  (truncated)...]
-2026-06-27 10:00:52.915 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.example.property_management.error.exception.PropertyAlreadyExistsException: Property with name null already exists]
-2026-06-27 10:00:52.916 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 409 CONFLICT
-2026-06-27 10:01:39.271 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/api/v1/properties/7", parameters={}
-2026-06-27 10:01:39.272 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#updateProperty(Long, PropertyDTO)
-2026-06-27 10:01:39.272 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.property_management.dto.PropertyDTO@2e463ca]
-2026-06-27 10:01:39.272 [http-nio-8080-exec-5] INFO  c.e.p.controller.PropertyController - PUT request for updating property with id 7
-2026-06-27 10:01:39.275 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.id=?
-2026-06-27 10:01:39.275 [http-nio-8080-exec-5] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [7]
-2026-06-27 10:01:39.277 [http-nio-8080-exec-5] INFO  c.e.p.s.impl.PropertyServiceImpl - PUT updating property id=7
-2026-06-27 10:01:39.278 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
-    select
-        pe1_0.id,
-        pe1_0.location,
-        pe1_0.property_name,
-        pe1_0.property_status,
-        pe1_0.property_type,
-        pe1_0.property_value,
-        pe1_0.rooms 
-    from
-        properties pe1_0 
-    where
-        pe1_0.property_name is null
-2026-06-27 10:01:39.279 [http-nio-8080-exec-5] WARN  c.e.p.s.impl.PropertyServiceImpl - Updating failed property null already exists
-2026-06-27 10:01:39.280 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.property_management.error.GlobalExceptionHandler#handlePropertyAlreadyExistsException(PropertyAlreadyExistsException)
-2026-06-27 10:01:39.280 [http-nio-8080-exec-5] WARN  c.e.p.error.GlobalExceptionHandler - Property already exists Property with name null already exists
-2026-06-27 10:01:39.280 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-06-27 10:01:39.280 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(timestamp=2026-06-27T17:01:39.280228900, status=409, error=Conflict, message=Property  (truncated)...]
-2026-06-27 10:01:39.281 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.example.property_management.error.exception.PropertyAlreadyExistsException: Property with name null already exists]
-2026-06-27 10:01:39.282 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 409 CONFLICT
-2026-06-27 10:06:49.232 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2026-06-27 10:06:49.236 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2026-06-27 10:06:49.238 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-06-27 10:06:49.240 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-06-27 10:06:49.244 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-06-27 10:06:53.998 [main] INFO  c.e.p.PropertyManagementApplication - Starting PropertyManagementApplication using Java 25.0.2 with PID 22804 (C:\Users\lenovo\Desktop\projects\spring boot\property-management\target\classes started by lenovo in C:\Users\lenovo\Desktop\projects\spring boot\property-management)
-2026-06-27 10:06:53.999 [main] DEBUG c.e.p.PropertyManagementApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
-2026-06-27 10:06:54.000 [main] INFO  c.e.p.PropertyManagementApplication - The following 1 profile is active: "dev"
-2026-06-27 10:06:54.559 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-27 10:06:54.604 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 2 JPA repository interfaces.
-2026-06-27 10:06:55.072 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-06-27 10:06:55.083 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2026-06-27 10:06:55.085 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-06-27 10:06:55.086 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
-2026-06-27 10:06:55.144 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-06-27 10:06:55.144 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1104 ms
-2026-06-27 10:06:55.529 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-27 10:06:55.550 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-06-27 10:06:55.659 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@533e2f4
-2026-06-27 10:06:55.660 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-06-27 10:06:56.291 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-27 10:06:56.559 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-27 10:06:56.625 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 14 mappings in 'requestMappingHandlerMapping'
-2026-06-27 10:06:56.677 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
-2026-06-27 10:06:56.687 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+2026-06-29 10:56:56.584 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-06-29 10:56:56.727 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-06-29 10:56:56.763 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-06-29 10:56:56.882 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-06-29 10:56:56.896 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-06-29 10:56:56.903 [main] INFO  c.e.p.PropertyManagementApplication - Started PropertyManagementApplication in 3.615 seconds (process running for 4.132)
+2026-06-29 10:56:59.373 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-29 10:56:59.373 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-29 10:56:59.373 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2026-06-29 10:56:59.373 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2026-06-29 10:56:59.373 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2026-06-29 10:56:59.374 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@278df226
+2026-06-29 10:56:59.374 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@79392584
+2026-06-29 10:56:59.374 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-06-29 10:56:59.374 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-06-29 10:56:59.396 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/index.html", parameters={}
+2026-06-29 10:56:59.398 [http-nio-8080-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 10:56:59.428 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:56:59.435 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui.css", parameters={}
+2026-06-29 10:56:59.435 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-bundle.js", parameters={}
+2026-06-29 10:56:59.435 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/index.css", parameters={}
+2026-06-29 10:56:59.435 [http-nio-8080-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 10:56:59.436 [http-nio-8080-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 10:56:59.436 [http-nio-8080-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 10:56:59.438 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:56:59.439 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:56:59.450 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:56:59.519 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-initializer.js", parameters={}
+2026-06-29 10:56:59.519 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={}
+2026-06-29 10:56:59.520 [http-nio-8080-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 10:56:59.520 [http-nio-8080-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 10:56:59.526 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:56:59.546 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:57:00.249 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/v3/api-docs/swagger-config", parameters={}
+2026-06-29 10:57:00.250 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
+2026-06-29 10:57:00.269 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json]
+2026-06-29 10:57:00.291 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{configUrl=/v3/api-docs/swagger-config, oauth2RedirectUrl=http://localhost:8080/swagger-ui/oauth2-re (truncated)...]
+2026-06-29 10:57:00.299 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:57:00.324 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/favicon-32x32.png", parameters={}
+2026-06-29 10:57:00.324 [http-nio-8080-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 10:57:00.327 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:57:00.330 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/v3/api-docs", parameters={}
+2026-06-29 10:57:00.330 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
+2026-06-29 10:57:00.725 [http-nio-8080-exec-9] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 382 ms
+2026-06-29 10:57:00.745 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, */*] and supported [application/json]
+2026-06-29 10:57:00.747 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{123, 34, 111, 112, 101, 110, 97, 112, 105, 34, 58, 34, 51, 46, 49, 46, 48, 34, 44, 34, 105, 110, 10 (truncated)...]
+2026-06-29 10:57:00.748 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:57:38.578 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-29 10:57:38.582 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-06-29 10:57:38.585 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 10:57:38.587 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-06-29 10:57:38.590 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-06-29 10:59:12.696 [main] INFO  c.e.p.PropertyManagementApplication - Starting PropertyManagementApplication using Java 25.0.2 with PID 25848 (C:\Users\lenovo\Desktop\projects\spring boot\property-management\target\classes started by lenovo in C:\Users\lenovo\Desktop\projects\spring boot\property-management)
+2026-06-29 10:59:12.698 [main] DEBUG c.e.p.PropertyManagementApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
+2026-06-29 10:59:12.698 [main] INFO  c.e.p.PropertyManagementApplication - The following 1 profile is active: "dev"
+2026-06-29 10:59:13.314 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-29 10:59:13.360 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 40 ms. Found 2 JPA repository interfaces.
+2026-06-29 10:59:13.750 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-29 10:59:13.759 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-29 10:59:13.761 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-29 10:59:13.761 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-29 10:59:13.807 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-06-29 10:59:13.807 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1064 ms
+2026-06-29 10:59:14.173 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-29 10:59:14.194 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-06-29 10:59:14.311 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@492c9892
+2026-06-29 10:59:14.313 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-06-29 10:59:14.987 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 10:59:15.292 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-29 10:59:15.369 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 15 mappings in 'requestMappingHandlerMapping'
+2026-06-29 10:59:15.443 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2026-06-29 10:59:15.458 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
 
-Using generated security password: 78991521-5129-451a-9ff9-4ce2d8424749
+Using generated security password: 40507893-44da-4c66-8dd0-930e4814d373
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2026-06-27 10:06:56.692 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
-2026-06-27 10:06:56.782 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2026-06-27 10:06:56.813 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-2026-06-27 10:06:56.918 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2026-06-27 10:06:56.929 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2026-06-27 10:06:56.934 [main] INFO  c.e.p.PropertyManagementApplication - Started PropertyManagementApplication in 3.439 seconds (process running for 3.813)
-2026-06-27 10:07:10.997 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-06-27 10:07:10.997 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-06-27 10:07:10.997 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
-2026-06-27 10:07:10.997 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
-2026-06-27 10:07:10.997 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
-2026-06-27 10:07:10.998 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@b3cbc0e
-2026-06-27 10:07:10.998 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@5f63a6f2
-2026-06-27 10:07:10.998 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2026-06-27 10:07:10.999 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2026-06-27 10:07:11.016 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/api/v1/properties/7", parameters={}
-2026-06-27 10:07:11.017 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#updateProperty(Long, PropertyDTO)
-2026-06-27 10:07:11.073 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.property_management.dto.PropertyDTO@5cca2ab5]
-2026-06-27 10:07:11.101 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.property_management.error.GlobalExceptionHandler#handleValidationExceptions(MethodArgumentNotValidException)
-2026-06-27 10:07:11.102 [http-nio-8080-exec-1] WARN  c.e.p.error.GlobalExceptionHandler - Validation failed : {propertyStatus=property status cannot be empty, propertyName=property name cannot be empty, propertyValue=value cannot be empty}
-2026-06-27 10:07:11.115 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-06-27 10:07:11.118 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(timestamp=2026-06-27T17:07:11.102850700, status=400, error=BAD REQUEST, message=null,  (truncated)...]
-2026-06-27 10:07:11.127 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [1] in public org.springframework.http.ResponseEntity<com.example.property_management.dto.PropertyDTO> com.example.property_management.controller.PropertyController.updateProperty(java.lang.Long,com.example.property_management.dto.PropertyDTO) with 3 errors: [Field error in object 'propertyDTO' on field 'propertyStatus': rejected value [null]; codes [NotBlank.propertyDTO.propertyStatus,NotBlank.propertyStatus,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [propertyDTO.propertyStatus,propertyStatus]; arguments []; default message [propertyStatus]]; default message [property status cannot be empty]] [Field error in object 'propertyDTO' on field 'propertyValue': rejected value [null]; codes [NotNull.propertyDTO.propertyValue,NotNull.propertyValue,NotNull.java.lang.Double,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [propertyDTO.propertyValue,propertyValue]; arguments []; default message [propertyValue]]; default message [value cannot be empty]] [Field error in object 'propertyDTO' on field 'propertyName': rejected value [null]; codes [NotBlank.propertyDTO.propertyName,NotBlank.propertyName,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [propertyDTO.propertyName,propertyName]; arguments []; default message [propertyName]]; default message [property name cannot be empty]] ]
-2026-06-27 10:07:11.128 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 400 BAD_REQUEST
-2026-06-27 10:09:50.770 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/api/v1/properties/9", parameters={}
-2026-06-27 10:09:50.770 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#updateProperty(Long, PropertyDTO)
-2026-06-27 10:09:50.772 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.property_management.dto.PropertyDTO@7cc442d2]
-2026-06-27 10:09:50.772 [http-nio-8080-exec-2] INFO  c.e.p.controller.PropertyController - PUT request for updating property with id 9
-2026-06-27 10:09:50.806 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+2026-06-29 10:59:15.463 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-06-29 10:59:15.567 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-06-29 10:59:15.599 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-06-29 10:59:15.705 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-06-29 10:59:15.717 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-06-29 10:59:15.723 [main] INFO  c.e.p.PropertyManagementApplication - Started PropertyManagementApplication in 3.552 seconds (process running for 3.943)
+2026-06-29 10:59:22.500 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-29 10:59:22.500 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-29 10:59:22.500 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2026-06-29 10:59:22.500 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2026-06-29 10:59:22.500 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2026-06-29 10:59:22.501 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@30623109
+2026-06-29 10:59:22.501 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@6b61a4b0
+2026-06-29 10:59:22.501 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-06-29 10:59:22.501 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-06-29 10:59:22.517 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/index.html", parameters={}
+2026-06-29 10:59:22.517 [http-nio-8080-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 10:59:22.537 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:59:22.551 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/index.css", parameters={}
+2026-06-29 10:59:22.551 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui.css", parameters={}
+2026-06-29 10:59:22.552 [http-nio-8080-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 10:59:22.552 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-bundle.js", parameters={}
+2026-06-29 10:59:22.552 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={}
+2026-06-29 10:59:22.552 [http-nio-8080-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 10:59:22.552 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-initializer.js", parameters={}
+2026-06-29 10:59:22.553 [http-nio-8080-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 10:59:22.553 [http-nio-8080-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 10:59:22.553 [http-nio-8080-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 10:59:22.556 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:59:22.557 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:59:22.559 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:59:22.572 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:59:22.585 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:59:22.640 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={}
+2026-06-29 10:59:22.641 [http-nio-8080-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 10:59:22.643 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-bundle.js", parameters={}
+2026-06-29 10:59:22.644 [http-nio-8080-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 10:59:22.646 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:59:22.656 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:59:22.672 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-initializer.js", parameters={}
+2026-06-29 10:59:22.673 [http-nio-8080-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 10:59:22.676 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:59:22.984 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/v3/api-docs/swagger-config", parameters={}
+2026-06-29 10:59:22.984 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
+2026-06-29 10:59:22.996 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json]
+2026-06-29 10:59:23.002 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/favicon-32x32.png", parameters={}
+2026-06-29 10:59:23.005 [http-nio-8080-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 10:59:23.007 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:59:23.018 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{configUrl=/v3/api-docs/swagger-config, oauth2RedirectUrl=http://localhost:8080/swagger-ui/oauth2-re (truncated)...]
+2026-06-29 10:59:23.030 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 10:59:23.040 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/v3/api-docs", parameters={}
+2026-06-29 10:59:23.040 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
+2026-06-29 10:59:23.378 [http-nio-8080-exec-5] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 328 ms
+2026-06-29 10:59:23.402 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, */*] and supported [application/json]
+2026-06-29 10:59:23.403 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{123, 34, 111, 112, 101, 110, 97, 112, 105, 34, 58, 34, 51, 46, 49, 46, 48, 34, 44, 34, 105, 110, 10 (truncated)...]
+2026-06-29 10:59:23.404 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:01:14.941 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/v1/properties?propertyStatus=Available", parameters={masked}
+2026-06-29 11:01:14.941 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#getAllProperties()
+2026-06-29 11:01:14.942 [http-nio-8080-exec-1] INFO  c.e.p.controller.PropertyController - GET request for getting all properties
+2026-06-29 11:01:14.942 [http-nio-8080-exec-1] INFO  c.e.p.s.impl.PropertyServiceImpl - fetching all properties
+2026-06-29 11:01:15.017 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.id,
+        pe1_0.location,
+        pe1_0.property_name,
+        pe1_0.property_status,
+        pe1_0.property_type,
+        pe1_0.property_value,
+        pe1_0.rooms 
+    from
+        properties pe1_0
+2026-06-29 11:01:15.043 [http-nio-8080-exec-1] INFO  c.e.p.s.impl.PropertyServiceImpl - fetched 9 properties
+2026-06-29 11:01:15.045 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json, application/yaml]
+2026-06-29 11:01:15.045 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[com.example.property_management.dto.PropertyDTO@4b44b6d5, com.example.property_management.dto.Prope (truncated)...]
+2026-06-29 11:01:15.047 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:05:33.909 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/v1/properties?propertyStatus=Pending", parameters={masked}
+2026-06-29 11:05:33.910 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#getAllProperties()
+2026-06-29 11:05:33.910 [http-nio-8080-exec-5] INFO  c.e.p.controller.PropertyController - GET request for getting all properties
+2026-06-29 11:05:33.910 [http-nio-8080-exec-5] INFO  c.e.p.s.impl.PropertyServiceImpl - fetching all properties
+2026-06-29 11:05:33.912 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.id,
+        pe1_0.location,
+        pe1_0.property_name,
+        pe1_0.property_status,
+        pe1_0.property_type,
+        pe1_0.property_value,
+        pe1_0.rooms 
+    from
+        properties pe1_0
+2026-06-29 11:05:33.915 [http-nio-8080-exec-5] INFO  c.e.p.s.impl.PropertyServiceImpl - fetched 9 properties
+2026-06-29 11:05:33.916 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json, application/yaml]
+2026-06-29 11:05:33.916 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[com.example.property_management.dto.PropertyDTO@185d87ec, com.example.property_management.dto.Prope (truncated)...]
+2026-06-29 11:05:33.917 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:06:00.686 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-29 11:06:00.689 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-06-29 11:06:00.692 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 11:06:00.694 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-06-29 11:06:00.699 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-06-29 11:16:08.761 [main] INFO  c.e.p.PropertyManagementApplication - Starting PropertyManagementApplication using Java 25.0.2 with PID 13100 (C:\Users\lenovo\Desktop\projects\spring boot\property-management\target\classes started by lenovo in C:\Users\lenovo\Desktop\projects\spring boot\property-management)
+2026-06-29 11:16:08.763 [main] DEBUG c.e.p.PropertyManagementApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
+2026-06-29 11:16:08.764 [main] INFO  c.e.p.PropertyManagementApplication - The following 1 profile is active: "dev"
+2026-06-29 11:16:09.749 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-29 11:16:09.817 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 59 ms. Found 2 JPA repository interfaces.
+2026-06-29 11:16:10.368 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-29 11:16:10.380 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-29 11:16:10.382 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-29 11:16:10.382 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-29 11:16:10.449 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-06-29 11:16:10.450 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1639 ms
+2026-06-29 11:16:11.005 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-29 11:16:11.036 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-06-29 11:16:11.204 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@436a563f
+2026-06-29 11:16:11.206 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-06-29 11:16:12.176 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 11:16:12.558 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-29 11:16:12.648 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 15 mappings in 'requestMappingHandlerMapping'
+2026-06-29 11:16:12.713 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2026-06-29 11:16:12.727 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 262f6038-63c5-4d0f-831e-016acf31a381
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-06-29 11:16:12.733 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-06-29 11:16:12.852 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-06-29 11:16:12.889 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-06-29 11:16:13.009 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-06-29 11:16:13.024 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-06-29 11:16:13.031 [main] INFO  c.e.p.PropertyManagementApplication - Started PropertyManagementApplication in 5.102 seconds (process running for 5.602)
+2026-06-29 11:16:23.819 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-29 11:16:23.820 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-29 11:16:23.820 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2026-06-29 11:16:23.820 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2026-06-29 11:16:23.820 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2026-06-29 11:16:23.822 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@6b61a4b0
+2026-06-29 11:16:23.822 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@28a33dc9
+2026-06-29 11:16:23.823 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-06-29 11:16:23.823 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-06-29 11:16:23.860 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/v1/properties?propertyStatus=Pending", parameters={masked}
+2026-06-29 11:16:23.861 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#getAllProperties()
+2026-06-29 11:16:23.876 [http-nio-8080-exec-1] INFO  c.e.p.controller.PropertyController - GET request for getting all properties
+2026-06-29 11:16:23.876 [http-nio-8080-exec-1] INFO  c.e.p.s.impl.PropertyServiceImpl - fetching all properties
+2026-06-29 11:16:24.000 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.id,
+        pe1_0.location,
+        pe1_0.property_name,
+        pe1_0.property_status,
+        pe1_0.property_type,
+        pe1_0.property_value,
+        pe1_0.rooms 
+    from
+        properties pe1_0
+2026-06-29 11:16:24.057 [http-nio-8080-exec-1] INFO  c.e.p.s.impl.PropertyServiceImpl - fetched 9 properties
+2026-06-29 11:16:24.085 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json, application/yaml]
+2026-06-29 11:16:24.088 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[com.example.property_management.dto.PropertyDTO@30d1a2f6, com.example.property_management.dto.Prope (truncated)...]
+2026-06-29 11:16:24.160 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:17:19.838 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/v1/properties?status=pending", parameters={masked}
+2026-06-29 11:17:19.839 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#findAllByPropertyStatus(String)
+2026-06-29 11:17:19.850 [http-nio-8080-exec-3] INFO  c.e.p.controller.PropertyController - GET request for finding all properties with status pending
+2026-06-29 11:17:19.850 [http-nio-8080-exec-3] INFO  c.e.p.s.impl.PropertyServiceImpl - fetching all properties with status : pending
+2026-06-29 11:17:19.899 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
     select
         pe1_0.id,
         pe1_0.location,
@@ -925,10 +407,17 @@ This generated password is for development use only. Your security configuration
     from
         properties pe1_0 
     where
-        pe1_0.id=?
-2026-06-27 10:09:50.809 [http-nio-8080-exec-2] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [9]
-2026-06-27 10:09:50.828 [http-nio-8080-exec-2] INFO  c.e.p.s.impl.PropertyServiceImpl - PUT updating property id=9
-2026-06-27 10:09:50.884 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+        pe1_0.property_status=?
+2026-06-29 11:17:19.901 [http-nio-8080-exec-3] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:VARCHAR) <- [pending]
+2026-06-29 11:17:19.907 [http-nio-8080-exec-3] INFO  c.e.p.s.impl.PropertyServiceImpl - fetched 1 properties with status : pending
+2026-06-29 11:17:19.908 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2026-06-29 11:17:19.910 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[com.example.property_management.dto.PropertyDTO@2870b1d3]]
+2026-06-29 11:17:19.911 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:17:36.796 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/v1/properties?status=available", parameters={masked}
+2026-06-29 11:17:36.796 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#findAllByPropertyStatus(String)
+2026-06-29 11:17:36.796 [http-nio-8080-exec-2] INFO  c.e.p.controller.PropertyController - GET request for finding all properties with status available
+2026-06-29 11:17:36.796 [http-nio-8080-exec-2] INFO  c.e.p.s.impl.PropertyServiceImpl - fetching all properties with status : available
+2026-06-29 11:17:36.798 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
     select
         pe1_0.id,
         pe1_0.location,
@@ -940,44 +429,102 @@ This generated password is for development use only. Your security configuration
     from
         properties pe1_0 
     where
-        pe1_0.property_name=?
-2026-06-27 10:09:50.884 [http-nio-8080-exec-2] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:VARCHAR) <- [Sunset Villa]
-2026-06-27 10:09:50.886 [http-nio-8080-exec-2] WARN  c.e.p.s.impl.PropertyServiceImpl - Updating failed property Sunset Villa already exists
-2026-06-27 10:09:50.887 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.property_management.error.GlobalExceptionHandler#handlePropertyAlreadyExistsException(PropertyAlreadyExistsException)
-2026-06-27 10:09:50.887 [http-nio-8080-exec-2] WARN  c.e.p.error.GlobalExceptionHandler - Property already exists Property with name Sunset Villa already exists
-2026-06-27 10:09:50.887 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-06-27 10:09:50.887 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(timestamp=2026-06-27T17:09:50.887663100, status=409, error=Conflict, message=Property  (truncated)...]
-2026-06-27 10:09:50.888 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.example.property_management.error.exception.PropertyAlreadyExistsException: Property with name Sunset Villa already exists]
-2026-06-27 10:09:50.889 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 409 CONFLICT
-2026-06-27 10:10:00.166 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/api/v1/properties/9", parameters={}
-2026-06-27 10:10:00.167 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#updateProperty(Long, PropertyDTO)
-2026-06-27 10:10:00.168 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.property_management.dto.PropertyDTO@6bbb88ae]
-2026-06-27 10:10:00.168 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.property_management.error.GlobalExceptionHandler#handleValidationExceptions(MethodArgumentNotValidException)
-2026-06-27 10:10:00.168 [http-nio-8080-exec-5] WARN  c.e.p.error.GlobalExceptionHandler - Validation failed : {propertyName=property name cannot be empty}
-2026-06-27 10:10:00.170 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-06-27 10:10:00.170 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(timestamp=2026-06-27T17:10:00.170072400, status=400, error=BAD REQUEST, message=null,  (truncated)...]
-2026-06-27 10:10:00.170 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [1] in public org.springframework.http.ResponseEntity<com.example.property_management.dto.PropertyDTO> com.example.property_management.controller.PropertyController.updateProperty(java.lang.Long,com.example.property_management.dto.PropertyDTO): [Field error in object 'propertyDTO' on field 'propertyName': rejected value [null]; codes [NotBlank.propertyDTO.propertyName,NotBlank.propertyName,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [propertyDTO.propertyName,propertyName]; arguments []; default message [propertyName]]; default message [property name cannot be empty]] ]
-2026-06-27 10:10:00.170 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 400 BAD_REQUEST
-2026-06-27 10:10:23.362 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/api/v1/properties/9", parameters={}
-2026-06-27 10:10:23.362 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#updateProperty(Long, PropertyDTO)
-2026-06-27 10:10:23.363 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.property_management.dto.PropertyDTO@64c39e3c]
-2026-06-27 10:10:23.364 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.property_management.error.GlobalExceptionHandler#handleValidationExceptions(MethodArgumentNotValidException)
-2026-06-27 10:10:23.365 [http-nio-8080-exec-4] WARN  c.e.p.error.GlobalExceptionHandler - Validation failed : {propertyStatus=property status cannot be empty, location=property location cannot be empty, propertyValue=value cannot be empty}
-2026-06-27 10:10:23.365 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-06-27 10:10:23.365 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(timestamp=2026-06-27T17:10:23.365587800, status=400, error=BAD REQUEST, message=null,  (truncated)...]
-2026-06-27 10:10:23.367 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [1] in public org.springframework.http.ResponseEntity<com.example.property_management.dto.PropertyDTO> com.example.property_management.controller.PropertyController.updateProperty(java.lang.Long,com.example.property_management.dto.PropertyDTO) with 3 errors: [Field error in object 'propertyDTO' on field 'propertyStatus': rejected value [null]; codes [NotBlank.propertyDTO.propertyStatus,NotBlank.propertyStatus,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [propertyDTO.propertyStatus,propertyStatus]; arguments []; default message [propertyStatus]]; default message [property status cannot be empty]] [Field error in object 'propertyDTO' on field 'location': rejected value [null]; codes [NotBlank.propertyDTO.location,NotBlank.location,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [propertyDTO.location,location]; arguments []; default message [location]]; default message [property location cannot be empty]] [Field error in object 'propertyDTO' on field 'propertyValue': rejected value [null]; codes [NotNull.propertyDTO.propertyValue,NotNull.propertyValue,NotNull.java.lang.Double,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [propertyDTO.propertyValue,propertyValue]; arguments []; default message [propertyValue]]; default message [value cannot be empty]] ]
-2026-06-27 10:10:23.367 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 400 BAD_REQUEST
-2026-06-27 10:10:40.984 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/api/v1/properties/9", parameters={}
-2026-06-27 10:10:40.984 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#updateProperty(Long, PropertyDTO)
-2026-06-27 10:10:40.985 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.property_management.dto.PropertyDTO@3a47a9da]
-2026-06-27 10:10:40.986 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.property_management.error.GlobalExceptionHandler#handleValidationExceptions(MethodArgumentNotValidException)
-2026-06-27 10:10:40.986 [http-nio-8080-exec-3] WARN  c.e.p.error.GlobalExceptionHandler - Validation failed : {propertyStatus=property status cannot be empty, propertyName=property name cannot be empty, propertyValue=value cannot be empty, location=property location cannot be empty}
-2026-06-27 10:10:40.987 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-06-27 10:10:40.987 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(timestamp=2026-06-27T17:10:40.986153600, status=400, error=BAD REQUEST, message=null,  (truncated)...]
-2026-06-27 10:10:40.988 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [1] in public org.springframework.http.ResponseEntity<com.example.property_management.dto.PropertyDTO> com.example.property_management.controller.PropertyController.updateProperty(java.lang.Long,com.example.property_management.dto.PropertyDTO) with 4 errors: [Field error in object 'propertyDTO' on field 'propertyStatus': rejected value [null]; codes [NotBlank.propertyDTO.propertyStatus,NotBlank.propertyStatus,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [propertyDTO.propertyStatus,propertyStatus]; arguments []; default message [propertyStatus]]; default message [property status cannot be empty]] [Field error in object 'propertyDTO' on field 'propertyValue': rejected value [null]; codes [NotNull.propertyDTO.propertyValue,NotNull.propertyValue,NotNull.java.lang.Double,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [propertyDTO.propertyValue,propertyValue]; arguments []; default message [propertyValue]]; default message [value cannot be empty]] [Field error in object 'propertyDTO' on field 'propertyName': rejected value [null]; codes [NotBlank.propertyDTO.propertyName,NotBlank.propertyName,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [propertyDTO.propertyName,propertyName]; arguments []; default message [propertyName]]; default message [property name cannot be empty]] [Field error in object 'propertyDTO' on field 'location': rejected value [null]; codes [NotBlank.propertyDTO.location,NotBlank.location,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [propertyDTO.location,location]; arguments []; default message [location]]; default message [property location cannot be empty]] ]
-2026-06-27 10:10:40.988 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 400 BAD_REQUEST
-2026-06-27 10:12:00.544 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2026-06-27 10:12:00.549 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2026-06-27 10:12:00.553 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-06-27 10:12:00.556 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-06-27 10:12:00.562 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+        pe1_0.property_status=?
+2026-06-29 11:17:36.799 [http-nio-8080-exec-2] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:VARCHAR) <- [available]
+2026-06-29 11:17:36.801 [http-nio-8080-exec-2] INFO  c.e.p.s.impl.PropertyServiceImpl - fetched 3 properties with status : available
+2026-06-29 11:17:36.802 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2026-06-29 11:17:36.802 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[com.example.property_management.dto.PropertyDTO@29e318cb, com.example.property_management.dto.Prope (truncated)...]
+2026-06-29 11:17:36.803 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:17:42.226 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/index.html", parameters={}
+2026-06-29 11:17:42.227 [http-nio-8080-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 11:17:42.244 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:17:42.275 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui.css", parameters={}
+2026-06-29 11:17:42.276 [http-nio-8080-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 11:17:42.278 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/index.css", parameters={}
+2026-06-29 11:17:42.279 [http-nio-8080-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 11:17:42.281 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:17:42.284 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:17:42.285 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-bundle.js", parameters={}
+2026-06-29 11:17:42.285 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={}
+2026-06-29 11:17:42.285 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-initializer.js", parameters={}
+2026-06-29 11:17:42.285 [http-nio-8080-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 11:17:42.285 [http-nio-8080-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 11:17:42.286 [http-nio-8080-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 11:17:42.292 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:17:42.297 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={}
+2026-06-29 11:17:42.298 [http-nio-8080-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 11:17:42.303 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:17:42.303 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:17:42.308 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:17:42.853 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-initializer.js", parameters={}
+2026-06-29 11:17:42.854 [http-nio-8080-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 11:17:42.854 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-bundle.js", parameters={}
+2026-06-29 11:17:42.854 [http-nio-8080-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 11:17:42.858 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:17:42.872 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:17:43.287 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/v3/api-docs/swagger-config", parameters={}
+2026-06-29 11:17:43.287 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
+2026-06-29 11:17:43.291 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json]
+2026-06-29 11:17:43.294 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{configUrl=/v3/api-docs/swagger-config, oauth2RedirectUrl=http://localhost:8080/swagger-ui/oauth2-re (truncated)...]
+2026-06-29 11:17:43.296 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:17:43.298 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/favicon-32x32.png", parameters={}
+2026-06-29 11:17:43.299 [http-nio-8080-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 11:17:43.304 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:17:43.323 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/v3/api-docs", parameters={}
+2026-06-29 11:17:43.323 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
+2026-06-29 11:17:43.355 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/favicon-32x32.png", parameters={}
+2026-06-29 11:17:43.356 [http-nio-8080-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-06-29 11:17:43.358 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:17:43.849 [http-nio-8080-exec-7] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 522 ms
+2026-06-29 11:17:43.882 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, */*] and supported [application/json]
+2026-06-29 11:17:43.885 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{123, 34, 111, 112, 101, 110, 97, 112, 105, 34, 58, 34, 51, 46, 49, 46, 48, 34, 44, 34, 105, 110, 10 (truncated)...]
+2026-06-29 11:17:43.886 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:18:19.184 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/v1/properties?status=pending", parameters={masked}
+2026-06-29 11:18:19.185 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#findAllByPropertyStatus(String)
+2026-06-29 11:18:19.185 [http-nio-8080-exec-10] INFO  c.e.p.controller.PropertyController - GET request for finding all properties with status pending
+2026-06-29 11:18:19.186 [http-nio-8080-exec-10] INFO  c.e.p.s.impl.PropertyServiceImpl - fetching all properties with status : pending
+2026-06-29 11:18:19.188 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.id,
+        pe1_0.location,
+        pe1_0.property_name,
+        pe1_0.property_status,
+        pe1_0.property_type,
+        pe1_0.property_value,
+        pe1_0.rooms 
+    from
+        properties pe1_0 
+    where
+        pe1_0.property_status=?
+2026-06-29 11:18:19.190 [http-nio-8080-exec-10] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:VARCHAR) <- [pending]
+2026-06-29 11:18:19.194 [http-nio-8080-exec-10] INFO  c.e.p.s.impl.PropertyServiceImpl - fetched 1 properties with status : pending
+2026-06-29 11:18:19.195 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json, application/yaml]
+2026-06-29 11:18:19.195 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[com.example.property_management.dto.PropertyDTO@14785cfc]]
+2026-06-29 11:18:19.197 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:19:30.265 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/v1/properties?status=available", parameters={masked}
+2026-06-29 11:19:30.265 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.property_management.controller.PropertyController#findAllByPropertyStatus(String)
+2026-06-29 11:19:30.266 [http-nio-8080-exec-7] INFO  c.e.p.controller.PropertyController - GET request for finding all properties with status available
+2026-06-29 11:19:30.266 [http-nio-8080-exec-7] INFO  c.e.p.s.impl.PropertyServiceImpl - fetching all properties with status : available
+2026-06-29 11:19:30.267 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.id,
+        pe1_0.location,
+        pe1_0.property_name,
+        pe1_0.property_status,
+        pe1_0.property_type,
+        pe1_0.property_value,
+        pe1_0.rooms 
+    from
+        properties pe1_0 
+    where
+        pe1_0.property_status=?
+2026-06-29 11:19:30.268 [http-nio-8080-exec-7] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:VARCHAR) <- [available]
+2026-06-29 11:19:30.270 [http-nio-8080-exec-7] INFO  c.e.p.s.impl.PropertyServiceImpl - fetched 3 properties with status : available
+2026-06-29 11:19:30.271 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2026-06-29 11:19:30.271 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[com.example.property_management.dto.PropertyDTO@6aa415b0, com.example.property_management.dto.Prope (truncated)...]
+2026-06-29 11:19:30.272 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-06-29 11:20:15.629 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-29 11:20:15.635 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-06-29 11:20:15.641 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 11:20:15.644 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-06-29 11:20:15.651 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
