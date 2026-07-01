@@ -3,11 +3,15 @@ package com.example.property_management.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Schema(
         name = "Property",
         description = "Represents a property within the property management system."
@@ -85,4 +89,10 @@ public class PropertyDTO {
     )
     private String createdDate;
 
+    public PropertyDTO(String propertyName, double propertyValue, String propertyStatus, String location) {
+        this.propertyName = propertyName;
+        this.propertyValue = propertyValue;
+        this.propertyStatus = propertyStatus;
+        this.location = location;
+    }
 }

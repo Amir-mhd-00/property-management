@@ -96,9 +96,7 @@ public class PropertyServiceImpl implements PropertyService {
     public PropertyDTO updateProperty(Long id, PropertyDTO dto) {
         PropertyEntity existingProperty = getPropertyOrThrow(id);
 
-        BeanUtils.copyProperties(dto, existingProperty, "id");
-
-        logger.info("PUT updating property id={}", id);
+        logger.info("'PUT' updating property id={}", id);
 
         if (propertyRepository.findByPropertyName(dto.getPropertyName()).isPresent()) {
 
@@ -108,16 +106,18 @@ public class PropertyServiceImpl implements PropertyService {
                     String.format("Property with name %s already exists", dto.getPropertyName()));
         }
 
+        BeanUtils.copyProperties(dto, existingProperty, "id");
+
         PropertyEntity updatedProperty = propertyRepository.save(existingProperty);
 
-        logger.info("PUT Property updated successfully. id={}", id);
+        logger.info("'PUT' Property updated successfully. id={}", id);
 
         PropertyDTO updatedPropertyDTO = new PropertyDTO();
         BeanUtils.copyProperties(updatedProperty, updatedPropertyDTO);
 
         return updatedPropertyDTO;
     }
-    //tests tests implement tests TESTS TSET TEST
+
     @Override
     public PropertyDTO partialUpdateProperty(Long id, PropertyUpdateDTO dto) {
         PropertyEntity property = getPropertyOrThrow(id);
@@ -141,11 +141,11 @@ public class PropertyServiceImpl implements PropertyService {
             property.setLocation(dto.getLocation());
         }
 
-        logger.info("PATCH Updating property id={}", id);
+        logger.info("'PATCH' Updating property id={}", id);
 
         PropertyEntity savedProperty = propertyRepository.save(property);
 
-        logger.info("PATCH Property updated successfully. id={}", id);
+        logger.info("'PATCH' Property updated successfully. id={}", id);
 
         PropertyDTO response = new PropertyDTO();
         BeanUtils.copyProperties(savedProperty, response);

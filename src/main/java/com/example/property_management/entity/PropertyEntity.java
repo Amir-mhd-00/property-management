@@ -25,4 +25,10 @@ public class PropertyEntity {
     private Integer rooms;
     private String location;
 
+    public PropertyEntity(String propertyName, double propertyValue, String propertyStatus, String location) {
+        this.propertyName = propertyName;
+        this.propertyValue = propertyValue;
+        this.propertyStatus = propertyStatus;
+        this.location = location;
+    }
 }
