@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @Entity
 @Table(name = "User_table")
@@ -25,4 +27,7 @@ public class UserEntity {
     private String email;
     private String phone;
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private List<AssignmentEntity> assignments;
 }

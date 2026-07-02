@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Properties")
 @Getter
@@ -24,6 +26,9 @@ public class PropertyEntity {
     private String propertyStatus;
     private Integer rooms;
     private String location;
+
+    @OneToMany(mappedBy = "property")
+    private List<AssignmentEntity> assignments;
 
     public PropertyEntity(String propertyName, double propertyValue, String propertyStatus, String location) {
         this.propertyName = propertyName;
