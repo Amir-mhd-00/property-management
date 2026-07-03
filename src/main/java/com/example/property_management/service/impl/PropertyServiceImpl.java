@@ -1,10 +1,13 @@
 package com.example.property_management.service.impl;
 
+import com.example.property_management.dto.AssignmentDTO;
 import com.example.property_management.dto.PropertyDTO;
 import com.example.property_management.dto.PropertyUpdateDTO;
+import com.example.property_management.entity.AssignmentEntity;
 import com.example.property_management.entity.PropertyEntity;
 import com.example.property_management.error.exception.PropertyAlreadyExistsException;
 import com.example.property_management.error.exception.PropertyNotFoundException;
+import com.example.property_management.repository.AssignmentRepository;
 import com.example.property_management.repository.PropertyRepository;
 import com.example.property_management.service.PropertyService;
 import org.slf4j.Logger;
@@ -19,10 +22,12 @@ import java.util.List;
 public class PropertyServiceImpl implements PropertyService {
 
     private final PropertyRepository propertyRepository;
+    private final AssignmentRepository assignmentRepository;
 
-    public PropertyServiceImpl(PropertyRepository propertyRepository) {
+    public PropertyServiceImpl(PropertyRepository propertyRepository, AssignmentRepository assignmentRepository) {
 
         this.propertyRepository = propertyRepository;
+        this.assignmentRepository = assignmentRepository;
     }
 
     private static final Logger logger = LoggerFactory.getLogger(PropertyServiceImpl.class);
@@ -186,6 +191,27 @@ public class PropertyServiceImpl implements PropertyService {
         return propertiesDTO;
     }
 
+    @Override
+    public List<AssignmentDTO> findByProperty(Long id) {
+
+        propertyRepository.findById(id).orElseThrow(() ->
+                new PropertyNotFoundException("Property not found"));
+
+        logger.info("Fetching assignments for propertyId={}", id);
+
+        List<AssignmentEntity> assignmentEntities = assignmentRepository.findAllByProperty_id(id);
+
+        logger.info("{} assignments found for property {}", assignmentEntities.size(), id);
+
+        List<AssignmentDTO> response = new ArrayList<>();
+        for (AssignmentEntity assignment : assignmentEntities) {
+            AssignmentDTO responseDTO = new AssignmentDTO();
+            BeanUtils.copyProperties(assignment, responseDTO);
+            response.add(responseDTO);
+        }
+
+        return response;
+    }
 
     private PropertyEntity getPropertyOrThrow(Long id){
 

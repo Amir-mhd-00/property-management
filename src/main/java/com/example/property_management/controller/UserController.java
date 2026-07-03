@@ -4,6 +4,7 @@ import com.example.property_management.dto.*;
 import com.example.property_management.error.ErrorResponse;
 import com.example.property_management.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -13,10 +14,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Tag(
         name = "User Management",
@@ -82,5 +82,37 @@ public class UserController {
         LoginResponseDTO user = userService.login(dto);
 
         return ResponseEntity.ok(user);
+    }
+
+    @Operation(
+            summary = "Get all assignments for a user",
+            description = "Returns all assignments associated with the specified user."
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "Assignments retrieved successfully"
+    )
+    @ApiResponse(
+            responseCode = "404",
+            description = "User not found",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ErrorResponse.class)
+            )
+    )
+    @GetMapping("/{userId}/assignments")
+    public ResponseEntity<List<AssignmentDTO>> getAllAssignments(
+            @Parameter(
+                    description = "ID of the user whose assignments should be retrieved",
+                    required = true,
+                    example = "1"
+            )
+            @PathVariable Long userId) {
+
+        logger.info("GET request for fetching all assignments for user with id {}", userId);
+
+        List<AssignmentDTO> response = userService.findByUser(userId);
+
+        return ResponseEntity.ok(response);
     }
 }

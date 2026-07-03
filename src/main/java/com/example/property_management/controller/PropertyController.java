@@ -1,9 +1,10 @@
 package com.example.property_management.controller;
 
+import com.example.property_management.dto.AssignmentDTO;
 import com.example.property_management.dto.PropertyDTO;
 import com.example.property_management.dto.PropertyUpdateDTO;
 import com.example.property_management.error.ErrorResponse;
-import com.example.property_management.service.impl.PropertyServiceImpl;
+import com.example.property_management.service.PropertyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -26,9 +27,9 @@ import java.util.List;
 @RequestMapping("/api/v1/properties")
 public class PropertyController {
 
-    private final PropertyServiceImpl propertyService;
+    private final PropertyService propertyService;
 
-    public PropertyController(PropertyServiceImpl propertyService) {
+    public PropertyController(PropertyService propertyService) {
         this.propertyService = propertyService;
     }
 
@@ -176,5 +177,38 @@ public class PropertyController {
         logger.info("GET request for finding all properties with status {}", status);
 
         return ResponseEntity.ok(propertyService.getAllPropertiesByStatus(status));
+    }
+
+
+    @Operation(
+            summary = "Get all assignments for a property",
+            description = "Returns all assignments associated with the specified property."
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "Assignments retrieved successfully"
+    )
+    @ApiResponse(
+            responseCode = "404",
+            description = "Property not found",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ErrorResponse.class)
+            )
+    )
+    @GetMapping("/{propertyId}/assignments")
+    public ResponseEntity<List<AssignmentDTO>> getAllAssignments(
+            @Parameter(
+                    description = "ID of the property whose assignments should be retrieved",
+                    example = "1",
+                    required = true
+            )
+            @PathVariable Long propertyId) {
+
+        logger.info("GET request for fetching all assignments for property with id {}", propertyId);
+
+        List<AssignmentDTO> response = propertyService.findByProperty(propertyId);
+
+        return ResponseEntity.ok(response);
     }
 }

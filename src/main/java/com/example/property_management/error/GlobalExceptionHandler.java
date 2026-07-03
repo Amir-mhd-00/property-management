@@ -99,6 +99,54 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
 
+    @ExceptionHandler(AssignmentNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleAssignmentNotFoundException(AssignmentNotFoundException ex) {
+
+        logger.warn("Assignment not found: {}", ex.getMessage());
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                LocalDateTime.now(ZoneId.of("UTC")),
+                HttpStatus.NOT_FOUND.value(),
+                "NOT_FOUND",
+                ex.getMessage(),
+                null
+        );
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
+    @ExceptionHandler(PropertyAlreadyAssignedException.class)
+    public ResponseEntity<ErrorResponse> handlePropertyAlreadyAssigned(PropertyAlreadyAssignedException ex){
+
+        logger.warn("Property already assigned: {}", ex.getMessage());
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                LocalDateTime.now(ZoneId.of("UTC")),
+                HttpStatus.CONFLICT.value(),
+                "CONFLICT",
+                ex.getMessage(),
+                null
+        );
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+    }
+
+    @ExceptionHandler(AssignmentAlreadyInactiveException.class)
+    public ResponseEntity<ErrorResponse> handleAssignmentAlreadyInactiveException(AssignmentAlreadyInactiveException ex) {
+        logger.warn("Assignment already inactive: {}", ex.getMessage());
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                LocalDateTime.now(ZoneId.of("UTC")),
+                HttpStatus.CONFLICT.value(),
+                "CONFLICT",
+                ex.getMessage(),
+                null
+                );
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+    }
+
+
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidationExceptions(MethodArgumentNotValidException ex) {
 
