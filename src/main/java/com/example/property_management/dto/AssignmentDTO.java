@@ -15,10 +15,6 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Schema(
-        name = "Create Assignment Request",
-        description = "Request payload used to assign a property to a user."
-)
 public class AssignmentDTO {
 
     private Long id;

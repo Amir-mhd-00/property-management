@@ -30,11 +30,15 @@ public class AssignmentEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private AssignmentRole role;
 
     private LocalDate assignedDate;
 
     private LocalDate endDate;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private AssignmentStatus status;
 }

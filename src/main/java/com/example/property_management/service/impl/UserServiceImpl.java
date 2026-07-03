@@ -98,6 +98,8 @@ public class UserServiceImpl implements UserService {
         for (AssignmentEntity assignment : assignmentEntities) {
             AssignmentDTO responseDTO = new AssignmentDTO();
             BeanUtils.copyProperties(assignment, responseDTO);
+            responseDTO.setUserId(assignment.getUser().getId());
+            responseDTO.setPropertyId(assignment.getProperty().getId());
             response.add(responseDTO);
         }
 

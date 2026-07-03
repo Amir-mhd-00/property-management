@@ -79,6 +79,8 @@ public class AssignmentServiceImpl implements AssignmentService {
 
         AssignmentDTO response = new AssignmentDTO();
         BeanUtils.copyProperties(result, response);
+        response.setUserId(user.getId());
+        response.setPropertyId(property.getId());
 
         return response;
     }
@@ -95,7 +97,8 @@ public class AssignmentServiceImpl implements AssignmentService {
 
         AssignmentDTO response = new AssignmentDTO();
         BeanUtils.copyProperties(assignment, response);
-
+        response.setUserId(assignment.getUser().getId());
+        response.setPropertyId(assignment.getProperty().getId());
 
         return response;
     }
@@ -113,6 +116,8 @@ public class AssignmentServiceImpl implements AssignmentService {
         for (AssignmentEntity assignment : result) {
             AssignmentDTO responseDTO = new AssignmentDTO();
             BeanUtils.copyProperties(assignment, responseDTO);
+            responseDTO.setUserId(assignment.getUser().getId());
+            responseDTO.setPropertyId(assignment.getProperty().getId());
             response.add(responseDTO);
         }
 
@@ -142,6 +147,8 @@ public class AssignmentServiceImpl implements AssignmentService {
 
         AssignmentDTO responseDTO = new AssignmentDTO();
         BeanUtils.copyProperties(assignment, responseDTO);
+        responseDTO.setUserId(assignment.getUser().getId());
+        responseDTO.setPropertyId(assignment.getProperty().getId());
 
         return responseDTO;
     }
