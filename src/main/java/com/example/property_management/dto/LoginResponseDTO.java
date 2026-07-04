@@ -1,6 +1,8 @@
 package com.example.property_management.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +12,8 @@ import lombok.Setter;
         name = "LoginResponse",
         description = "Response returned after a successful user authentication."
 )
+@Builder
+@Data
 public class LoginResponseDTO {
 
     @Schema(

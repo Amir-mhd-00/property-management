@@ -3,6 +3,7 @@ package com.example.property_management.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,7 @@ import lombok.Setter;
         name = "LoginRequest",
         description = "Request payload used to authenticate a registered user."
 )
+@Data
 public class LoginRequestDTO {
 
     @Email(message = "Invalid email format")

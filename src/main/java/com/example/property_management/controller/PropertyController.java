@@ -152,7 +152,7 @@ public class PropertyController {
     @ApiResponse(responseCode = "404", description = "Property not found",
             content =  @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @ApiResponse(responseCode = "500", description = "Internal server error")
-    @DeleteMapping("/{id}")//deleteProperty or deleteproperty
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void>  deleteProperty(@PathVariable Long id){
 
         logger.info("DELETE request for deleting property with id {}", id);

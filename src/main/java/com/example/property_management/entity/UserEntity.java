@@ -1,5 +1,6 @@
 package com.example.property_management.entity;
 
+import com.example.property_management.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,7 +23,9 @@ public class UserEntity {
     private Long id;
     private String firstName;
     private String lastName;
-    private String role;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private UserRole role;
     @Column(unique = true)
     private String email;
     private String phone;

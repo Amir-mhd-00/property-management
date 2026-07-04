@@ -116,3 +116,8 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 }
+
+//Create a user
+//Update a user
+//Delete a user
+//Get user information
