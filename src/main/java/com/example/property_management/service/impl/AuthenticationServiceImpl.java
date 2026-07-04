@@ -29,7 +29,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 )
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        
+
 
         return null;
     }
