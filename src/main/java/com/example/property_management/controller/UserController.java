@@ -74,6 +74,7 @@ public class UserController {
     @ApiResponse(responseCode = "500", description = "Internal server error")
     @ApiResponse(responseCode = "400", description = "invalid fields")
     @PostMapping("/login")
+
     public ResponseEntity<LoginResponseDTO> login(
             @Valid @RequestBody LoginRequestDTO dto) {
 

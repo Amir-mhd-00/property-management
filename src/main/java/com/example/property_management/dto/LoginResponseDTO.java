@@ -1,10 +1,7 @@
 package com.example.property_management.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
@@ -14,6 +11,8 @@ import lombok.Setter;
 )
 @Builder
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class LoginResponseDTO {
 
     @Schema(
@@ -46,16 +45,10 @@ public class LoginResponseDTO {
     private String email;
 
     @Schema(
-            description = "Authenticated user's phone number.",
-            example = "+15551234567",
+            description = "users role.",
+            example = "AGENT",
             accessMode = Schema.AccessMode.READ_ONLY
     )
-    private String phone;
+    private String role;
 
-    @Schema(
-            description = "JWT access token used to authenticate subsequent API requests.",
-            example = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-            accessMode = Schema.AccessMode.READ_ONLY
-    )
-    private String token;
 }
