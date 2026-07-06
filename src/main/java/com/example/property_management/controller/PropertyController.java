@@ -171,7 +171,7 @@ public class PropertyController {
                             schema = @Schema(implementation = PropertyDTO.class)))
     )
     @ApiResponse(responseCode = "500", description = "internal server error")
-    @GetMapping(params = "status")
+    @GetMapping("/status")
     public ResponseEntity<List<PropertyDTO>> findAllByPropertyStatus(@RequestParam String status){
 
         logger.info("GET request for finding all properties with status {}", status);
