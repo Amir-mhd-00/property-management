@@ -46,7 +46,6 @@ public class AuthenticationController {
         }
 
 }
-//Logout
 //Refresh token (when you add JWT)
 //Forgot password
 //Reset password
