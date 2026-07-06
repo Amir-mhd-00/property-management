@@ -60,30 +60,30 @@ public class UserController {
     }
 
 
-    @Operation(
-            summary = "Authenticate user",
-        description = "Authenticates a user using their email and password."
-    )
-    @ApiResponse(responseCode = "200",
-            description = "user authenticated successfully"
-            // content = JWT Token
-    )
-    @ApiResponse(responseCode = "404", description = "user not found",
-        content =  @Content(schema = @Schema(implementation = ErrorResponse.class)))
-    @ApiResponse(responseCode = "401", description = "Invalid credentials")
-    @ApiResponse(responseCode = "500", description = "Internal server error")
-    @ApiResponse(responseCode = "400", description = "invalid fields")
-    @PostMapping("/login")
-
-    public ResponseEntity<LoginResponseDTO> login(
-            @Valid @RequestBody LoginRequestDTO dto) {
-
-        logger.info("Login attempt for email {}", dto.getEmail());
-
-        LoginResponseDTO user = userService.login(dto);
-
-        return ResponseEntity.ok(user);
-    }
+//    @Operation(
+//            summary = "Authenticate user",
+//        description = "Authenticates a user using their email and password."
+//    )
+//    @ApiResponse(responseCode = "200",
+//            description = "user authenticated successfully"
+//            // content = JWT Token
+//    )
+//    @ApiResponse(responseCode = "404", description = "user not found",
+//        content =  @Content(schema = @Schema(implementation = ErrorResponse.class)))
+//    @ApiResponse(responseCode = "401", description = "Invalid credentials")
+//    @ApiResponse(responseCode = "500", description = "Internal server error")
+//    @ApiResponse(responseCode = "400", description = "invalid fields")
+//    @PostMapping("/login")
+//
+//    public ResponseEntity<LoginResponseDTO> login(
+//            @Valid @RequestBody LoginRequestDTO dto) {
+//
+//        logger.info("Login attempt for email {}", dto.getEmail());
+//
+//        LoginResponseDTO user = userService.login(dto);
+//
+//        return ResponseEntity.ok(user);
+//    }
 
     @Operation(
             summary = "Get all assignments for a user",

@@ -3,6 +3,7 @@ package com.example.property_management.service.impl;
 import com.example.property_management.dto.*;
 import com.example.property_management.entity.AssignmentEntity;
 import com.example.property_management.entity.UserEntity;
+import com.example.property_management.enums.UserRole;
 import com.example.property_management.error.exception.InvalidCredentialsException;
 import com.example.property_management.error.exception.UserAlreadyExistsException;
 import com.example.property_management.error.exception.UserNotFoundException;
@@ -47,6 +48,7 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(dto, user);
 
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        user.setRole(UserRole.GUEST);
 
         UserEntity savedUser = userRepository.save(user);
 

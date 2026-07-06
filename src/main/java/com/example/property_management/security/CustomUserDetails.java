@@ -23,12 +23,12 @@ public record CustomUserDetails(UserEntity user) implements UserDetails {
 
     @Override
     public String getPassword() {
-        return "";
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return "";
+        return user.getEmail();
     }
 
 

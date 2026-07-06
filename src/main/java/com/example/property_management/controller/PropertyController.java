@@ -109,7 +109,6 @@ public class PropertyController {
     @ApiResponse(responseCode = "404", description = "user not found",
             content =  @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @PutMapping("/{id}")
-
     public ResponseEntity<PropertyDTO> updateProperty(
             @Parameter(description = "Unique identifier of the property", example = "1")
             @PathVariable Long id,

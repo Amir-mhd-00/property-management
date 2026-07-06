@@ -30,14 +30,6 @@ public class RegisterUserDTO {
     )
     private String lastName;
 
-    @NotBlank(message = "user role cannot be empty")
-    @Schema(
-            description = "User's role.",
-            example = "Agent",
-            requiredMode = Schema.RequiredMode.REQUIRED
-    )
-    private String role;
-
     @Email(message = "Invalid email format")
     @NotBlank(message = "email cannot be empty")
     @Schema(

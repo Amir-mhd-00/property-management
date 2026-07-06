@@ -29,6 +29,8 @@ public class CustomUserDetailsService
                                 new UsernameNotFoundException(
                                         "User not found"));
 
+        System.out.println(user.getPassword());
+
         return new CustomUserDetails(user);
     }
 }
