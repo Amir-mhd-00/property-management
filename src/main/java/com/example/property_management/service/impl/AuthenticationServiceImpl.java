@@ -4,6 +4,8 @@ import com.example.property_management.dto.LoginRequestDTO;
 import com.example.property_management.dto.LoginResponseDTO;
 import com.example.property_management.security.CustomUserDetails;
 import com.example.property_management.service.AuthenticationService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,13 +16,20 @@ import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     private final AuthenticationManager authenticationManager;
     //private final SecurityContextRepository securityContextRepository;
+    private final SecurityContextRepository securityContextRepository;
 
-    public LoginResponseDTO login(LoginRequestDTO request) {
+    public AuthenticationServiceImpl(AuthenticationManager authenticationManager, SecurityContextRepository securityContextRepository) {
+        this.authenticationManager = authenticationManager;
+        this.securityContextRepository = securityContextRepository;
+    }
+
+    public LoginResponseDTO login(LoginRequestDTO request,
+                                  HttpServletRequest httpServletRequest,
+                                  HttpServletResponse httpServletResponse) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(

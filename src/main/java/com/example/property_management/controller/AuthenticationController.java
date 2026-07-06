@@ -3,6 +3,8 @@ package com.example.property_management.controller;
 import com.example.property_management.dto.LoginRequestDTO;
 import com.example.property_management.dto.LoginResponseDTO;
 import com.example.property_management.service.AuthenticationService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,9 +26,11 @@ public class AuthenticationController {
 
         @PostMapping("/login")
         public ResponseEntity<LoginResponseDTO> login(
-                @RequestBody LoginRequestDTO request) {
+                @RequestBody LoginRequestDTO request,
+                HttpServletRequest httpServletRequest,
+                HttpServletResponse httpServletResponse) {
 
-            return ResponseEntity.ok(authenticationService.login(request));
+            return ResponseEntity.ok(authenticationService.login(request, httpServletRequest, httpServletResponse));
 
     }
 }
