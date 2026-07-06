@@ -26,62 +26,11 @@ public class UserServiceImpl implements UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
     private final AssignmentRepository assignmentRepository;
 
     public UserServiceImpl(UserRepository userRepository, AssignmentRepository assignmentRepository) {
         this.userRepository = userRepository;
         this.assignmentRepository = assignmentRepository;
-        this.passwordEncoder = new BCryptPasswordEncoder();
-    }
-
-    @Override
-    public UserResponseDTO register(RegisterUserDTO dto) {
-
-        logger.info("Registering user with email = {}", dto.getEmail());
-
-        if (userRepository.existsByEmail(dto.getEmail())) {
-            throw new UserAlreadyExistsException("Email Already Exists");
-        }
-
-        UserEntity user = new UserEntity();
-        BeanUtils.copyProperties(dto, user);
-
-        user.setPassword(passwordEncoder.encode(dto.getPassword()));
-        user.setRole(UserRole.GUEST);
-
-        UserEntity savedUser = userRepository.save(user);
-
-        logger.info("User registered successfully.   email = {} id = {}",
-                savedUser.getEmail(),  savedUser.getId());
-
-        UserResponseDTO response = new UserResponseDTO();
-        BeanUtils.copyProperties(savedUser, response);
-
-        return response;
-    }
-
-    @Override
-    public LoginResponseDTO login(LoginRequestDTO loginRequestDTO) {
-
-        logger.info("Authenticating user with email={}", loginRequestDTO.getEmail());
-
-        UserEntity user = userRepository.findByEmail(loginRequestDTO.getEmail()).orElseThrow(
-                () -> new UserNotFoundException("User not found with email: " + loginRequestDTO.getEmail()));
-
-        if(!passwordEncoder.matches(loginRequestDTO.getPassword(), user.getPassword())) {
-
-            logger.warn("Authentication Failed for {}", loginRequestDTO.getEmail());
-
-            throw new InvalidCredentialsException("Invalid Credentials");
-        }
-
-        logger.info("User Authenticated successfully id  = {}", user.getId());
-
-        LoginResponseDTO response = new LoginResponseDTO();
-        BeanUtils.copyProperties(user, response);
-
-        return response;
     }
 
 

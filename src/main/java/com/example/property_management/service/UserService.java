@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface UserService {
 
-    UserResponseDTO register(RegisterUserDTO userDTO);
-    LoginResponseDTO login(LoginRequestDTO loginRequestDTO);
     List<AssignmentDTO> findByUser(Long id);
 
 
