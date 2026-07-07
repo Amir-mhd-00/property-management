@@ -128,6 +128,18 @@ public class GlobalExceptionHandler {
         );
     }
 
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<ErrorResponse> handleForbiddenException(ForbiddenException ex) {
+
+        logger.warn("Forbidden: {}", ex.getMessage());
+
+        return BuildErrorResponse(
+          HttpStatus.FORBIDDEN,
+          "FORBIDDEN",
+          ex.getMessage()
+        );
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidationExceptions(MethodArgumentNotValidException ex) {
 

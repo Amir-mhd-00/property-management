@@ -96,8 +96,6 @@ public class UserController {
     @PatchMapping("/{id}")
     public ResponseEntity<UserResponseDTO> updateUser(
 
-            //user can only update their own details
-            //but admin can update all users
             @Parameter(
                     description = "ID of the user to update",
                     required = true,
