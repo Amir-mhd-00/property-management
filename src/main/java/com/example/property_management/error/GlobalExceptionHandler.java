@@ -25,15 +25,11 @@ public class GlobalExceptionHandler {
 
         logger.warn("User not found {}", ex.getMessage());
 
-        ErrorResponse errorResponse = new ErrorResponse(
-                LocalDateTime.now(ZoneId.of("UTC")),
-                HttpStatus.NOT_FOUND.value(),
-                "User not found",
-                ex.getMessage(),
-                null
+        return BuildErrorResponse(
+                HttpStatus.NOT_FOUND,
+                "NOT_FOUND",
+                ex.getMessage()
         );
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
     @ExceptionHandler(UserAlreadyExistsException.class)
@@ -41,15 +37,11 @@ public class GlobalExceptionHandler {
 
         logger.warn("User already exists {}", ex.getMessage());
 
-        ErrorResponse errorResponse = new ErrorResponse(
-                LocalDateTime.now(ZoneId.of("UTC")),
-                HttpStatus.CONFLICT.value(),
-                "Conflict",
-                ex.getMessage(),
-                null
+        return BuildErrorResponse(
+                HttpStatus.CONFLICT,
+                "CONFLICT",
+                ex.getMessage()
         );
-
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
 
     @ExceptionHandler(InvalidCredentialsException.class)
@@ -57,15 +49,11 @@ public class GlobalExceptionHandler {
 
         logger.warn("Invalid credentials: {}", ex.getMessage());
 
-        ErrorResponse errorResponse = new ErrorResponse(
-                LocalDateTime.now(ZoneId.of("UTC")),
-                HttpStatus.UNAUTHORIZED.value(),
+        return BuildErrorResponse(
+                HttpStatus.UNAUTHORIZED,
                 "UNAUTHORIZED",
-                ex.getMessage(),
-                null
+                ex.getMessage()
         );
-
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
     }
 
     @ExceptionHandler(PropertyNotFoundException.class)
@@ -73,15 +61,11 @@ public class GlobalExceptionHandler {
 
         logger.warn("Property not found: {}", ex.getMessage());
 
-        ErrorResponse errorResponse = new ErrorResponse(
-                LocalDateTime.now(ZoneId.of("UTC")),
-                HttpStatus.NOT_FOUND.value(),
+        return BuildErrorResponse(
+                HttpStatus.NOT_FOUND,
                 "NOT_FOUND",
-                ex.getMessage(),
-                null
+                ex.getMessage()
         );
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
     @ExceptionHandler(PropertyAlreadyExistsException.class)
@@ -89,14 +73,11 @@ public class GlobalExceptionHandler {
 
         logger.warn("Property already exists {}", ex.getMessage());
 
-        ErrorResponse errorResponse = new ErrorResponse(
-                LocalDateTime.now(ZoneId.of("UTC")),
-                HttpStatus.CONFLICT.value(),
-                "Conflict",
-                ex.getMessage(),
-                null
+        return BuildErrorResponse(
+                HttpStatus.CONFLICT,
+                "CONFLICT",
+                ex.getMessage()
         );
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
 
     @ExceptionHandler(AssignmentNotFoundException.class)
@@ -104,15 +85,11 @@ public class GlobalExceptionHandler {
 
         logger.warn("Assignment not found: {}", ex.getMessage());
 
-        ErrorResponse errorResponse = new ErrorResponse(
-                LocalDateTime.now(ZoneId.of("UTC")),
-                HttpStatus.NOT_FOUND.value(),
+        return BuildErrorResponse(
+                HttpStatus.NOT_FOUND,
                 "NOT_FOUND",
-                ex.getMessage(),
-                null
+                ex.getMessage()
         );
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
     @ExceptionHandler(PropertyAlreadyAssignedException.class)
@@ -120,15 +97,11 @@ public class GlobalExceptionHandler {
 
         logger.warn("Property already assigned: {}", ex.getMessage());
 
-        ErrorResponse errorResponse = new ErrorResponse(
-                LocalDateTime.now(ZoneId.of("UTC")),
-                HttpStatus.CONFLICT.value(),
-                "CONFLICT",
-                ex.getMessage(),
-                null
+        return BuildErrorResponse(
+                HttpStatus.CONFLICT,
+                "Conflict",
+                ex.getMessage()
         );
-
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
 
     @ExceptionHandler(AssignmentAlreadyInactiveException.class)
@@ -136,14 +109,11 @@ public class GlobalExceptionHandler {
 
         logger.warn("Assignment already inactive: {}", ex.getMessage());
 
-        ErrorResponse errorResponse = new ErrorResponse(
-                LocalDateTime.now(ZoneId.of("UTC")),
-                HttpStatus.CONFLICT.value(),
+        return BuildErrorResponse(
+                HttpStatus.CONFLICT,
                 "CONFLICT",
-                ex.getMessage(),
-                null
-                );
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+                ex.getMessage()
+        );
     }
 
     @ExceptionHandler(UnauthorizedException.class)
@@ -151,14 +121,11 @@ public class GlobalExceptionHandler {
 
         logger.warn("Unauthorized: {}", ex.getMessage());
 
-        ErrorResponse errorResponse = new ErrorResponse(
-                LocalDateTime.now(ZoneId.of("UTC")),
-                HttpStatus.UNAUTHORIZED.value(),
+        return BuildErrorResponse(
+                HttpStatus.UNAUTHORIZED,
                 "UNAUTHORIZED",
-                ex.getMessage(),
-                null);
-
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+                ex.getMessage()
+        );
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -198,13 +165,25 @@ public class GlobalExceptionHandler {
                 ex
         );
 
-        ErrorResponse errorResponse = new ErrorResponse(
-                LocalDateTime.now(ZoneId.of("UTC")),
-                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+        return BuildErrorResponse(
+                HttpStatus.INTERNAL_SERVER_ERROR,
                 "INTERNAL SERVER ERROR",
-                "INTERNAL SERVER ERROR",
-                null
+                ex.getMessage()
         );
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    }
+
+
+    private ResponseEntity<ErrorResponse> BuildErrorResponse(
+            HttpStatus status,
+            String error,
+            String message) {
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                status.value(),
+                error,
+                message
+        );
+
+        return ResponseEntity.status(status).body(errorResponse);
     }
 }

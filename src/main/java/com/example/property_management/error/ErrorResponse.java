@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.HashMap;
 import java.util.Map;
 
 @Data
@@ -18,4 +20,13 @@ public class ErrorResponse {
     private String error;
     private String message;
     private Map<String, String> errors;
+
+    public  ErrorResponse(int status, String error, String message) {
+        this.timestamp = LocalDateTime.now(ZoneId.of("UTC"));
+        this.status = status;
+        this.error = error;
+        this.message = message;
+        this.errors = null;
+    }
+
 }

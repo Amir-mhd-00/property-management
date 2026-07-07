@@ -198,11 +198,6 @@ public class PropertyController {
     )
     @GetMapping("/{propertyId}/assignments")
     public ResponseEntity<List<AssignmentDTO>> getAllAssignments(
-            @Parameter(
-                    description = "ID of the property whose assignments should be retrieved",
-                    example = "1",
-                    required = true
-            )
             @PathVariable Long propertyId) {
 
         logger.info("GET request for fetching all assignments for property with id {}", propertyId);
