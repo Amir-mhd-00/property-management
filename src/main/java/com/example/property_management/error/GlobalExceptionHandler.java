@@ -133,6 +133,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(AssignmentAlreadyInactiveException.class)
     public ResponseEntity<ErrorResponse> handleAssignmentAlreadyInactiveException(AssignmentAlreadyInactiveException ex) {
+
         logger.warn("Assignment already inactive: {}", ex.getMessage());
 
         ErrorResponse errorResponse = new ErrorResponse(
@@ -145,7 +146,20 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
 
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<ErrorResponse> handleUnauthorizedException(UnauthorizedException ex) {
 
+        logger.warn("Unauthorized: {}", ex.getMessage());
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                LocalDateTime.now(ZoneId.of("UTC")),
+                HttpStatus.UNAUTHORIZED.value(),
+                "UNAUTHORIZED",
+                ex.getMessage(),
+                null);
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidationExceptions(MethodArgumentNotValidException ex) {

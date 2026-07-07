@@ -4,6 +4,7 @@ import com.example.property_management.dto.LoginRequestDTO;
 import com.example.property_management.dto.LoginResponseDTO;
 import com.example.property_management.dto.RegisterUserDTO;
 import com.example.property_management.dto.UserResponseDTO;
+import com.example.property_management.error.exception.UnauthorizedException;
 import com.example.property_management.security.CustomUserDetails;
 import com.example.property_management.service.AuthenticationService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -110,7 +111,10 @@ public class AuthenticationController {
     public LoginResponseDTO me(
             @AuthenticationPrincipal CustomUserDetails user) {
 
-        //returns 500 if not logged in
+        if (user == null) {
+            throw new UnauthorizedException("Unauthorized");
+        }
+
         return new LoginResponseDTO(
                 user.getUser().getId(),
                 user.getUser().getFirstName(),

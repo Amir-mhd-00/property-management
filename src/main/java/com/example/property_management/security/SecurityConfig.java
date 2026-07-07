@@ -20,6 +20,12 @@ import org.springframework.security.web.context.SecurityContextRepository;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+
+    public SecurityConfig(CustomAuthenticationEntryPoint customAuthenticationEntryPoint) {
+        this.customAuthenticationEntryPoint = customAuthenticationEntryPoint;
+    }
+
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -55,14 +61,16 @@ public class SecurityConfig {
                         )
                 );
 
+                http.exceptionHandling(exception -> exception
+                        .authenticationEntryPoint(customAuthenticationEntryPoint)
+                );
+
                 http.logout(logout -> logout
                     .logoutUrl("/api/auth/logout")
                     .invalidateHttpSession(true)
                     .deleteCookies("JSESSIONID")
                     .clearAuthentication(true)
-                    .logoutSuccessHandler((request, response, authentication) -> {
-                        response.setStatus(HttpServletResponse.SC_OK);
-                    }));
+                    .logoutSuccessHandler((request, response, authentication) -> response.setStatus(HttpServletResponse.SC_OK)));
 
         return http.build();
     }
