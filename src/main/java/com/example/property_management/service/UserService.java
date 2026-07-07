@@ -7,6 +7,6 @@ import java.util.List;
 public interface UserService {
 
     List<AssignmentDTO> findByUser(Long id);
-
+    UserResponseDTO updateUser(Long id, UserUpdateDTO userUpdateDTO);
 
 }

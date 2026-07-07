@@ -57,4 +57,13 @@ public class UserServiceImpl implements UserService {
         return response;
     }
 
+    @Override
+    public UserResponseDTO updateUser(Long id, UserUpdateDTO userUpdateDTO) {
+
+        UserEntity userEntity = userRepository.findById(id).
+                orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        return null;
+    }
+
 }

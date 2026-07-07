@@ -7,6 +7,7 @@ import com.example.property_management.entity.AssignmentEntity;
 import com.example.property_management.entity.PropertyEntity;
 import com.example.property_management.error.exception.PropertyAlreadyExistsException;
 import com.example.property_management.error.exception.PropertyNotFoundException;
+import com.example.property_management.mapper.PropertyMapper;
 import com.example.property_management.repository.AssignmentRepository;
 import com.example.property_management.repository.PropertyRepository;
 import com.example.property_management.service.PropertyService;
@@ -23,11 +24,15 @@ public class PropertyServiceImpl implements PropertyService {
 
     private final PropertyRepository propertyRepository;
     private final AssignmentRepository assignmentRepository;
+    private final PropertyMapper propertyMapper;
 
-    public PropertyServiceImpl(PropertyRepository propertyRepository, AssignmentRepository assignmentRepository) {
+    public PropertyServiceImpl(PropertyRepository propertyRepository,
+                               AssignmentRepository assignmentRepository,
+                               PropertyMapper propertyMapper) {
 
         this.propertyRepository = propertyRepository;
         this.assignmentRepository = assignmentRepository;
+        this.propertyMapper = propertyMapper;
     }
 
     private static final Logger logger = LoggerFactory.getLogger(PropertyServiceImpl.class);
@@ -100,12 +105,12 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public PropertyDTO updateProperty(Long id, PropertyDTO dto) {
         PropertyEntity existingProperty = getPropertyOrThrow(id);
-
+//this has a problem witch i dont know what it is
         logger.info("'PUT' updating property id={}", id);
 
         if (propertyRepository.findByPropertyName(dto.getPropertyName()).isPresent()) {
 
-            logger.warn("Updating failed property {} already exists", dto.getPropertyName());
+            logger.warn("'PUT' Updating failed property {} already exists", dto.getPropertyName());
 
             throw  new PropertyAlreadyExistsException(
                     String.format("Property with name %s already exists", dto.getPropertyName()));
@@ -127,26 +132,17 @@ public class PropertyServiceImpl implements PropertyService {
     public PropertyDTO partialUpdateProperty(Long id, PropertyUpdateDTO dto) {
         PropertyEntity property = getPropertyOrThrow(id);
 
-        if (dto.getPropertyName() != null){
-            property.setPropertyName(dto.getPropertyName());
-        }
-        if (dto.getPropertyValue() != null){
-            property.setPropertyValue(dto.getPropertyValue());
-        }
-        if (dto.getPropertyType() != null){
-            property.setPropertyType(dto.getPropertyType());
-        }
-        if  (dto.getPropertyStatus() != null){
-            property.setPropertyStatus(dto.getPropertyStatus());
-        }
-        if (dto.getRooms() != null){
-            property.setRooms(dto.getRooms());
-        }
-        if (dto.getLocation() != null){
-            property.setLocation(dto.getLocation());
-        }
+        propertyMapper.updateProperty(dto, property);
 
         logger.info("'PATCH' Updating property id={}", id);
+
+        if (propertyRepository.findByPropertyName(dto.getPropertyName()).isPresent()) {
+
+            logger.warn("'PATCH' Updating failed property {} already exists", dto.getPropertyName());
+
+            throw  new PropertyAlreadyExistsException(
+                    String.format("Property with name %s already exists", dto.getPropertyName()));
+        }
 
         PropertyEntity savedProperty = propertyRepository.save(property);
 

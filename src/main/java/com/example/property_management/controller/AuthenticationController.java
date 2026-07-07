@@ -110,6 +110,7 @@ public class AuthenticationController {
     public LoginResponseDTO me(
             @AuthenticationPrincipal CustomUserDetails user) {
 
+        //returns 500 if not logged in
         return new LoginResponseDTO(
                 user.getUser().getId(),
                 user.getUser().getFirstName(),
