@@ -2,7 +2,7 @@ package com.example.property_management.controller;
 
 import com.example.property_management.dto.LoginRequestDTO;
 import com.example.property_management.dto.LoginResponseDTO;
-import com.example.property_management.dto.RegisterUserDTO;
+import com.example.property_management.dto.UserRegisterDTO;
 import com.example.property_management.dto.UserResponseDTO;
 import com.example.property_management.error.exception.UnauthorizedException;
 import com.example.property_management.security.CustomUserDetails;
@@ -55,7 +55,7 @@ public class AuthenticationController {
     @ApiResponse(responseCode = "400", description = "invalid fields")
     @PostMapping("/register")
     public ResponseEntity<UserResponseDTO> createUser(
-            @Valid @RequestBody RegisterUserDTO dto) {
+            @Valid @RequestBody UserRegisterDTO dto) {
 
         logger.info("POST request for creating user {}", dto.getEmail());
 

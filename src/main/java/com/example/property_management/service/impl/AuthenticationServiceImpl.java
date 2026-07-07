@@ -2,7 +2,7 @@ package com.example.property_management.service.impl;
 
 import com.example.property_management.dto.LoginRequestDTO;
 import com.example.property_management.dto.LoginResponseDTO;
-import com.example.property_management.dto.RegisterUserDTO;
+import com.example.property_management.dto.UserRegisterDTO;
 import com.example.property_management.dto.UserResponseDTO;
 import com.example.property_management.entity.UserEntity;
 import com.example.property_management.enums.UserRole;
@@ -43,7 +43,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public UserResponseDTO register(RegisterUserDTO dto) {
+    public UserResponseDTO register(UserRegisterDTO dto) {
 
         logger.info("Registering user with email = {}", dto.getEmail());
 
@@ -64,6 +64,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         UserResponseDTO response = new UserResponseDTO();
         BeanUtils.copyProperties(savedUser, response);
+        System.out.println(response.getRole());
 
         return response;
     }

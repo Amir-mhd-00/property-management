@@ -1,5 +1,6 @@
 package com.example.property_management.dto;
 
+import com.example.property_management.enums.UserRole;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,4 +48,10 @@ public class UserResponseDTO {
             accessMode = Schema.AccessMode.READ_ONLY
     )
     private String phone;
+    @Schema(
+            description = "User's role.",
+            example = "GUEST",
+            accessMode = Schema.AccessMode.READ_ONLY
+    )
+    private UserRole role;
 }

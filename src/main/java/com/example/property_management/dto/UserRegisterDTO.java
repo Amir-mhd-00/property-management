@@ -9,10 +9,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Schema(
-        name = "RegisterUser",
+        name = "UserRegister",
         description = "Request payload used to register a new user account."
 )
-public class RegisterUserDTO {
+public class UserRegisterDTO {
 
     @NotBlank(message = "First name cannot be empty")
     @Schema(
