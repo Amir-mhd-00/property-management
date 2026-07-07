@@ -14,7 +14,6 @@ import lombok.Setter;
 )
 public class UserUpdateDTO {
 
-    @NotBlank(message = "First name cannot be empty")
     @Schema(
             description = "User's first name.",
             example = "John",
@@ -22,7 +21,6 @@ public class UserUpdateDTO {
     )
     private String firstName;
 
-    @NotBlank(message = "Last name cannot be empty")
     @Schema(
             description = "User's last name.",
             example = "Doe",
@@ -31,7 +29,6 @@ public class UserUpdateDTO {
     private String lastName;
 
     @Email(message = "Invalid email format")
-    @NotBlank(message = "email cannot be empty")
     @Schema(
             description = "Unique email address used for authentication.",
             example = "john.doe@example.com",

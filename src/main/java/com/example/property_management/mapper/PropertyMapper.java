@@ -1,7 +1,9 @@
 package com.example.property_management.mapper;
 
 import com.example.property_management.dto.PropertyUpdateDTO;
+import com.example.property_management.dto.UserUpdateDTO;
 import com.example.property_management.entity.PropertyEntity;
+import com.example.property_management.entity.UserEntity;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
@@ -13,4 +15,8 @@ public interface PropertyMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateProperty(PropertyUpdateDTO dto,
                         @MappingTarget PropertyEntity entity);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void updateUser(UserUpdateDTO dto,
+                    @MappingTarget UserEntity entity);
 }
