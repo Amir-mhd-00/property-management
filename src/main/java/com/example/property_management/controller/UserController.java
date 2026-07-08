@@ -22,7 +22,7 @@ import java.util.List;
         description = "Operations for managing users"
 )
 @RestController
-@RequestMapping("/api/v1/user")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -32,7 +32,53 @@ public class UserController {
         this.userService = userService;
     }
 
+    @Operation(
+            summary = "Get user by ID",
+            description = "Retrieves a single user by their unique ID."
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "User retrieved successfully"
+    )
+    @ApiResponse(
+            responseCode = "403",
+            description = "Insufficient permissions"
+    )
+    @ApiResponse(
+            responseCode = "404",
+            description = "User not found"
+    )
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponseDTO> getUserById(@PathVariable("id") Long userId) {
 
+        logger.info("GET request for fetching user with id {}", userId);
+
+        UserResponseDTO userResponseDTO = userService.getUserById(userId);
+
+        return ResponseEntity.ok(userResponseDTO);
+    }
+
+    @Operation(
+            summary = "Get all users",
+            description = "Retrieves a list of all users that the authenticated user is authorized to view."
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "Users retrieved successfully"
+    )
+    @ApiResponse(
+            responseCode = "403",
+            description = "Insufficient permissions"
+    )
+    @GetMapping
+    public ResponseEntity<List<UserResponseDTO>> getAllUsers() {
+
+        logger.info("GET request for fetching all users");
+
+        List<UserResponseDTO> userResponseDTOs = userService.getAllUsers();
+
+        return ResponseEntity.ok(userResponseDTOs);
+    }
 
     @Operation(
             summary = "Get all assignments for a user",
@@ -50,8 +96,12 @@ public class UserController {
                     schema = @Schema(implementation = ErrorResponse.class)
             )
     )
+    @ApiResponse(
+            responseCode = "403",
+            description = "Insufficient permissions"
+    )
     @GetMapping("/{userId}/assignments")
-    public ResponseEntity<List<AssignmentDTO>> getAllAssignments(
+    public ResponseEntity<List<AssignmentDTO>> getAllAssignmentsByUser(
             @Parameter(
                     description = "ID of the user whose assignments should be retrieved",
                     required = true,
@@ -93,6 +143,10 @@ public class UserController {
             description = "Email already exists",
             content = @Content
     )
+    @ApiResponse(
+            responseCode = "403",
+            description = "Insufficient permissions"
+    )
     @PatchMapping("/{id}")
     public ResponseEntity<UserResponseDTO> updateUser(
 
@@ -124,6 +178,10 @@ public class UserController {
     @ApiResponse(responseCode = "404", description = "user not found",
             content =  @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @ApiResponse(responseCode = "500", description = "Internal server error")
+    @ApiResponse(
+            responseCode = "403",
+            description = "Insufficient permissions"
+    )
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable("id") Long userId) {
 
@@ -136,4 +194,3 @@ public class UserController {
 
 }
 
-//Get user information

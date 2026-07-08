@@ -129,6 +129,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long id) {
 
+        userAuthorizationService.canDeleteUser(id);
+
         UserEntity userEntity = userRepository.findById(id).
                 orElseThrow(() -> new UserNotFoundException("User not found"));
 
