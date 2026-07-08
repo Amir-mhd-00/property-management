@@ -101,7 +101,7 @@ class PropertyServiceImplTest {
         propertyEntity.setPropertyName("test name");
 
         when(propertyRepository.findByPropertyName(propertyDTO.getPropertyName())).
-                thenReturn(Optional.of(propertyDTO));
+                thenReturn(Optional.of(propertyEntity));
 
         assertThrows(PropertyAlreadyExistsException.class,
                 () -> propertyService.createProperty(propertyDTO));

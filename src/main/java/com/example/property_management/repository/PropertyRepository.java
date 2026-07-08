@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface PropertyRepository extends JpaRepository<PropertyEntity, Long> {
 
-    Optional<Object> findByPropertyName(String propertyName);
+    Optional<PropertyEntity> findByPropertyName(String propertyName);
     List<PropertyEntity> findAllByPropertyStatus(String propertyStatus);
 }

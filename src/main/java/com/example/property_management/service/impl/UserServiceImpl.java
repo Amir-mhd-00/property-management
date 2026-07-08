@@ -1,11 +1,12 @@
 package com.example.property_management.service.impl;
 
+import com.example.property_management.authorization.UserAuthorizationService;
 import com.example.property_management.dto.*;
 import com.example.property_management.entity.AssignmentEntity;
 import com.example.property_management.entity.UserEntity;
 import com.example.property_management.error.exception.UserAlreadyExistsException;
 import com.example.property_management.error.exception.UserNotFoundException;
-import com.example.property_management.mapper.PropertyMapper;
+import com.example.property_management.mapper.UserMapper;
 import com.example.property_management.repository.AssignmentRepository;
 import com.example.property_management.repository.UserRepository;
 import com.example.property_management.service.UserService;
@@ -24,17 +25,60 @@ public class UserServiceImpl implements UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
     private final UserRepository userRepository;
     private final AssignmentRepository assignmentRepository;
-    private final PropertyMapper propertyMapper;
+    private final UserMapper UserMapper;
+    private final UserAuthorizationService userAuthorizationService;
 
-    public UserServiceImpl(UserRepository userRepository, AssignmentRepository assignmentRepository, PropertyMapper propertyMapper) {
+    public UserServiceImpl(UserRepository userRepository, AssignmentRepository assignmentRepository, UserMapper userMapper, UserAuthorizationService userAuthorizationService) {
         this.userRepository = userRepository;
         this.assignmentRepository = assignmentRepository;
-        this.propertyMapper = propertyMapper;
+        this.UserMapper = userMapper;
+        this.userAuthorizationService = userAuthorizationService;
     }
 
 
     @Override
-    public List<AssignmentDTO> findByUser(Long id) {
+    public UserResponseDTO getUserById(long id) {
+
+        userAuthorizationService.canGetUser(id);
+
+        logger.info("fetching user by id {}", id);
+
+        UserEntity response = userRepository.findById(id).
+                orElseThrow(() -> new UserNotFoundException("user not found"));
+
+        logger.info("user found {}", response);
+
+        UserResponseDTO userResponseDTO = new UserResponseDTO();
+        BeanUtils.copyProperties(response, userResponseDTO);
+
+        return userResponseDTO;
+    }
+
+    @Override
+    public List<UserResponseDTO> getAllUsers() {
+
+        userAuthorizationService.canGetAllUsers();
+
+        logger.info("fetching all users");
+
+        List<UserEntity> userEntities = userRepository.findAll();
+
+        logger.info("found {} users. ", userEntities.size());
+
+        List<UserResponseDTO> userResponseDTOs = new ArrayList<>();
+        for (UserEntity userEntity : userEntities) {
+            UserResponseDTO userResponseDTO = new UserResponseDTO();
+            BeanUtils.copyProperties(userEntity, userResponseDTO);
+            userResponseDTOs.add(userResponseDTO);
+        }
+
+        return userResponseDTOs;
+    }
+
+    @Override
+    public List<AssignmentDTO> getAssignmentsByUser(Long id) {
+
+        userAuthorizationService.canGetAssignmentsByUser(id);
 
         userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found"));
 
@@ -59,18 +103,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDTO updateUser(Long id, UserUpdateDTO userUpdateDTO) {
 
+        userAuthorizationService.canUpdateUser(id);
+
         UserEntity userEntity = userRepository.findById(id).
                 orElseThrow(() -> new UserNotFoundException("User not found"));
 
-        logger.info("'PATCH' Updating property id={}", id);
-
-        propertyMapper.updateUser(userUpdateDTO, userEntity);
+        logger.info("'PATCH' Updating User id={}", id);
 
         if (userRepository.findByEmail(userUpdateDTO.getEmail())
                 .filter(existingUser -> !existingUser.getId().equals(id))
                 .isPresent()) {
             throw new UserAlreadyExistsException("Email already exists");
         }
+
+        UserMapper.updateUser(userUpdateDTO, userEntity);
 
         UserEntity savedUser = userRepository.save(userEntity);
 
@@ -82,8 +128,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long id) {
+
+        UserEntity userEntity = userRepository.findById(id).
+                orElseThrow(() -> new UserNotFoundException("User not found"));
+
         logger.info("Deleting user with id={}", id);
-        userRepository.deleteById(id);
+
+        userRepository.delete(userEntity);
+
+        logger.info("Deleted user with id={}", id);
     }
 
 }

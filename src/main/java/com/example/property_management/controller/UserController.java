@@ -61,7 +61,7 @@ public class UserController {
 
         logger.info("GET request for fetching all assignments for user with id {}", userId);
 
-        List<AssignmentDTO> response = userService.findByUser(userId);
+        List<AssignmentDTO> response = userService.getAssignmentsByUser(userId);
 
         return ResponseEntity.ok(response);
     }
@@ -115,7 +115,25 @@ public class UserController {
 
         return ResponseEntity.ok(response);
     }
+
+    @Operation(
+            summary = "Delete a user",
+            description = "Deletes a user identified by its unique identifier."
+    )
+    @ApiResponse(responseCode = "204", description = "user deleted successfully")
+    @ApiResponse(responseCode = "404", description = "user not found",
+            content =  @Content(schema = @Schema(implementation = ErrorResponse.class)))
+    @ApiResponse(responseCode = "500", description = "Internal server error")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable("id") Long userId) {
+
+        logger.info("DELETE request for deleting user with id {}", userId);
+
+        userService.deleteUser(userId);
+
+        return ResponseEntity.noContent().build();
+    }
+
 }
 
-//Delete a user
 //Get user information

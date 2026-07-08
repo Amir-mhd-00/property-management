@@ -105,12 +105,14 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public PropertyDTO updateProperty(Long id, PropertyDTO dto) {
         PropertyEntity existingProperty = getPropertyOrThrow(id);
-//this has a problem witch i dont know what it is
+
         logger.info("'PUT' updating property id={}", id);
 
-        if (propertyRepository.findByPropertyName(dto.getPropertyName()).isPresent()) {
+        if (propertyRepository.findByPropertyName(dto.getPropertyName())
+                .filter(existing -> !existing.getId().equals(id))
+                .isPresent()) {
 
-            logger.warn("'PUT' Updating failed property {} already exists", dto.getPropertyName());
+            logger.warn("'PUT' Updating failed property with name {} already exists", dto.getPropertyName());
 
             throw  new PropertyAlreadyExistsException(
                     String.format("Property with name %s already exists", dto.getPropertyName()));

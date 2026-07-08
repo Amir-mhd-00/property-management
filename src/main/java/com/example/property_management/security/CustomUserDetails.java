@@ -1,11 +1,10 @@
 package com.example.property_management.security;
 
 import com.example.property_management.entity.UserEntity;
+import com.example.property_management.enums.UserRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import javax.net.ssl.SSLSession;
 import java.util.Collection;
 import java.util.List;
 
@@ -21,6 +20,12 @@ public record CustomUserDetails(UserEntity user) implements UserDetails {
         );
     }
 
+    public Long getId(){ return user.getId(); }
+
+    public UserRole getRole(){ return user.getRole(); }
+
+    public UserEntity getUser() {return user;}
+
     @Override
     public String getPassword() {
         return user.getPassword();
@@ -30,8 +35,6 @@ public record CustomUserDetails(UserEntity user) implements UserDetails {
     public String getUsername() {
         return user.getEmail();
     }
-
-
 
     @Override
     public boolean isAccountNonExpired() {
@@ -53,5 +56,4 @@ public record CustomUserDetails(UserEntity user) implements UserDetails {
         return UserDetails.super.isEnabled();
     }
 
-    public UserEntity getUser() {return user;}
 }
