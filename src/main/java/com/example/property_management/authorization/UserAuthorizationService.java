@@ -17,25 +17,22 @@ public class UserAuthorizationService {
 
     public void canGetUser(UserEntity targetUser) {
 
-        UserRole currentRole = securityUtils.getCurrentUserRole();
-        Long currentUserId = securityUtils.getCurrentUserId();
-
-        if (currentRole == UserRole.ADMIN) {
+        if (currentRole() == UserRole.ADMIN) {
             return;
         }
 
-        if (currentRole == UserRole.OWNER
-                || currentRole == UserRole.GUEST) {
+        if (currentRole() == UserRole.OWNER
+                || currentRole() == UserRole.GUEST) {
 
-            if (!currentUserId.equals(targetUser.getId())) {
+            if (!currentUserId().equals(targetUser.getId())) {
                 throw new ForbiddenException("You cannot see another user's information.");
             }
 
             return;
         }
 
-        if (targetUser.getRole().getLevel() >= currentRole.getLevel() &&
-                !currentUserId.equals(targetUser.getId())) {
+        if (targetUser.getRole().getLevel() >= currentRole().getLevel() &&
+                !currentUserId().equals(targetUser.getId())) {
 
             throw new ForbiddenException("You cannot access other users.");
         }
@@ -43,9 +40,7 @@ public class UserAuthorizationService {
 
     public void canGetAllUsers() {
 
-        UserRole currentRole = securityUtils.getCurrentUserRole();
-
-        if (currentRole.getLevel() < UserRole.AGENT_ADMIN.getLevel()) {
+        if (currentRole().getLevel() < UserRole.AGENT_ADMIN.getLevel()) {
 
             throw new ForbiddenException("Insufficient permissions to view all users.");
         }
@@ -53,19 +48,16 @@ public class UserAuthorizationService {
 
     public void canGetAssignmentsByUser(UserEntity targetUser){
 
-        UserRole currentRole = securityUtils.getCurrentUserRole();
-        Long currentUserId = securityUtils.getCurrentUserId();
-
         if (targetUser.getRole() != UserRole.AGENT) {
             throw new AssignmentNotFoundException("This user cannot have assignments.");
         }
 
-        if (currentRole.getLevel() < UserRole.AGENT.getLevel()) {
+        if (currentRole().getLevel() < UserRole.AGENT.getLevel()) {
 
             throw new ForbiddenException("you cannot see users assignments.");
         }
-        if (currentRole == UserRole.AGENT &&
-                !currentUserId.equals(targetUser.getId())) {
+        if (currentRole() == UserRole.AGENT &&
+                !currentUserId().equals(targetUser.getId())) {
 
             throw new ForbiddenException("you cannot see users assignments.");
         }
@@ -73,41 +65,42 @@ public class UserAuthorizationService {
 
     public void canUpdateUser(UserEntity targetUser) {
 
-        UserRole currentRole = securityUtils.getCurrentUserRole();
-        Long currentUserId = securityUtils.getCurrentUserId();
+        if (currentRole() == UserRole.ADMIN) {return;}
+        if (currentRole() == UserRole.AGENT
+                ||currentRole() == UserRole.GUEST
+                || currentRole() == UserRole.OWNER) {
 
-        if (currentRole == UserRole.ADMIN) {return;}
-        if (currentRole == UserRole.AGENT
-                ||currentRole == UserRole.GUEST
-                || currentRole == UserRole.OWNER) {
-
-            if (!targetUser.getId().equals(currentUserId)) {
+            if (!targetUser.getId().equals(currentUserId())) {
                 throw new ForbiddenException("you cannot update other users");
             }
             return;
         }
-        if (targetUser.getRole().getLevel() > currentRole.getLevel()) {
+        if (targetUser.getRole().getLevel() > currentRole().getLevel()) {
             throw new ForbiddenException("you cannot update users above your role");
         }
-        if (targetUser.getRole() == currentRole&&
-            !targetUser.getId().equals(currentUserId)) {
+        if (targetUser.getRole() == currentRole() &&
+            !targetUser.getId().equals(currentUserId())) {
             throw new ForbiddenException("you cannot update other users");
         }
     }
 
     public void canDeleteUser(UserEntity targetUser) {
 
-        UserRole currentRole = securityUtils.getCurrentUserRole();
-        Long currentUserId = securityUtils.getCurrentUserId();
-
-        if (currentRole.getLevel() < UserRole.AGENT_ADMIN.getLevel()) {
+        if (currentRole().getLevel() < UserRole.AGENT_ADMIN.getLevel()) {
             throw new ForbiddenException("You do not have permission to delete users.");
         }
-        if (currentUserId.equals(targetUser.getId())) {
+        if (currentUserId().equals(targetUser.getId())) {
             throw new ForbiddenException("You cannot delete yourself.");
         }
-        if (targetUser.getRole().getLevel() >= currentRole.getLevel()) {
+        if (targetUser.getRole().getLevel() >= currentRole().getLevel()) {
             throw new ForbiddenException("Insufficient permissions.");
         }
+    }
+
+    private UserRole currentRole() {
+        return securityUtils.getCurrentUserRole();
+    }
+    private Long currentUserId() {
+        return securityUtils.getCurrentUserId();
     }
 }

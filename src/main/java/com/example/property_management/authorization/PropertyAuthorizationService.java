@@ -23,26 +23,23 @@ public class PropertyAuthorizationService {
 
     public void canCreateProperty () {
 
-        UserRole currentRole = securityUtils.getCurrentUserRole();
-
-        if (currentRole.getLevel() < UserRole.AGENT.getLevel()) {
+        if (currentRole().getLevel() < UserRole.AGENT.getLevel()) {
             throw new ForbiddenException("you are not allowed to create property");
         }
     }
 
     public void canUpdateProperty (Long targetId) {
 
-        UserRole currentRole = securityUtils.getCurrentUserRole();
         Long currentId = securityUtils.getCurrentUserId();
 
-        if (currentRole == UserRole.GUEST) {
+        if (currentRole() == UserRole.GUEST) {
             throw new ForbiddenException("you are not allowed to update a property");}
 
-        if (currentRole == UserRole.OWNER &&
+        if (currentRole() == UserRole.OWNER &&
                 !propertyRepository.existsByIdAndOwnerId(targetId, currentId)) {
             throw new ForbiddenException("you can only update you`re own properties");
         }
-        if  (currentRole == UserRole.AGENT &&
+        if  (currentRole() == UserRole.AGENT &&
                 !assignmentRepository.existsByUserIdAndPropertyId(currentId, targetId)) {
             throw new ForbiddenException("you can only update your assigned properties");
         }
@@ -50,18 +47,18 @@ public class PropertyAuthorizationService {
 
     public void canDeleteProperty () {
 
-        UserRole currentRole = securityUtils.getCurrentUserRole();
-
-        if (currentRole.getLevel() < UserRole.MANAGER.getLevel()) {
+        if (currentRole().getLevel() < UserRole.MANAGER.getLevel()) {
             throw new ForbiddenException("you are not allowed to delete a property");}
     }
 
     public void canGetAssignmentsByProperty() {
 
-        UserRole currentRole = securityUtils.getCurrentUserRole();
-
-        if (currentRole.getLevel() < UserRole.AGENT_ADMIN.getLevel()) {
+        if (currentRole().getLevel() < UserRole.AGENT_ADMIN.getLevel()) {
             throw new ForbiddenException("you are not allowed to get assignments");}
     }
 
+
+    private UserRole currentRole() {
+        return securityUtils.getCurrentUserRole();
+    }
 }

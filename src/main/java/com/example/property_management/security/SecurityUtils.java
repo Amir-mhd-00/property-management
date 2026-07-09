@@ -7,9 +7,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
-public final class SecurityUtils {
+public class SecurityUtils {
 
-    private SecurityUtils() {
+    public SecurityUtils() {
     }
 
     public static CustomUserDetails getCurrentUser() {

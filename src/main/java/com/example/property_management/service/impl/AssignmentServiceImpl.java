@@ -1,5 +1,6 @@
 package com.example.property_management.service.impl;
 
+import com.example.property_management.authorization.AssignmentAuthorizationService;
 import com.example.property_management.dto.AssignmentDTO;
 import com.example.property_management.dto.CreateAssignmentRequestDTO;
 import com.example.property_management.entity.AssignmentEntity;
@@ -28,10 +29,12 @@ public class AssignmentServiceImpl implements AssignmentService {
     private final AssignmentRepository assignmentRepository;
     private final PropertyRepository propertyRepository;
     private final UserRepository userRepository;
-    public AssignmentServiceImpl(AssignmentRepository assignmentRepository, PropertyRepository propertyRepository, UserRepository userRepository) {
+    private final AssignmentAuthorizationService assignmentAuthorizationService;
+    public AssignmentServiceImpl(AssignmentRepository assignmentRepository, PropertyRepository propertyRepository, UserRepository userRepository, AssignmentAuthorizationService assignmentAuthorizationService) {
         this.assignmentRepository = assignmentRepository;
         this.propertyRepository = propertyRepository;
         this.userRepository = userRepository;
+        this.assignmentAuthorizationService = assignmentAuthorizationService;
     }
 
     private static final Logger log = LoggerFactory.getLogger(AssignmentServiceImpl.class);
@@ -41,6 +44,8 @@ public class AssignmentServiceImpl implements AssignmentService {
     public AssignmentDTO createAssignment(CreateAssignmentRequestDTO dto) {
 
         // property {id} is already assigned to {id} would u like to end their assignment and assign it to {id}?
+
+        assignmentAuthorizationService.canCreateAssignment();
 
         propertyRepository.findById(dto.getPropertyId())
                 .orElseThrow(() -> new PropertyNotFoundException("Property not found"));
@@ -93,6 +98,8 @@ public class AssignmentServiceImpl implements AssignmentService {
         AssignmentEntity assignment = assignmentRepository.findById(id).
                 orElseThrow(() -> new AssignmentNotFoundException("Assignment not found"));
 
+        assignmentAuthorizationService.canGetAssignment(assignment);
+
         log.info("Assignment found for id={}", id);
 
         AssignmentDTO response = new AssignmentDTO();
@@ -105,6 +112,8 @@ public class AssignmentServiceImpl implements AssignmentService {
 
     @Override
     public List<AssignmentDTO> findAll() {
+
+        assignmentAuthorizationService.canGetAllAssignments();
 
         log.info("fetching all assignments");
 
@@ -127,6 +136,8 @@ public class AssignmentServiceImpl implements AssignmentService {
     @Transactional
     @Override
     public AssignmentDTO end(Long id) {
+
+        assignmentAuthorizationService.canEndAssignment();
 
         AssignmentEntity assignment = assignmentRepository.findById(id).
                 orElseThrow(() -> new AssignmentNotFoundException("Assignment not found"));
