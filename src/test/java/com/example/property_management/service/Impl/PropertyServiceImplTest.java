@@ -1,6 +1,7 @@
 package com.example.property_management.service.Impl;
 
 import com.example.property_management.dto.PropertyDTO;
+import com.example.property_management.dto.PropertyUpdateDTO;
 import com.example.property_management.entity.PropertyEntity;
 import com.example.property_management.error.exception.PropertyAlreadyExistsException;
 import com.example.property_management.error.exception.PropertyNotFoundException;
@@ -163,10 +164,13 @@ class PropertyServiceImplTest {
 
         Long id = 1L;
 
-        PropertyDTO propertyDTO = new PropertyDTO(
+        PropertyUpdateDTO propertyDTO = new PropertyUpdateDTO(
                 "villa",
                 6700000.0,
+                "villa",
                 "AVAILABLE",
+                "sadaam@gmail.com",
+                4,
                 "456 test Blv"
         );
 

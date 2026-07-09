@@ -92,6 +92,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 httpServletResponse
         );
 //wtf happened here
+        // how to return correct error messages like incorrect password
         CustomUserDetails user =
                 (CustomUserDetails) authentication.getPrincipal();
 

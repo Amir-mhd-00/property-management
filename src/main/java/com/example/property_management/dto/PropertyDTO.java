@@ -81,14 +81,6 @@ public class PropertyDTO {
     )
     private String location;
 
-    @Schema(
-            description = "Date and time when the property was created.",
-            example = "2026-06-26T14:30:15Z",
-            format = "date-time",
-            accessMode = Schema.AccessMode.READ_ONLY
-    )
-    private String createdDate;
-
     @NotNull(message = "Owner id cannot be null")
     @Schema(
             description =  "ID of the property owner.",

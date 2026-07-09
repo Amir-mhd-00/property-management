@@ -48,9 +48,6 @@ public class SecurityConfig {
                                  "/api/v1/user/register").permitAll()
 
                         .requestMatchers("/api/v1/properties/**")
-                            .hasRole("MANAGER")
-
-                        .anyRequest()
                         .authenticated()
                 )
 

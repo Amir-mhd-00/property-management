@@ -9,10 +9,10 @@ public interface PropertyService {
     PropertyDTO createProperty(PropertyDTO propertyDTO);
     PropertyDTO getProperty(Long id);
     List<PropertyDTO> getAllProperties();
-    PropertyDTO updateProperty(Long id, PropertyDTO dto);
+    PropertyDTO updateProperty(Long id, PropertyUpdateDTO dto);
     PropertyDTO partialUpdateProperty(Long id, PropertyUpdateDTO dto);
     void deleteProperty(Long id);
     List<PropertyDTO> getAllPropertiesByStatus(String propertyStatus);
-    List<AssignmentDTO> findByProperty(Long id);
+    List<AssignmentDTO> getAssignmentsByProperty(Long id);
 
 }

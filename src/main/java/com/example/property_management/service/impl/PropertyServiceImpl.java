@@ -21,6 +21,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,6 +90,7 @@ public class PropertyServiceImpl implements PropertyService {
         logger.info("creating property {}", propertyDTO.getPropertyName());
 
         propertyEntity.setOwner(userEntity);
+        propertyEntity.setCreatedDate(LocalDateTime.now(ZoneId.of("UTC")));
         PropertyEntity responseEntity = propertyRepository.save(propertyEntity);
 
         logger.info(
@@ -97,6 +101,7 @@ public class PropertyServiceImpl implements PropertyService {
 
         PropertyDTO responseDTO = new PropertyDTO();
         BeanUtils.copyProperties(responseEntity, responseDTO);
+        responseDTO.setOwnerId(userEntity.getId());
 
         return responseDTO;
     }
@@ -122,7 +127,12 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public PropertyDTO updateProperty(Long id, PropertyDTO dto) {
+    public PropertyDTO updateProperty(Long id, PropertyUpdateDTO dto) {
+
+        getPropertyOrThrow(id);
+
+        propertyAuthorizationService.canUpdateProperty(id);
+
         PropertyEntity existingProperty = getPropertyOrThrow(id);
 
         logger.info("'PUT' updating property id={}", id);
@@ -151,6 +161,11 @@ public class PropertyServiceImpl implements PropertyService {
 
     @Override
     public PropertyDTO partialUpdateProperty(Long id, PropertyUpdateDTO dto) {
+
+        getPropertyOrThrow(id);
+
+        propertyAuthorizationService.canUpdateProperty(id);
+
         PropertyEntity property = getPropertyOrThrow(id);
 
         propertyMapper.updateProperty(dto, property);
@@ -171,6 +186,7 @@ public class PropertyServiceImpl implements PropertyService {
 
         PropertyDTO response = new PropertyDTO();
         BeanUtils.copyProperties(savedProperty, response);
+        response.setOwnerId(property.getOwner().getId());
 
         return response;
     }
@@ -181,6 +197,8 @@ public class PropertyServiceImpl implements PropertyService {
         logger.info("deleting property id={}", id);
 
         PropertyEntity property = getPropertyOrThrow(id);
+
+        propertyAuthorizationService.canDeleteProperty();
 
         propertyRepository.delete(property);
 
@@ -209,10 +227,12 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public List<AssignmentDTO> findByProperty(Long id) {
+    public List<AssignmentDTO> getAssignmentsByProperty(Long id) {
 
         propertyRepository.findById(id).orElseThrow(() ->
                 new PropertyNotFoundException("Property not found"));
+
+        propertyAuthorizationService.canGetAssignmentsByProperty();
 
         logger.info("Fetching assignments for propertyId={}", id);
 

@@ -1,11 +1,13 @@
 package com.example.property_management.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @Schema(
         name = "PropertyUpdate",
         description = "Request payload used to update an existing property. Only the provided fields will be updated."

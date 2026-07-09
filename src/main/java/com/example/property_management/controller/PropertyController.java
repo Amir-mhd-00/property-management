@@ -68,6 +68,7 @@ public class PropertyController {
             content = @Content(schema = @Schema(implementation = PropertyDTO.class))
     )
     @ApiResponse(responseCode = "400", description = "Invalid request body")
+    @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "409", description = "property already exists")
     @PostMapping
     public ResponseEntity<PropertyDTO> createProperty(
@@ -112,11 +113,11 @@ public class PropertyController {
     public ResponseEntity<PropertyDTO> updateProperty(
             @Parameter(description = "Unique identifier of the property", example = "1")
             @PathVariable Long id,
-            @Valid @RequestBody PropertyDTO propertyDTO){
+            @Valid @RequestBody PropertyUpdateDTO propertyUpdateDTO){
 
         logger.info("PUT request for updating property with id {}", id);
 
-        PropertyDTO updatedProperty = propertyService.updateProperty(id, propertyDTO);
+        PropertyDTO updatedProperty = propertyService.updateProperty(id, propertyUpdateDTO);
 
         return ResponseEntity.ok(updatedProperty);
     }
@@ -202,7 +203,7 @@ public class PropertyController {
 
         logger.info("GET request for fetching all assignments for property with id {}", propertyId);
 
-        List<AssignmentDTO> response = propertyService.findByProperty(propertyId);
+        List<AssignmentDTO> response = propertyService.getAssignmentsByProperty(propertyId);
 
         return ResponseEntity.ok(response);
     }

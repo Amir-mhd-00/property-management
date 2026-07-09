@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -26,6 +27,7 @@ public class PropertyEntity {
     private String propertyStatus;
     private Integer rooms;
     private String location;
+    private LocalDateTime createdDate;
 
     @ManyToOne
     @JoinColumn(name = "owner_id",  nullable = false)
