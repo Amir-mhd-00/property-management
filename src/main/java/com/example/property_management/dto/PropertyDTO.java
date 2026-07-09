@@ -89,6 +89,14 @@ public class PropertyDTO {
     )
     private String createdDate;
 
+    @NotNull(message = "Owner id cannot be null")
+    @Schema(
+            description =  "ID of the property owner.",
+            example = "1",
+            requiredMode = Schema.RequiredMode.REQUIRED
+    )
+    private Long OwnerId;
+
     public PropertyDTO(String propertyName, double propertyValue, String propertyStatus, String location) {
         this.propertyName = propertyName;
         this.propertyValue = propertyValue;

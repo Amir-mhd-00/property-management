@@ -39,17 +39,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDTO getUserById(long id) {
 
-        userAuthorizationService.canGetUser(id);
-
         logger.info("fetching user by id {}", id);
 
-        UserEntity response = userRepository.findById(id).
+        UserEntity user = userRepository.findById(id).
                 orElseThrow(() -> new UserNotFoundException("user not found"));
 
-        logger.info("user found {}", response);
+        logger.info("user found {}", user);
+
+        userAuthorizationService.canGetUser(user);
 
         UserResponseDTO userResponseDTO = new UserResponseDTO();
-        BeanUtils.copyProperties(response, userResponseDTO);
+        BeanUtils.copyProperties(user, userResponseDTO);
 
         return userResponseDTO;
     }
@@ -78,9 +78,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<AssignmentDTO> getAssignmentsByUser(Long id) {
 
-        userAuthorizationService.canGetAssignmentsByUser(id);
+        UserEntity user = userRepository.findById(id).
+                orElseThrow(() -> new UserNotFoundException("User not found"));
 
-        userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found"));
+        userAuthorizationService.canGetAssignmentsByUser(user);
 
         logger.info("Fetching assignments for userId={}", id);
 
@@ -103,10 +104,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDTO updateUser(Long id, UserUpdateDTO userUpdateDTO) {
 
-        userAuthorizationService.canUpdateUser(id);
-
         UserEntity userEntity = userRepository.findById(id).
                 orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        userAuthorizationService.canUpdateUser(userEntity);
 
         logger.info("'PATCH' Updating User id={}", id);
 
@@ -129,10 +130,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long id) {
 
-        userAuthorizationService.canDeleteUser(id);
-
         UserEntity userEntity = userRepository.findById(id).
                 orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        userAuthorizationService.canDeleteUser(userEntity);
 
         logger.info("Deleting user with id={}", id);
 

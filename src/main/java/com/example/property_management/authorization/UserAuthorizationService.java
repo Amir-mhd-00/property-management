@@ -4,8 +4,6 @@ import com.example.property_management.entity.UserEntity;
 import com.example.property_management.enums.UserRole;
 import com.example.property_management.error.exception.AssignmentNotFoundException;
 import com.example.property_management.error.exception.ForbiddenException;
-import com.example.property_management.error.exception.UserNotFoundException;
-import com.example.property_management.repository.UserRepository;
 import com.example.property_management.security.SecurityUtils;
 import org.springframework.stereotype.Service;
 
@@ -13,19 +11,14 @@ import org.springframework.stereotype.Service;
 public class UserAuthorizationService {
 
     private final SecurityUtils securityUtils;
-    private final UserRepository userRepository;
-    public UserAuthorizationService(SecurityUtils securityUtils, UserRepository userRepository) {
+    public UserAuthorizationService(SecurityUtils securityUtils) {
         this.securityUtils = securityUtils;
-        this.userRepository = userRepository;
     }
 
-    public void canGetUser(Long targetId) {
+    public void canGetUser(UserEntity targetUser) {
 
         UserRole currentRole = securityUtils.getCurrentUserRole();
         Long currentUserId = securityUtils.getCurrentUserId();
-
-        UserEntity targetUser = userRepository.findById(targetId).
-                orElseThrow(() -> new UserNotFoundException("USER_NOT_FOUND"));
 
         if (currentRole == UserRole.ADMIN) {
             return;
@@ -34,7 +27,7 @@ public class UserAuthorizationService {
         if (currentRole == UserRole.OWNER
                 || currentRole == UserRole.GUEST) {
 
-            if (!currentUserId.equals(targetId)) {
+            if (!currentUserId.equals(targetUser.getId())) {
                 throw new ForbiddenException("You cannot see another user's information.");
             }
 
@@ -42,7 +35,7 @@ public class UserAuthorizationService {
         }
 
         if (targetUser.getRole().getLevel() >= currentRole.getLevel() &&
-                !currentUserId.equals(targetId)) {
+                !currentUserId.equals(targetUser.getId())) {
 
             throw new ForbiddenException("You cannot access other users.");
         }
@@ -58,13 +51,10 @@ public class UserAuthorizationService {
         }
     }
 
-    public void canGetAssignmentsByUser(Long targetId){
+    public void canGetAssignmentsByUser(UserEntity targetUser){
 
         UserRole currentRole = securityUtils.getCurrentUserRole();
         Long currentUserId = securityUtils.getCurrentUserId();
-
-        UserEntity targetUser = userRepository.findById(targetId).
-                orElseThrow(() -> new UserNotFoundException("USER_NOT_FOUND"));
 
         if (targetUser.getRole() != UserRole.AGENT) {
             throw new AssignmentNotFoundException("This user cannot have assignments.");
@@ -75,22 +65,18 @@ public class UserAuthorizationService {
             throw new ForbiddenException("you cannot see users assignments.");
         }
         if (currentRole == UserRole.AGENT &&
-                !currentUserId.equals(targetId)) {
+                !currentUserId.equals(targetUser.getId())) {
 
             throw new ForbiddenException("you cannot see users assignments.");
         }
     }
 
-    public void canUpdateUser(Long targetId) {
+    public void canUpdateUser(UserEntity targetUser) {
 
         UserRole currentRole = securityUtils.getCurrentUserRole();
         Long currentUserId = securityUtils.getCurrentUserId();
 
-        UserEntity targetUser = userRepository.findById(targetId).
-                orElseThrow(() -> new UserNotFoundException("USER_NOT_FOUND"));
-
         if (currentRole == UserRole.ADMIN) {return;}
-
         if (currentRole == UserRole.AGENT
                 ||currentRole == UserRole.GUEST
                 || currentRole == UserRole.OWNER) {
@@ -98,10 +84,8 @@ public class UserAuthorizationService {
             if (!targetUser.getId().equals(currentUserId)) {
                 throw new ForbiddenException("you cannot update other users");
             }
-
             return;
         }
-
         if (targetUser.getRole().getLevel() > currentRole.getLevel()) {
             throw new ForbiddenException("you cannot update users above your role");
         }
@@ -109,21 +93,17 @@ public class UserAuthorizationService {
             !targetUser.getId().equals(currentUserId)) {
             throw new ForbiddenException("you cannot update other users");
         }
-
     }
 
-    public void canDeleteUser(Long targetId) {
+    public void canDeleteUser(UserEntity targetUser) {
 
         UserRole currentRole = securityUtils.getCurrentUserRole();
         Long currentUserId = securityUtils.getCurrentUserId();
 
-        UserEntity targetUser = userRepository.findById(targetId).
-            orElseThrow(() -> new UserNotFoundException("USER_NOT_FOUND"));
-
         if (currentRole.getLevel() < UserRole.AGENT_ADMIN.getLevel()) {
             throw new ForbiddenException("You do not have permission to delete users.");
         }
-        if (currentUserId.equals(targetId)) {
+        if (currentUserId.equals(targetUser.getId())) {
             throw new ForbiddenException("You cannot delete yourself.");
         }
         if (targetUser.getRole().getLevel() >= currentRole.getLevel()) {

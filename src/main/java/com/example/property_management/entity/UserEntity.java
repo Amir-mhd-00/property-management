@@ -33,4 +33,7 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "user")
     private List<AssignmentEntity> assignments;
+
+    @OneToMany(mappedBy = "owner")
+    private List<PropertyEntity> properties;
 }

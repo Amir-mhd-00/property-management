@@ -27,6 +27,10 @@ public class PropertyEntity {
     private Integer rooms;
     private String location;
 
+    @ManyToOne
+    @JoinColumn(name = "owner_id",  nullable = false)
+    private UserEntity owner;
+
     @OneToMany(mappedBy = "property")
     private List<AssignmentEntity> assignments;
 

@@ -1,15 +1,21 @@
 package com.example.property_management.service.impl;
 
+import com.example.property_management.authorization.PropertyAuthorizationService;
 import com.example.property_management.dto.AssignmentDTO;
 import com.example.property_management.dto.PropertyDTO;
 import com.example.property_management.dto.PropertyUpdateDTO;
 import com.example.property_management.entity.AssignmentEntity;
 import com.example.property_management.entity.PropertyEntity;
+import com.example.property_management.entity.UserEntity;
+import com.example.property_management.enums.UserRole;
+import com.example.property_management.error.exception.ForbiddenException;
 import com.example.property_management.error.exception.PropertyAlreadyExistsException;
 import com.example.property_management.error.exception.PropertyNotFoundException;
+import com.example.property_management.error.exception.UserNotFoundException;
 import com.example.property_management.mapper.PropertyMapper;
 import com.example.property_management.repository.AssignmentRepository;
 import com.example.property_management.repository.PropertyRepository;
+import com.example.property_management.repository.UserRepository;
 import com.example.property_management.service.PropertyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,14 +31,19 @@ public class PropertyServiceImpl implements PropertyService {
     private final PropertyRepository propertyRepository;
     private final AssignmentRepository assignmentRepository;
     private final PropertyMapper propertyMapper;
+    private final PropertyAuthorizationService propertyAuthorizationService;
+    private final UserRepository userRepository;
 
     public PropertyServiceImpl(PropertyRepository propertyRepository,
                                AssignmentRepository assignmentRepository,
-                               PropertyMapper propertyMapper) {
+                               PropertyMapper propertyMapper,
+                               PropertyAuthorizationService propertyAuthorizationService, UserRepository userRepository) {
 
         this.propertyRepository = propertyRepository;
         this.assignmentRepository = assignmentRepository;
         this.propertyMapper = propertyMapper;
+        this.propertyAuthorizationService = propertyAuthorizationService;
+        this.userRepository = userRepository;
     }
 
     private static final Logger logger = LoggerFactory.getLogger(PropertyServiceImpl.class);
@@ -55,6 +66,8 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public PropertyDTO createProperty(PropertyDTO propertyDTO){
 
+        propertyAuthorizationService.canCreateProperty();
+
         if (propertyRepository.findByPropertyName(propertyDTO.getPropertyName()).isPresent()) {
 
             logger.warn("property creation failed property {} already exists", propertyDTO.getPropertyName());
@@ -63,17 +76,23 @@ public class PropertyServiceImpl implements PropertyService {
                     String.format("Property with name %s already exists", propertyDTO.getPropertyName()));
         }
 
-        PropertyEntity entity = new PropertyEntity();
-        BeanUtils.copyProperties(propertyDTO, entity);
+        UserEntity userEntity = userRepository.findById(propertyDTO.getOwnerId()).
+                orElseThrow(() -> new UserNotFoundException("user not found"));
+
+        if (userEntity.getRole() != UserRole.OWNER) {throw new ForbiddenException("user is not an owner");}
+
+        PropertyEntity propertyEntity = new PropertyEntity();
+        BeanUtils.copyProperties(propertyDTO, propertyEntity);
 
         logger.info("creating property {}", propertyDTO.getPropertyName());
 
-        PropertyEntity responseEntity = propertyRepository.save(entity);
+        propertyEntity.setOwner(userEntity);
+        PropertyEntity responseEntity = propertyRepository.save(propertyEntity);
 
         logger.info(
                 "Property '{}' created successfully. id={}",
-                entity.getPropertyName(),
-                entity.getId()
+                propertyEntity.getPropertyName(),
+                propertyEntity.getId()
         );
 
         PropertyDTO responseDTO = new PropertyDTO();
