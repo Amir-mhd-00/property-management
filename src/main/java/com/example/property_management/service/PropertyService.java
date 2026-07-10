@@ -1,14 +1,16 @@
 package com.example.property_management.service;
 
 import com.example.property_management.dto.AssignmentDTO;
+import com.example.property_management.dto.PageResponse;
 import com.example.property_management.dto.PropertyDTO;
 import com.example.property_management.dto.PropertyUpdateDTO;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface PropertyService {
     PropertyDTO createProperty(PropertyDTO propertyDTO);
     PropertyDTO getProperty(Long id);
-    List<PropertyDTO> getAllProperties();
+    PageResponse<PropertyDTO> getProperties(Pageable pageable);
     PropertyDTO updateProperty(Long id, PropertyUpdateDTO dto);
     PropertyDTO partialUpdateProperty(Long id, PropertyUpdateDTO dto);
     void deleteProperty(Long id);

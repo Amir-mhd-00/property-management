@@ -1,11 +1,9 @@
 package com.example.property_management.mapper;
 
+import com.example.property_management.dto.PropertyDTO;
 import com.example.property_management.dto.PropertyUpdateDTO;
 import com.example.property_management.entity.PropertyEntity;
-import org.mapstruct.BeanMapping;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
 public interface PropertyMapper {
@@ -14,5 +12,6 @@ public interface PropertyMapper {
     void updateProperty(PropertyUpdateDTO dto,
                         @MappingTarget PropertyEntity entity);
 
-
+    @Mapping(source = "owner.id", target = "ownerId")
+    PropertyDTO toDTO(PropertyEntity property);
 }

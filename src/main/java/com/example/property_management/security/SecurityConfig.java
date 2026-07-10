@@ -1,6 +1,5 @@
 package com.example.property_management.security;
 
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -44,7 +43,8 @@ public class SecurityConfig {
                         "/api/auth/**",
                                  "/v3/api-docs/**",
                                  "/swagger-ui/**",
-                                 "/swagger-ui.html").permitAll()
+                                 "/swagger-ui.html",
+                                 "/favicon.ico").permitAll()
 
                         .anyRequest().authenticated()
                 )
@@ -59,13 +59,6 @@ public class SecurityConfig {
                 http.exceptionHandling(exception -> exception
                         .authenticationEntryPoint(customAuthenticationEntryPoint)
                 );
-
-                http.logout(logout -> logout
-                    .logoutUrl("/api/auth/logout")
-                    .invalidateHttpSession(true)
-                    .deleteCookies("JSESSIONID")
-                    .clearAuthentication(true)
-                    .logoutSuccessHandler((request, response, authentication) -> response.setStatus(HttpServletResponse.SC_OK)));
 
         return http.build();
     }

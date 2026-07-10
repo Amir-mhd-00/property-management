@@ -19,7 +19,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(
@@ -93,10 +95,31 @@ public class AuthenticationController {
             HttpServletRequest httpServletRequest,
             HttpServletResponse httpServletResponse) {
 
+        logger.info("POST request for login {}", request.getEmail());
+
         return ResponseEntity.ok(authenticationService.login(
                 request, httpServletRequest, httpServletResponse));
     }
 
+    @Operation(
+            summary = "Logout user",
+            description = "Logs out the currently authenticated user."
+    )
+    @ApiResponse(responseCode = "200", description = "Successfully logged out")
+    @ApiResponse(responseCode = "401", description = "User is not authenticated")
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            Authentication authentication) {
+
+        logger.info("POST request for logout {}", authentication.getName());
+
+        new SecurityContextLogoutHandler()
+                .logout(request, response, authentication);
+
+        return ResponseEntity.ok().build();
+    }
 
     @Operation(
             summary = "Get current authenticated user",
@@ -120,6 +143,8 @@ public class AuthenticationController {
             throw new UnauthorizedException("Unauthorized");
         }
 
+        logger.info("GET request for me {}", user.getUsername());
+
         return new LoginResponseDTO(
                 user.getUser().getId(),
                 user.getUser().getFirstName(),
@@ -128,7 +153,4 @@ public class AuthenticationController {
                 user.getUser().getRole().name()
         );
     }
-
 }
-//Forgot password
-//Reset password

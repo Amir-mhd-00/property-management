@@ -1,6 +1,7 @@
 package com.example.property_management.controller;
 
 import com.example.property_management.dto.AssignmentDTO;
+import com.example.property_management.dto.PageResponse;
 import com.example.property_management.dto.PropertyDTO;
 import com.example.property_management.dto.PropertyUpdateDTO;
 import com.example.property_management.error.ErrorResponse;
@@ -12,11 +13,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 @Tag(
@@ -91,11 +95,8 @@ public class PropertyController {
     )
     @ApiResponse(responseCode = "500", description = "internal server error")
     @GetMapping
-    public ResponseEntity<List<PropertyDTO>> getAllProperties(){
-
-        logger.info("GET request for getting all properties");
-
-        return ResponseEntity.ok(propertyService.getAllProperties());
+    public ResponseEntity<PageResponse<PropertyDTO>> getProperties(@ParameterObject Pageable pageable) {
+        return ResponseEntity.ok(propertyService.getProperties(pageable));
     }
 
     @Operation(summary = "Updating a property", description = "Replaces all updatable fields of an existing property.")
