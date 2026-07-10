@@ -1,9 +1,10 @@
 package com.example.property_management.controller;
 
-import com.example.property_management.dto.AssignmentDTO;
+import com.example.property_management.dto.assignment.AssignmentDTO;
 import com.example.property_management.dto.PageResponse;
-import com.example.property_management.dto.PropertyDTO;
-import com.example.property_management.dto.PropertyUpdateDTO;
+import com.example.property_management.dto.property.PropertyCreateDTO;
+import com.example.property_management.dto.property.PropertyResponseDTO;
+import com.example.property_management.dto.property.PropertyUpdateDTO;
 import com.example.property_management.error.ErrorResponse;
 import com.example.property_management.service.PropertyService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,7 +15,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,18 +46,18 @@ public class PropertyController {
     @ApiResponse(
             responseCode = "200",
             description = "Property retrieved successfully",
-            content = @Content(schema = @Schema(implementation = PropertyDTO.class))
+            content = @Content(schema = @Schema(implementation = PropertyResponseDTO.class))
     )
     @ApiResponse(responseCode = "404", description = "Property not found",
             content =  @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @GetMapping("/{id}")
-    public ResponseEntity<PropertyDTO> getProperty(
+    public ResponseEntity<PropertyResponseDTO> getProperty(
             @Parameter(description = "Unique identifier of the property", example = "1")
             @PathVariable Long id) {
 
         logger.info("GET request for property with id {}", id);
 
-        PropertyDTO property = propertyService.getProperty(id);
+        PropertyResponseDTO property = propertyService.getProperty(id);
 
         return ResponseEntity.ok(property);
     }
@@ -69,18 +69,18 @@ public class PropertyController {
     @ApiResponse(
             responseCode = "201",
             description = "Property created successfully",
-            content = @Content(schema = @Schema(implementation = PropertyDTO.class))
+            content = @Content(schema = @Schema(implementation = PropertyResponseDTO.class))
     )
     @ApiResponse(responseCode = "400", description = "Invalid request body")
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "409", description = "property already exists")
     @PostMapping
-    public ResponseEntity<PropertyDTO> createProperty(
-            @Valid @RequestBody PropertyDTO propertyDTO) {
+    public ResponseEntity<PropertyResponseDTO> createProperty(
+            @Valid @RequestBody PropertyCreateDTO property) {
 
-        logger.info("POST request for creating property {}", propertyDTO.getPropertyName());
+        logger.info("POST request for creating property {}", property.getPropertyName());
 
-        PropertyDTO savedProperty = propertyService.createProperty(propertyDTO);
+        PropertyResponseDTO savedProperty = propertyService.createProperty(property);
 
         return new ResponseEntity<>(savedProperty, HttpStatus.CREATED); // new response -> return Response
     }
@@ -91,18 +91,18 @@ public class PropertyController {
             content = @Content(
                     mediaType = "application/json",
                     array = @io.swagger.v3.oas.annotations.media.ArraySchema(
-                            schema = @Schema(implementation = PropertyDTO.class)))
+                            schema = @Schema(implementation = PropertyResponseDTO.class)))
     )
     @ApiResponse(responseCode = "500", description = "internal server error")
     @GetMapping
-    public ResponseEntity<PageResponse<PropertyDTO>> getProperties(@ParameterObject Pageable pageable) {
+    public ResponseEntity<PageResponse<PropertyResponseDTO>> getProperties(@ParameterObject Pageable pageable) {
         return ResponseEntity.ok(propertyService.getProperties(pageable));
     }
 
     @Operation(summary = "Updating a property", description = "Replaces all updatable fields of an existing property.")
     @ApiResponse(responseCode = "200",
             description = "Property updated successfully",
-            content = @Content(schema = @Schema(implementation = PropertyDTO.class))
+            content = @Content(schema = @Schema(implementation = PropertyResponseDTO.class))
     )
     @ApiResponse(responseCode = "500", description = "Internal server error")
     @ApiResponse(responseCode = "404", description = "Property not found",
@@ -111,14 +111,14 @@ public class PropertyController {
     @ApiResponse(responseCode = "404", description = "user not found",
             content =  @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @PutMapping("/{id}")
-    public ResponseEntity<PropertyDTO> updateProperty(
+    public ResponseEntity<PropertyResponseDTO> updateProperty(
             @Parameter(description = "Unique identifier of the property", example = "1")
             @PathVariable Long id,
-            @Valid @RequestBody PropertyUpdateDTO propertyUpdateDTO){
+            @Valid @RequestBody PropertyCreateDTO propertyCreateDTO){
 
         logger.info("PUT request for updating property with id {}", id);
 
-        PropertyDTO updatedProperty = propertyService.updateProperty(id, propertyUpdateDTO);
+        PropertyResponseDTO updatedProperty = propertyService.updateProperty(id, propertyCreateDTO);
 
         return ResponseEntity.ok(updatedProperty);
     }
@@ -128,20 +128,20 @@ public class PropertyController {
     @ApiResponse(
             responseCode = "200",
             description = "Property updated successfully",
-            content = @Content(schema = @Schema(implementation = PropertyDTO.class))
+            content = @Content(schema = @Schema(implementation = PropertyResponseDTO.class))
     )
     @ApiResponse(responseCode = "409", description = "Property already exists",
             content =  @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @ApiResponse(responseCode = "400", description = "Invalid request body")
     @ApiResponse(responseCode = "500", description = "Internal server error")
     @PatchMapping("/{id}")
-    public ResponseEntity<PropertyDTO> partialUpdateProperty(
+    public ResponseEntity<PropertyResponseDTO> partialUpdateProperty(
             @Parameter(description = "Unique identifier of the property", example = "1")
             @PathVariable Long id, @RequestBody PropertyUpdateDTO propertyUpdateDTO){
 
         logger.info("PATCH request for updating property with id {}", id);
 
-        PropertyDTO updatedProperty = propertyService.partialUpdateProperty(id, propertyUpdateDTO);
+        PropertyResponseDTO updatedProperty = propertyService.partialUpdateProperty(id, propertyUpdateDTO);
 
         return ResponseEntity.ok(updatedProperty);
     }
@@ -170,11 +170,11 @@ public class PropertyController {
             content = @Content(
                     mediaType = "application/json",
                     array = @io.swagger.v3.oas.annotations.media.ArraySchema(
-                            schema = @Schema(implementation = PropertyDTO.class)))
+                            schema = @Schema(implementation = PropertyResponseDTO.class)))
     )
     @ApiResponse(responseCode = "500", description = "internal server error")
     @GetMapping("/status")
-    public ResponseEntity<List<PropertyDTO>> findAllByPropertyStatus(@RequestParam String status){
+    public ResponseEntity<List<PropertyResponseDTO>> findAllByPropertyStatus(@RequestParam String status){
 
         logger.info("GET request for finding all properties with status {}", status);
 

@@ -1,4 +1,4 @@
-package com.example.property_management.dto;
+package com.example.property_management.dto.property;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -16,7 +17,7 @@ import lombok.Setter;
         name = "Property",
         description = "Represents a property within the property management system."
 )
-public class PropertyDTO {
+public class PropertyCreateDTO {
 
     @Schema(
             description = "Unique identifier of the property.",
@@ -83,13 +84,14 @@ public class PropertyDTO {
 
     @NotNull(message = "Owner id cannot be null")
     @Schema(
-            description =  "ID of the property owner.",
+            description = "ID of the property owner.",
             example = "1",
             requiredMode = Schema.RequiredMode.REQUIRED
     )
-    private Long OwnerId;
+    private Long ownerId;
 
-    public PropertyDTO(String propertyName, double propertyValue, String propertyStatus, String location) {
+
+    public PropertyCreateDTO(String propertyName, double propertyValue, String propertyStatus, String location) {
         this.propertyName = propertyName;
         this.propertyValue = propertyValue;
         this.propertyStatus = propertyStatus;

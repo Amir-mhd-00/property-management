@@ -1,4 +1,4 @@
-package com.example.property_management.dto;
+package com.example.property_management.dto.auth;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;

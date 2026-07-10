@@ -1,9 +1,9 @@
 package com.example.property_management.service;
 
-import com.example.property_management.dto.LoginRequestDTO;
-import com.example.property_management.dto.LoginResponseDTO;
-import com.example.property_management.dto.UserRegisterDTO;
-import com.example.property_management.dto.UserResponseDTO;
+import com.example.property_management.dto.auth.LoginRequestDTO;
+import com.example.property_management.dto.auth.LoginResponseDTO;
+import com.example.property_management.dto.user.UserRegisterDTO;
+import com.example.property_management.dto.user.UserResponseDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 

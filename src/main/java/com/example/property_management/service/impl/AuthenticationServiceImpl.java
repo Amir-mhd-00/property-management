@@ -1,9 +1,9 @@
 package com.example.property_management.service.impl;
 
-import com.example.property_management.dto.LoginRequestDTO;
-import com.example.property_management.dto.LoginResponseDTO;
-import com.example.property_management.dto.UserRegisterDTO;
-import com.example.property_management.dto.UserResponseDTO;
+import com.example.property_management.dto.auth.LoginRequestDTO;
+import com.example.property_management.dto.auth.LoginResponseDTO;
+import com.example.property_management.dto.user.UserRegisterDTO;
+import com.example.property_management.dto.user.UserResponseDTO;
 import com.example.property_management.entity.UserEntity;
 import com.example.property_management.enums.UserRole;
 import com.example.property_management.error.exception.UserAlreadyExistsException;

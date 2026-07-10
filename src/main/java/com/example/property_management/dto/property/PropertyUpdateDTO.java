@@ -1,4 +1,4 @@
-package com.example.property_management.dto;
+package com.example.property_management.dto.property;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -49,13 +49,6 @@ public class PropertyUpdateDTO {
             }
     )
     private String propertyStatus;
-
-    @Schema(
-            description = "Email address of the property's owner.",
-            example = "owner@example.com",
-            format = "email"
-    )
-    private String ownerEmail;
 
     @Schema(
             description = "Updated number of rooms.",

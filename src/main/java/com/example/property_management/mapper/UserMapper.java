@@ -1,6 +1,6 @@
 package com.example.property_management.mapper;
 
-import com.example.property_management.dto.UserUpdateDTO;
+import com.example.property_management.dto.user.UserUpdateDTO;
 import com.example.property_management.entity.UserEntity;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;

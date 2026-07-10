@@ -1,8 +1,7 @@
 package com.example.property_management.service;
 
-import com.example.property_management.dto.AssignmentDTO;
-import com.example.property_management.dto.CreateAssignmentRequestDTO;
-import com.example.property_management.entity.AssignmentEntity;
+import com.example.property_management.dto.assignment.AssignmentDTO;
+import com.example.property_management.dto.assignment.CreateAssignmentRequestDTO;
 
 import java.util.List;
 

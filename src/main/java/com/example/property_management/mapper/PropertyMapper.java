@@ -1,7 +1,8 @@
 package com.example.property_management.mapper;
 
-import com.example.property_management.dto.PropertyDTO;
-import com.example.property_management.dto.PropertyUpdateDTO;
+import com.example.property_management.dto.property.PropertyCreateDTO;
+import com.example.property_management.dto.property.PropertyResponseDTO;
+import com.example.property_management.dto.property.PropertyUpdateDTO;
 import com.example.property_management.entity.PropertyEntity;
 import org.mapstruct.*;
 
@@ -13,5 +14,18 @@ public interface PropertyMapper {
                         @MappingTarget PropertyEntity entity);
 
     @Mapping(source = "owner.id", target = "ownerId")
-    PropertyDTO toDTO(PropertyEntity property);
+    PropertyResponseDTO toDTO(PropertyEntity property);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "assignments", ignore = true)
+    @Mapping(target = "createdDate", ignore = true)
+    @Mapping(source = "ownerId", target = "owner.id")
+    PropertyEntity toEntity(PropertyCreateDTO dto);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "assignments", ignore = true)
+    @Mapping(target = "owner", ignore = true)
+    @Mapping(target = "createdDate", ignore = true)
+    PropertyEntity toEntity(PropertyUpdateDTO dto);
+
 }

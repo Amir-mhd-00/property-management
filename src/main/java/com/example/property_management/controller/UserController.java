@@ -1,6 +1,8 @@
 package com.example.property_management.controller;
 
-import com.example.property_management.dto.*;
+import com.example.property_management.dto.assignment.AssignmentDTO;
+import com.example.property_management.dto.user.UserResponseDTO;
+import com.example.property_management.dto.user.UserUpdateDTO;
 import com.example.property_management.error.ErrorResponse;
 import com.example.property_management.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,4 +1,4 @@
-package com.example.property_management.dto;
+package com.example.property_management.dto.user;
 
 import com.example.property_management.enums.UserRole;
 import io.swagger.v3.oas.annotations.media.Schema;

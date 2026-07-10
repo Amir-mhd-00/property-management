@@ -1,4 +1,4 @@
-package com.example.property_management.dto;
+package com.example.property_management.dto.user;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
@@ -9,11 +9,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Schema(
-        name = "RegisterUser",
+        name = "UserRegister",
         description = "Request payload used to register a new user account."
 )
-public class UserUpdateDTO {
+public class UserRegisterDTO {
 
+    @NotBlank(message = "First name cannot be empty")
     @Schema(
             description = "User's first name.",
             example = "John",
@@ -21,6 +22,7 @@ public class UserUpdateDTO {
     )
     private String firstName;
 
+    @NotBlank(message = "Last name cannot be empty")
     @Schema(
             description = "User's last name.",
             example = "Doe",
@@ -29,6 +31,7 @@ public class UserUpdateDTO {
     private String lastName;
 
     @Email(message = "Invalid email format")
+    @NotBlank(message = "email cannot be empty")
     @Schema(
             description = "Unique email address used for authentication.",
             example = "john.doe@example.com",
@@ -42,4 +45,13 @@ public class UserUpdateDTO {
             example = "+15551234567"
     )
     private String phone;
+
+    @NotBlank(message = "password cannot be empty")
+    @Schema(
+            description = "Password for the new user account.",
+            example = "MySecurePassword123!",
+            format = "password",
+            requiredMode = Schema.RequiredMode.REQUIRED
+    )
+    private String password;
 }

@@ -1,10 +1,11 @@
 package com.example.property_management.service.impl;
 
 import com.example.property_management.authorization.PropertyAuthorizationService;
-import com.example.property_management.dto.AssignmentDTO;
+import com.example.property_management.dto.assignment.AssignmentDTO;
 import com.example.property_management.dto.PageResponse;
-import com.example.property_management.dto.PropertyDTO;
-import com.example.property_management.dto.PropertyUpdateDTO;
+import com.example.property_management.dto.property.PropertyCreateDTO;
+import com.example.property_management.dto.property.PropertyResponseDTO;
+import com.example.property_management.dto.property.PropertyUpdateDTO;
 import com.example.property_management.entity.AssignmentEntity;
 import com.example.property_management.entity.PropertyEntity;
 import com.example.property_management.entity.UserEntity;
@@ -13,6 +14,7 @@ import com.example.property_management.error.exception.ForbiddenException;
 import com.example.property_management.error.exception.PropertyAlreadyExistsException;
 import com.example.property_management.error.exception.PropertyNotFoundException;
 import com.example.property_management.error.exception.UserNotFoundException;
+import com.example.property_management.mapper.AssignmentMapper;
 import com.example.property_management.mapper.PropertyMapper;
 import com.example.property_management.repository.AssignmentRepository;
 import com.example.property_management.repository.PropertyRepository;
@@ -20,7 +22,6 @@ import com.example.property_management.repository.UserRepository;
 import com.example.property_management.service.PropertyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -37,17 +38,19 @@ public class PropertyServiceImpl implements PropertyService {
     private final PropertyRepository propertyRepository;
     private final AssignmentRepository assignmentRepository;
     private final PropertyMapper propertyMapper;
+    private final AssignmentMapper assignmentMapper;
     private final PropertyAuthorizationService propertyAuthorizationService;
     private final UserRepository userRepository;
 
     public PropertyServiceImpl(PropertyRepository propertyRepository,
                                AssignmentRepository assignmentRepository,
-                               PropertyMapper propertyMapper,
+                               PropertyMapper propertyMapper, AssignmentMapper assignmentMapper,
                                PropertyAuthorizationService propertyAuthorizationService, UserRepository userRepository) {
 
         this.propertyRepository = propertyRepository;
         this.assignmentRepository = assignmentRepository;
         this.propertyMapper = propertyMapper;
+        this.assignmentMapper = assignmentMapper;
         this.propertyAuthorizationService = propertyAuthorizationService;
         this.userRepository = userRepository;
     }
@@ -55,7 +58,7 @@ public class PropertyServiceImpl implements PropertyService {
     private static final Logger logger = LoggerFactory.getLogger(PropertyServiceImpl.class);
 
     @Override
-    public PropertyDTO getProperty(Long id) {
+    public PropertyResponseDTO getProperty(Long id) {
 
         logger.debug("Fetching property id={}", id);
 
@@ -63,35 +66,31 @@ public class PropertyServiceImpl implements PropertyService {
 
         logger.debug("property id={} fetched successfully", id);
 
-        PropertyDTO responseDTO = new PropertyDTO();
-        BeanUtils.copyProperties(property, responseDTO);
-
-        return responseDTO;
+        return propertyMapper.toDTO(property);
     }
 
 
     @Override
-    public PropertyDTO createProperty(PropertyDTO propertyDTO){
+    public PropertyResponseDTO createProperty(PropertyCreateDTO property){
 
         propertyAuthorizationService.canCreateProperty();
 
-        if (propertyRepository.findByPropertyName(propertyDTO.getPropertyName()).isPresent()) {
+        if (propertyRepository.findByPropertyName(property.getPropertyName()).isPresent()) {
 
-            logger.warn("property creation failed property {} already exists", propertyDTO.getPropertyName());
+            logger.warn("property creation failed property {} already exists", property.getPropertyName());
 
             throw  new PropertyAlreadyExistsException(
-                    String.format("Property with name %s already exists", propertyDTO.getPropertyName()));
+                    String.format("Property with name %s already exists", property.getPropertyName()));
         }
 
-        UserEntity userEntity = userRepository.findById(propertyDTO.getOwnerId()).
+        UserEntity userEntity = userRepository.findById(property.getOwnerId()).
                 orElseThrow(() -> new UserNotFoundException("user not found"));
 
         if (userEntity.getRole() != UserRole.OWNER) {throw new ForbiddenException("user is not an owner");}
 
-        PropertyEntity propertyEntity = new PropertyEntity();
-        BeanUtils.copyProperties(propertyDTO, propertyEntity);
+        PropertyEntity propertyEntity = propertyMapper.toEntity(property);
 
-        logger.info("creating property {}", propertyDTO.getPropertyName());
+        logger.info("creating property {}", property.getPropertyName());
 
         propertyEntity.setOwner(userEntity);
         propertyEntity.setCreatedDate(LocalDateTime.now(ZoneId.of("UTC")));
@@ -103,18 +102,17 @@ public class PropertyServiceImpl implements PropertyService {
                 propertyEntity.getId()
         );
 
-        PropertyDTO responseDTO = new PropertyDTO();
-        BeanUtils.copyProperties(responseEntity, responseDTO);
+        PropertyResponseDTO responseDTO = propertyMapper.toDTO(responseEntity);
         responseDTO.setOwnerId(userEntity.getId());
 
         return responseDTO;
     }
 
-    public PageResponse<PropertyDTO> getProperties(Pageable pageable) {
+    public PageResponse<PropertyResponseDTO> getProperties(Pageable pageable) {
 
         logger.info("fetching properties");
 
-        Page<PropertyDTO> properties = propertyRepository.
+        Page<PropertyResponseDTO> properties = propertyRepository.
                 findAll(pageable).map(propertyMapper::toDTO);
 
         return new PageResponse<>(
@@ -128,9 +126,7 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public PropertyDTO updateProperty(Long id, PropertyUpdateDTO dto) {
-
-        getPropertyOrThrow(id);
+    public PropertyResponseDTO updateProperty(Long id, PropertyCreateDTO dto) {
 
         propertyAuthorizationService.canUpdateProperty(id);
 
@@ -148,32 +144,30 @@ public class PropertyServiceImpl implements PropertyService {
                     String.format("Property with name %s already exists", dto.getPropertyName()));
         }
 
-        BeanUtils.copyProperties(dto, existingProperty, "id");
+        PropertyEntity updatedProperty =  propertyMapper.toEntity(dto);
 
-        PropertyEntity updatedProperty = propertyRepository.save(existingProperty);
+        updatedProperty.setId(existingProperty.getId());
+        updatedProperty.setCreatedDate(existingProperty.getCreatedDate());
+
+        propertyRepository.save(existingProperty);
 
         logger.info("'PUT' Property updated successfully. id={}", id);
 
-        PropertyDTO updatedPropertyDTO = new PropertyDTO();
-        BeanUtils.copyProperties(updatedProperty, updatedPropertyDTO);
-
-        return updatedPropertyDTO;
+        return propertyMapper.toDTO(updatedProperty);
     }
 
     @Override
-    public PropertyDTO partialUpdateProperty(Long id, PropertyUpdateDTO dto) {
-
-        getPropertyOrThrow(id);
+    public PropertyResponseDTO partialUpdateProperty(Long id, PropertyUpdateDTO dto) {
 
         propertyAuthorizationService.canUpdateProperty(id);
 
         PropertyEntity property = getPropertyOrThrow(id);
 
-        propertyMapper.updateProperty(dto, property);
-
         logger.info("'PATCH' Updating property id={}", id);
 
-        if (propertyRepository.findByPropertyName(dto.getPropertyName()).isPresent()) {
+        if (propertyRepository.findByPropertyName(dto.getPropertyName())
+                .filter(existing -> !existing.getId().equals(id))
+                .isPresent()) {
 
             logger.warn("'PATCH' Updating failed property {} already exists", dto.getPropertyName());
 
@@ -181,12 +175,13 @@ public class PropertyServiceImpl implements PropertyService {
                     String.format("Property with name %s already exists", dto.getPropertyName()));
         }
 
+        propertyMapper.updateProperty(dto, property);
+
         PropertyEntity savedProperty = propertyRepository.save(property);
 
         logger.info("'PATCH' Property updated successfully. id={}", id);
 
-        PropertyDTO response = new PropertyDTO();
-        BeanUtils.copyProperties(savedProperty, response);
+        PropertyResponseDTO response = propertyMapper.toDTO(savedProperty);
         response.setOwnerId(property.getOwner().getId());
 
         return response;
@@ -207,7 +202,7 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public List<PropertyDTO> getAllPropertiesByStatus(String propertyStatus) {
+    public List<PropertyResponseDTO> getAllPropertiesByStatus(String propertyStatus) {
 
         logger.info("fetching all properties with status : {}", propertyStatus);
 
@@ -215,11 +210,10 @@ public class PropertyServiceImpl implements PropertyService {
 
         logger.info("fetched {} properties with status : {}", properties.size(),  propertyStatus);
 
-        List<PropertyDTO> propertiesDTO = new ArrayList<>();
+        List<PropertyResponseDTO> propertiesDTO = new ArrayList<>();
 
         for (PropertyEntity propertyEntity : properties) {
-            PropertyDTO propertyDTO = new PropertyDTO();
-            BeanUtils.copyProperties(propertyEntity, propertyDTO);
+            PropertyResponseDTO propertyDTO = propertyMapper.toDTO(propertyEntity);
             propertiesDTO.add(propertyDTO);
         }
 
@@ -242,8 +236,7 @@ public class PropertyServiceImpl implements PropertyService {
 
         List<AssignmentDTO> response = new ArrayList<>();
         for (AssignmentEntity assignment : assignmentEntities) {
-            AssignmentDTO responseDTO = new AssignmentDTO();
-            BeanUtils.copyProperties(assignment, responseDTO);
+            AssignmentDTO responseDTO = assignmentMapper.toDTO(assignment);
             responseDTO.setUserId(assignment.getUser().getId());
             responseDTO.setPropertyId(assignment.getProperty().getId());
             response.add(responseDTO);

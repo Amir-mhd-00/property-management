@@ -1,7 +1,7 @@
 package com.example.property_management.controller;
 
-import com.example.property_management.dto.AssignmentDTO;
-import com.example.property_management.dto.CreateAssignmentRequestDTO;
+import com.example.property_management.dto.assignment.AssignmentDTO;
+import com.example.property_management.dto.assignment.CreateAssignmentRequestDTO;
 import com.example.property_management.service.AssignmentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

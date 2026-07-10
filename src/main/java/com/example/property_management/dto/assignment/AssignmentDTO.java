@@ -1,9 +1,7 @@
-package com.example.property_management.dto;
+package com.example.property_management.dto.assignment;
 
 import com.example.property_management.enums.AssignmentRole;
 import com.example.property_management.enums.AssignmentStatus;
-import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

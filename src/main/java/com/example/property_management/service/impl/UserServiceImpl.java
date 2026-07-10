@@ -1,7 +1,9 @@
 package com.example.property_management.service.impl;
 
 import com.example.property_management.authorization.UserAuthorizationService;
-import com.example.property_management.dto.*;
+import com.example.property_management.dto.assignment.AssignmentDTO;
+import com.example.property_management.dto.user.UserResponseDTO;
+import com.example.property_management.dto.user.UserUpdateDTO;
 import com.example.property_management.entity.AssignmentEntity;
 import com.example.property_management.entity.UserEntity;
 import com.example.property_management.error.exception.UserAlreadyExistsException;

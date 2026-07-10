@@ -1,4 +1,4 @@
-package com.example.property_management.dto;
+package com.example.property_management.dto.assignment;
 
 import com.example.property_management.enums.AssignmentRole;
 import com.example.property_management.enums.AssignmentStatus;
