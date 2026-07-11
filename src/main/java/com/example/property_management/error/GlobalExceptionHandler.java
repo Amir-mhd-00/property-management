@@ -1,19 +1,23 @@
 package com.example.property_management.error;
 
 import com.example.property_management.error.exception.*;
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -137,6 +141,37 @@ public class GlobalExceptionHandler {
           HttpStatus.FORBIDDEN,
           "FORBIDDEN",
           ex.getMessage()
+        );
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
+
+        logger.warn("Http message not readable: {}", ex.getMessage());
+
+        Throwable cause = ex.getCause();
+
+        if (cause instanceof InvalidFormatException invalidFormatException) {
+
+            Class<?> targetType = invalidFormatException.getTargetType();
+
+            if (targetType.isEnum()) {
+
+                String values = Arrays.stream(targetType.getEnumConstants())
+                        .map(Object::toString)
+                        .collect(Collectors.joining(", "));
+
+                return BuildErrorResponse(
+                        HttpStatus.BAD_REQUEST,
+                        "INVALID_FORMAT",
+                        ("Invalid value. Allowed values: " + values));
+            }
+        }
+
+        return BuildErrorResponse(
+                HttpStatus.BAD_REQUEST,
+                "Invalid json request",
+                ex.getMessage()
         );
     }
 
