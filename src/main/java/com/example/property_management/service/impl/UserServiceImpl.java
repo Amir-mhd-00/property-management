@@ -8,11 +8,11 @@ import com.example.property_management.entity.AssignmentEntity;
 import com.example.property_management.entity.UserEntity;
 import com.example.property_management.error.exception.UserAlreadyExistsException;
 import com.example.property_management.error.exception.UserNotFoundException;
+import com.example.property_management.mapper.AssignmentMapper;
 import com.example.property_management.mapper.UserMapper;
 import com.example.property_management.repository.AssignmentRepository;
 import com.example.property_management.repository.UserRepository;
 import com.example.property_management.service.UserService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,14 +27,16 @@ public class UserServiceImpl implements UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
     private final UserRepository userRepository;
     private final AssignmentRepository assignmentRepository;
-    private final UserMapper UserMapper;
     private final UserAuthorizationService userAuthorizationService;
+    private final UserMapper userMapper;
+    private final AssignmentMapper assignmentMapper;
 
-    public UserServiceImpl(UserRepository userRepository, AssignmentRepository assignmentRepository, UserMapper userMapper, UserAuthorizationService userAuthorizationService) {
+    public UserServiceImpl(UserRepository userRepository, AssignmentRepository assignmentRepository, UserMapper userMapper, UserAuthorizationService userAuthorizationService, AssignmentMapper assignmentMapper) {
         this.userRepository = userRepository;
         this.assignmentRepository = assignmentRepository;
-        this.UserMapper = userMapper;
+        this.userMapper = userMapper;
         this.userAuthorizationService = userAuthorizationService;
+        this.assignmentMapper = assignmentMapper;
     }
 
 
@@ -50,10 +52,7 @@ public class UserServiceImpl implements UserService {
 
         userAuthorizationService.canGetUser(user);
 
-        UserResponseDTO userResponseDTO = new UserResponseDTO();
-        BeanUtils.copyProperties(user, userResponseDTO);
-
-        return userResponseDTO;
+        return userMapper.toDTO(user);
     }
 
     @Override
@@ -69,8 +68,7 @@ public class UserServiceImpl implements UserService {
 
         List<UserResponseDTO> userResponseDTOs = new ArrayList<>();
         for (UserEntity userEntity : userEntities) {
-            UserResponseDTO userResponseDTO = new UserResponseDTO();
-            BeanUtils.copyProperties(userEntity, userResponseDTO);
+            UserResponseDTO userResponseDTO = userMapper.toDTO(userEntity);
             userResponseDTOs.add(userResponseDTO);
         }
 
@@ -93,8 +91,7 @@ public class UserServiceImpl implements UserService {
 
         List<AssignmentDTO> response = new ArrayList<>();
         for (AssignmentEntity assignment : assignmentEntities) {
-            AssignmentDTO responseDTO = new AssignmentDTO();
-            BeanUtils.copyProperties(assignment, responseDTO);
+            AssignmentDTO responseDTO = assignmentMapper.toDTO(assignment);
             responseDTO.setUserId(assignment.getUser().getId());
             responseDTO.setPropertyId(assignment.getProperty().getId());
             response.add(responseDTO);
@@ -119,14 +116,11 @@ public class UserServiceImpl implements UserService {
             throw new UserAlreadyExistsException("Email already exists");
         }
 
-        UserMapper.updateUser(userUpdateDTO, userEntity);
+        userMapper.updateUser(userUpdateDTO, userEntity);
 
         UserEntity savedUser = userRepository.save(userEntity);
 
-        UserResponseDTO responseDTO = new UserResponseDTO();
-        BeanUtils.copyProperties(savedUser, responseDTO);
-
-        return responseDTO;
+        return userMapper.toDTO(savedUser);
     }
 
     @Override

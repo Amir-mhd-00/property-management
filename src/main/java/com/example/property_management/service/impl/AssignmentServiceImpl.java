@@ -7,7 +7,9 @@ import com.example.property_management.entity.AssignmentEntity;
 import com.example.property_management.entity.PropertyEntity;
 import com.example.property_management.entity.UserEntity;
 import com.example.property_management.enums.AssignmentStatus;
+import com.example.property_management.enums.UserRole;
 import com.example.property_management.error.exception.*;
+import com.example.property_management.mapper.AssignmentMapper;
 import com.example.property_management.repository.AssignmentRepository;
 import com.example.property_management.repository.PropertyRepository;
 import com.example.property_management.repository.UserRepository;
@@ -15,7 +17,6 @@ import com.example.property_management.service.AssignmentService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,11 +31,13 @@ public class AssignmentServiceImpl implements AssignmentService {
     private final PropertyRepository propertyRepository;
     private final UserRepository userRepository;
     private final AssignmentAuthorizationService assignmentAuthorizationService;
-    public AssignmentServiceImpl(AssignmentRepository assignmentRepository, PropertyRepository propertyRepository, UserRepository userRepository, AssignmentAuthorizationService assignmentAuthorizationService) {
+    private final AssignmentMapper assignmentMapper;
+    public AssignmentServiceImpl(AssignmentRepository assignmentRepository, PropertyRepository propertyRepository, UserRepository userRepository, AssignmentAuthorizationService assignmentAuthorizationService, AssignmentMapper assignmentMapper) {
         this.assignmentRepository = assignmentRepository;
         this.propertyRepository = propertyRepository;
         this.userRepository = userRepository;
         this.assignmentAuthorizationService = assignmentAuthorizationService;
+        this.assignmentMapper = assignmentMapper;
     }
 
     private static final Logger log = LoggerFactory.getLogger(AssignmentServiceImpl.class);
@@ -47,11 +50,13 @@ public class AssignmentServiceImpl implements AssignmentService {
 
         assignmentAuthorizationService.canCreateAssignment();
 
-        propertyRepository.findById(dto.getPropertyId())
+        PropertyEntity property = propertyRepository.findById(dto.getPropertyId())
                 .orElseThrow(() -> new PropertyNotFoundException("Property not found"));
 
-        userRepository.findById(dto.getUserId())
+        UserEntity user = userRepository.findById(dto.getUserId())
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        if (user.getRole() != UserRole.AGENT) {throw new ForbiddenException("this user is not an agent");}
 
         boolean isAssigned = assignmentRepository.existsByProperty_idAndStatus(
                 dto.getPropertyId(),
@@ -63,14 +68,7 @@ public class AssignmentServiceImpl implements AssignmentService {
             throw new PropertyAlreadyAssignedException("property already assigned");
         }
 
-        AssignmentEntity assignmentEntity = new AssignmentEntity();
-        BeanUtils.copyProperties(dto, assignmentEntity);
-
-        PropertyEntity property = propertyRepository.findById(dto.getPropertyId()).
-                orElseThrow(() -> new PropertyNotFoundException("Property not found"));
-        UserEntity user =  userRepository.findById(dto.getUserId()).
-                orElseThrow(() -> new UserNotFoundException("User not found"));
-
+        AssignmentEntity assignmentEntity = assignmentMapper.toEntity(dto);
         assignmentEntity.setUser(user);
         assignmentEntity.setProperty(property);
 
@@ -82,8 +80,7 @@ public class AssignmentServiceImpl implements AssignmentService {
         log.info("Assignment created for propertyId={} and employeeId={}",
                 dto.getPropertyId(), dto.getUserId());
 
-        AssignmentDTO response = new AssignmentDTO();
-        BeanUtils.copyProperties(result, response);
+        AssignmentDTO response = assignmentMapper.toDTO(result);
         response.setUserId(user.getId());
         response.setPropertyId(property.getId());
 
@@ -102,8 +99,7 @@ public class AssignmentServiceImpl implements AssignmentService {
 
         log.info("Assignment found for id={}", id);
 
-        AssignmentDTO response = new AssignmentDTO();
-        BeanUtils.copyProperties(assignment, response);
+        AssignmentDTO response = assignmentMapper.toDTO(assignment);
         response.setUserId(assignment.getUser().getId());
         response.setPropertyId(assignment.getProperty().getId());
 
@@ -123,8 +119,7 @@ public class AssignmentServiceImpl implements AssignmentService {
 
         List<AssignmentDTO> response = new ArrayList<>();
         for (AssignmentEntity assignment : result) {
-            AssignmentDTO responseDTO = new AssignmentDTO();
-            BeanUtils.copyProperties(assignment, responseDTO);
+            AssignmentDTO responseDTO = assignmentMapper.toDTO(assignment);
             responseDTO.setUserId(assignment.getUser().getId());
             responseDTO.setPropertyId(assignment.getProperty().getId());
             response.add(responseDTO);
@@ -156,8 +151,7 @@ public class AssignmentServiceImpl implements AssignmentService {
         log.info("Assignment of property {} ended for user {}.",
                 assignment.getProperty().getId(), assignment.getUser().getId());
 
-        AssignmentDTO responseDTO = new AssignmentDTO();
-        BeanUtils.copyProperties(assignment, responseDTO);
+        AssignmentDTO responseDTO = assignmentMapper.toDTO(assignment);
         responseDTO.setUserId(assignment.getUser().getId());
         responseDTO.setPropertyId(assignment.getProperty().getId());
 

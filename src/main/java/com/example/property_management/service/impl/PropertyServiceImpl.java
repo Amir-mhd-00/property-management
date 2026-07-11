@@ -127,7 +127,7 @@ public class PropertyServiceImpl implements PropertyService {
 
     @Override
     public PropertyResponseDTO updateProperty(Long id, PropertyCreateDTO dto) {
-
+        //fix this shit
         propertyAuthorizationService.canUpdateProperty(id);
 
         PropertyEntity existingProperty = getPropertyOrThrow(id);
@@ -144,12 +144,17 @@ public class PropertyServiceImpl implements PropertyService {
                     String.format("Property with name %s already exists", dto.getPropertyName()));
         }
 
+        UserEntity owner = userRepository.findById(dto.getOwnerId()).
+                orElseThrow(() -> new UserNotFoundException("user not found"));
+
+        if (owner.getRole() != UserRole.OWNER) {throw new ForbiddenException("user is not an owner");}
+
         PropertyEntity updatedProperty =  propertyMapper.toEntity(dto);
 
         updatedProperty.setId(existingProperty.getId());
         updatedProperty.setCreatedDate(existingProperty.getCreatedDate());
 
-        propertyRepository.save(existingProperty);
+        propertyRepository.save(updatedProperty);
 
         logger.info("'PUT' Property updated successfully. id={}", id);
 
@@ -165,7 +170,8 @@ public class PropertyServiceImpl implements PropertyService {
 
         logger.info("'PATCH' Updating property id={}", id);
 
-        if (propertyRepository.findByPropertyName(dto.getPropertyName())
+        if (dto.getPropertyName() != null &&
+                propertyRepository.findByPropertyName(dto.getPropertyName())
                 .filter(existing -> !existing.getId().equals(id))
                 .isPresent()) {
 
