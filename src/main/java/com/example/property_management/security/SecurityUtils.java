@@ -13,6 +13,7 @@ public class SecurityUtils {
     }
 
     public static CustomUserDetails getCurrentUser() {
+
         Authentication authentication =
                 SecurityContextHolder.getContext().getAuthentication();
 
