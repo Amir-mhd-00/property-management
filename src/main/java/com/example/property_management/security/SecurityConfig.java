@@ -1,5 +1,9 @@
 package com.example.property_management.security;
 
+import com.example.property_management.ratelimit.filter.RateLimitFilter;
+import com.example.property_management.ratelimit.resolver.DefaultClientIdentifierResolver;
+import com.example.property_management.ratelimit.resolver.RateLimitPolicyResolver;
+import com.example.property_management.ratelimit.service.RateLimitService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextHolderFilter;
 import org.springframework.security.web.context.SecurityContextRepository;
 
 @Configuration
@@ -31,8 +36,21 @@ public class SecurityConfig {
     }
 
     @Bean
+    public RateLimitFilter rateLimitFilter(
+            DefaultClientIdentifierResolver clientIdentifierResolver,
+            RateLimitPolicyResolver rateLimitPolicyResolver,
+            RateLimitService rateLimitService) {
+
+        return new RateLimitFilter(
+                clientIdentifierResolver,
+                rateLimitPolicyResolver,
+                rateLimitService);
+    }
+
+    @Bean
     public SecurityFilterChain filterChain(
-            HttpSecurity http) throws Exception {
+            HttpSecurity http,
+            RateLimitFilter rateLimitFilter) throws Exception {
 
         http
                 .csrf(AbstractHttpConfigurer::disable)
@@ -58,9 +76,11 @@ public class SecurityConfig {
                         session.sessionCreationPolicy(
                                 SessionCreationPolicy.IF_REQUIRED
                         )
-                );
+                )
 
-                http.exceptionHandling(exception -> exception
+                .addFilterAfter(rateLimitFilter, SecurityContextHolderFilter.class)
+
+                .exceptionHandling(exception -> exception
                         .authenticationEntryPoint(customAuthenticationEntryPoint)
                 );
 
