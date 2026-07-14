@@ -96,6 +96,9 @@ public class PropertyController {
     @ApiResponse(responseCode = "500", description = "internal server error")
     @GetMapping
     public ResponseEntity<PageResponse<PropertyResponseDTO>> getProperties(@ParameterObject Pageable pageable) {
+
+        logger.info("Get request for fetching all users");
+
         return ResponseEntity.ok(propertyService.getProperties(pageable));
     }
 

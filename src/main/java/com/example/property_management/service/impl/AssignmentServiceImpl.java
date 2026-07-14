@@ -1,6 +1,7 @@
 package com.example.property_management.service.impl;
 
 import com.example.property_management.authorization.AssignmentAuthorizationService;
+import com.example.property_management.dto.PageResponse;
 import com.example.property_management.dto.assignment.AssignmentDTO;
 import com.example.property_management.dto.assignment.CreateAssignmentRequestDTO;
 import com.example.property_management.entity.AssignmentEntity;
@@ -17,10 +18,9 @@ import com.example.property_management.service.AssignmentService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class AssignmentServiceImpl implements AssignmentService {
@@ -107,25 +107,24 @@ public class AssignmentServiceImpl implements AssignmentService {
     }
 
     @Override
-    public List<AssignmentDTO> findAll() {
+    public PageResponse<AssignmentDTO> findAll(Pageable pageable) {
 
         assignmentAuthorizationService.canGetAllAssignments();
 
         log.info("fetching all assignments");
 
-        List<AssignmentEntity> result = assignmentRepository.findAll();
+        Page<AssignmentDTO> result = assignmentRepository.findAll(pageable).map(assignmentMapper::toDTO);
 
-        log.info("{} assignments found", result.size());
+        log.info("{} assignments found", result.getSize());
 
-        List<AssignmentDTO> response = new ArrayList<>();
-        for (AssignmentEntity assignment : result) {
-            AssignmentDTO responseDTO = assignmentMapper.toDTO(assignment);
-            responseDTO.setUserId(assignment.getUser().getId());
-            responseDTO.setPropertyId(assignment.getProperty().getId());
-            response.add(responseDTO);
-        }
-
-        return response;
+        return new PageResponse<>(
+                result.getContent(),
+                result.getNumber(),
+                result.getSize(),
+                result.getTotalElements(),
+                result.getTotalPages(),
+                result.isFirst(),
+                result.isLast());
     }
 
     @Transactional

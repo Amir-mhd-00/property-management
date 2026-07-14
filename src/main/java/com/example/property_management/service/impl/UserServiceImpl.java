@@ -1,6 +1,7 @@
 package com.example.property_management.service.impl;
 
 import com.example.property_management.authorization.UserAuthorizationService;
+import com.example.property_management.dto.PageResponse;
 import com.example.property_management.dto.assignment.AssignmentDTO;
 import com.example.property_management.dto.user.UserResponseDTO;
 import com.example.property_management.dto.user.UserUpdateDTO;
@@ -13,10 +14,12 @@ import com.example.property_management.mapper.UserMapper;
 import com.example.property_management.repository.AssignmentRepository;
 import com.example.property_management.repository.UserRepository;
 import com.example.property_management.service.UserService;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,23 +59,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserResponseDTO> getAllUsers() {
+    public PageResponse<UserResponseDTO> getAllUsers(Pageable pageable) {
 
         userAuthorizationService.canGetAllUsers();
 
         logger.info("fetching all users");
 
-        List<UserEntity> userEntities = userRepository.findAll();
+        Page<UserResponseDTO> users = userRepository.findAll(pageable).map(userMapper::toDTO);
 
-        logger.info("found {} users. ", userEntities.size());
+        logger.info("found {} users. ", users.getSize());
 
-        List<UserResponseDTO> userResponseDTOs = new ArrayList<>();
-        for (UserEntity userEntity : userEntities) {
-            UserResponseDTO userResponseDTO = userMapper.toDTO(userEntity);
-            userResponseDTOs.add(userResponseDTO);
-        }
-
-        return userResponseDTOs;
+        return new PageResponse<>(
+                users.getContent(),
+                users.getNumber(),
+                users.getSize(),
+                users.getTotalElements(),
+                users.getTotalPages(),
+                users.isFirst(),
+                users.isLast());
     }
 
     @Override

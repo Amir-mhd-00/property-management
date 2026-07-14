@@ -1,5 +1,6 @@
 package com.example.property_management.controller;
 
+import com.example.property_management.dto.PageResponse;
 import com.example.property_management.dto.assignment.AssignmentDTO;
 import com.example.property_management.dto.user.UserResponseDTO;
 import com.example.property_management.dto.user.UserUpdateDTO;
@@ -14,6 +15,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -73,13 +76,11 @@ public class UserController {
             description = "Insufficient permissions"
     )
     @GetMapping
-    public ResponseEntity<List<UserResponseDTO>> getAllUsers() {
+    public ResponseEntity<PageResponse<UserResponseDTO>> getAllUsers(@ParameterObject Pageable pageable) {
 
         logger.info("GET request for fetching all users");
 
-        List<UserResponseDTO> userResponseDTOs = userService.getAllUsers();
-
-        return ResponseEntity.ok(userResponseDTOs);
+        return ResponseEntity.ok(userService.getAllUsers(pageable));
     }
 
     @Operation(

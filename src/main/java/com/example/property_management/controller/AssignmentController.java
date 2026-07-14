@@ -1,5 +1,6 @@
 package com.example.property_management.controller;
 
+import com.example.property_management.dto.PageResponse;
 import com.example.property_management.dto.assignment.AssignmentDTO;
 import com.example.property_management.dto.assignment.CreateAssignmentRequestDTO;
 import com.example.property_management.service.AssignmentService;
@@ -11,11 +12,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Tag(
         name = "Assignment management",
@@ -107,13 +108,11 @@ public class AssignmentController {
             )
     )
     @GetMapping
-    public ResponseEntity<List<AssignmentDTO>> getAllAssignments() {
+    public ResponseEntity<PageResponse<AssignmentDTO>> getAllAssignments(@ParameterObject Pageable pageable) {
 
         log.info("GET request for getting all assignments");
 
-        List<AssignmentDTO> assignments = assignmentService.findAll();
-
-        return ResponseEntity.ok(assignments);
+        return ResponseEntity.ok(assignmentService.findAll(pageable));
     }
 
     @Operation(

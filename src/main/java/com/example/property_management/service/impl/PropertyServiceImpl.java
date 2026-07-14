@@ -115,6 +115,8 @@ public class PropertyServiceImpl implements PropertyService {
         Page<PropertyResponseDTO> properties = propertyRepository.
                 findAll(pageable).map(propertyMapper::toDTO);
 
+        logger.info("found {} properties successfully", properties.getSize());
+
         return new PageResponse<>(
                 properties.getContent(),
                 properties.getNumber(),
