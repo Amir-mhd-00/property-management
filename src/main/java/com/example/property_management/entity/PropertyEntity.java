@@ -1,5 +1,7 @@
 package com.example.property_management.entity;
 
+import com.example.property_management.enums.PropertyStatus;
+import com.example.property_management.enums.PropertyType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,8 +25,12 @@ public class PropertyEntity {
     @Column(unique = true)
     private String propertyName;
     private Double propertyValue;
-    private String propertyType;
-    private String propertyStatus;
+
+    @Enumerated(EnumType.STRING)
+    private PropertyType propertyType;
+
+    @Enumerated(EnumType.STRING)
+    private PropertyStatus propertyStatus;
     private Integer rooms;
     private String location;
     private LocalDateTime createdDate;
@@ -36,7 +42,7 @@ public class PropertyEntity {
     @OneToMany(mappedBy = "property")
     private List<AssignmentEntity> assignments;
 
-    public PropertyEntity(String propertyName, double propertyValue, String propertyStatus, String location) {
+    public PropertyEntity(String propertyName, double propertyValue, PropertyStatus propertyStatus, String location) {
         this.propertyName = propertyName;
         this.propertyValue = propertyValue;
         this.propertyStatus = propertyStatus;

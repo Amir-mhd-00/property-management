@@ -9,6 +9,7 @@ import com.example.property_management.dto.property.PropertyUpdateDTO;
 import com.example.property_management.entity.AssignmentEntity;
 import com.example.property_management.entity.PropertyEntity;
 import com.example.property_management.entity.UserEntity;
+import com.example.property_management.enums.PropertyStatus;
 import com.example.property_management.enums.UserRole;
 import com.example.property_management.error.exception.ForbiddenException;
 import com.example.property_management.error.exception.PropertyAlreadyExistsException;
@@ -210,7 +211,7 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public List<PropertyResponseDTO> getAllPropertiesByStatus(String propertyStatus) {
+    public List<PropertyResponseDTO> getAllPropertiesByStatus(PropertyStatus propertyStatus) {
 
         logger.info("fetching all properties with status : {}", propertyStatus);
 

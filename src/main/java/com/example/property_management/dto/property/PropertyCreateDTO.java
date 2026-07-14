@@ -1,5 +1,7 @@
 package com.example.property_management.dto.property;
 
+import com.example.property_management.enums.PropertyStatus;
+import com.example.property_management.enums.PropertyType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -46,13 +48,18 @@ public class PropertyCreateDTO {
             description = "Type of property.",
             example = "Residential",
             allowableValues = {
-                    "Residential",
-                    "Commercial",
-                    "Industrial",
-                    "Land"
+                    "HOUSE",
+                    "APARTMENT",
+                    "VILLA",
+                    "CONDO",
+                    "TOWNHOUSE",
+                    "OFFICE",
+                    "COMMERCIAL",
+                    "WAREHOUSE",
+                    "LAND"
             }
     )
-    private String propertyType;
+    private PropertyType propertyType;
 
     @NotBlank(message = "property status cannot be empty")
     @Schema(
@@ -60,13 +67,15 @@ public class PropertyCreateDTO {
             example = "Available",
             requiredMode = Schema.RequiredMode.REQUIRED,
             allowableValues = {
-                    "Available",
-                    "Sold",
-                    "Rented",
-                    "Under Contract"
+                    "AVAILABLE",
+                    "OCCUPIED",
+                    "UNDER_MAINTENANCE",
+                    "RESERVED",
+                    "SOLD",
+                    "INACTIVE"
             }
     )
-    private String propertyStatus;
+    private PropertyStatus propertyStatus;
 
     @Schema(
             description = "Number of rooms in the property.",
@@ -91,7 +100,7 @@ public class PropertyCreateDTO {
     private Long ownerId;
 
 
-    public PropertyCreateDTO(String propertyName, double propertyValue, String propertyStatus, String location) {
+    public PropertyCreateDTO(String propertyName, double propertyValue, PropertyStatus propertyStatus, String location) {
         this.propertyName = propertyName;
         this.propertyValue = propertyValue;
         this.propertyStatus = propertyStatus;

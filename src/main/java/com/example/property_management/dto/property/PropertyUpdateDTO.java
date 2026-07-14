@@ -1,5 +1,7 @@
 package com.example.property_management.dto.property;
 
+import com.example.property_management.enums.PropertyStatus;
+import com.example.property_management.enums.PropertyType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,25 +32,32 @@ public class PropertyUpdateDTO {
             description = "Updated type of the property.",
             example = "Residential",
             allowableValues = {
-                    "Residential",
-                    "Commercial",
-                    "Industrial",
-                    "Land"
+                    "HOUSE",
+                    "APARTMENT",
+                    "VILLA",
+                    "CONDO",
+                    "TOWNHOUSE",
+                    "OFFICE",
+                    "COMMERCIAL",
+                    "WAREHOUSE",
+                    "LAND"
             }
     )
-    private String propertyType;
+    private PropertyType propertyType;
 
     @Schema(
             description = "Updated status of the property.",
             example = "Available",
             allowableValues = {
-                    "Available",
-                    "Sold",
-                    "Rented",
-                    "Under Contract"
+                    "AVAILABLE",
+                    "OCCUPIED",
+                    "UNDER_MAINTENANCE",
+                    "RESERVED",
+                    "SOLD",
+                    "INACTIVE"
             }
     )
-    private String propertyStatus;
+    private PropertyStatus propertyStatus;
 
     @Schema(
             description = "Updated number of rooms.",

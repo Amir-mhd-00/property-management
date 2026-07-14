@@ -5,6 +5,7 @@ import com.example.property_management.dto.PageResponse;
 import com.example.property_management.dto.property.PropertyCreateDTO;
 import com.example.property_management.dto.property.PropertyResponseDTO;
 import com.example.property_management.dto.property.PropertyUpdateDTO;
+import com.example.property_management.enums.PropertyStatus;
 import com.example.property_management.error.ErrorResponse;
 import com.example.property_management.service.PropertyService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -177,7 +178,7 @@ public class PropertyController {
     )
     @ApiResponse(responseCode = "500", description = "internal server error")
     @GetMapping("/status")
-    public ResponseEntity<List<PropertyResponseDTO>> findAllByPropertyStatus(@RequestParam String status){
+    public ResponseEntity<List<PropertyResponseDTO>> findAllByPropertyStatus(@RequestParam PropertyStatus status){
 
         logger.info("GET request for finding all properties with status {}", status);
 

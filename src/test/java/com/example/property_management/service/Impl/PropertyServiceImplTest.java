@@ -2,8 +2,9 @@ package com.example.property_management.service.Impl;
 
 import com.example.property_management.dto.property.PropertyCreateDTO;
 import com.example.property_management.dto.property.PropertyResponseDTO;
-import com.example.property_management.dto.property.PropertyUpdateDTO;
 import com.example.property_management.entity.PropertyEntity;
+import com.example.property_management.enums.PropertyStatus;
+import com.example.property_management.enums.PropertyType;
 import com.example.property_management.error.exception.PropertyAlreadyExistsException;
 import com.example.property_management.error.exception.PropertyNotFoundException;
 import com.example.property_management.repository.PropertyRepository;
@@ -14,7 +15,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.BeanUtils;
-import java.util.List;
 import java.util.Optional;
 import static java.util.Optional.empty;
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,7 +35,7 @@ class PropertyServiceImplTest {
         PropertyEntity entity = new PropertyEntity();
         entity.setId(1L);
         entity.setLocation("123 Main St");
-        entity.setPropertyStatus("AVAILABLE");
+        entity.setPropertyStatus(PropertyStatus.AVAILABLE);
 
         when(propertyRepository.findById(1L)).
                 thenReturn(Optional.of(entity));
@@ -68,7 +68,7 @@ class PropertyServiceImplTest {
         PropertyCreateDTO propertyDTO = new PropertyCreateDTO(
                 "test name",
                 124400000.0,
-                "AVAILABLE",
+                PropertyStatus.AVAILABLE,
                 "123 Main St"
         );
 
@@ -159,7 +159,7 @@ class PropertyServiceImplTest {
         PropertyEntity existingPropertyEntity = new PropertyEntity(
                 "House 2",
                 4000000.0,
-                "NOT AVAILABLE",
+                PropertyStatus.AVAILABLE,
                 "123 test St");
         existingPropertyEntity.setId(1L);
 
@@ -169,8 +169,8 @@ class PropertyServiceImplTest {
                 0L,
                 "villa",
                 6700000.0,
-                "apartment",
-                "AVAILABLE",
+                PropertyType.HOUSE,
+                PropertyStatus.AVAILABLE,
                 4,
                 "456 test Blv",
                 0L
