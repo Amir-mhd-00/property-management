@@ -40,8 +40,8 @@ public class RateLimitFilter extends OncePerRequestFilter {
 
         boolean allowed = rateLimitService.allowRequest(
                 clientId,
-                context.getType(),
-                context.getPolicy());
+                context.type(),
+                context.policy());
 
         if (!allowed) {
             response.setStatus(429); // HttpServletResponse has no TOO_MANY_REQUESTS constant

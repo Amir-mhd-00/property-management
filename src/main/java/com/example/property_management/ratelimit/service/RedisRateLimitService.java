@@ -31,9 +31,9 @@ public class RedisRateLimitService implements RateLimitService {
         return bucket.tryConsume(1);
     }
 
-        private String buildKey(
-            String clientId,
-            RateLimitType type) {
+    private String buildKey(
+        String clientId,
+        RateLimitType type) {
 
         return "rate_limit:" + type.name() + ":" + clientId;
     }

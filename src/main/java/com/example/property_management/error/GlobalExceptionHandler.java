@@ -145,6 +145,17 @@ public class GlobalExceptionHandler {
         );
     }
 
+    @ExceptionHandler(RateLimitExceededException.class)
+    public ResponseEntity<ErrorResponse> handleRateLimitExceededException(RateLimitExceededException ex) {
+
+        logger.warn("Rate limit exceeded: {}", ex.getMessage());
+        return BuildErrorResponse(
+                HttpStatus.TOO_MANY_REQUESTS,
+                "Too many requests try again later",
+                ex.getMessage()
+        );
+    }
+
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
 

@@ -19,39 +19,22 @@ public class RateLimitPolicyResolver {
 
         String uri = request.getRequestURI();
 
-        if (uri.equals("/api/v1/auth/login")) {
+        if (uri.equals("/api/auth/login")) {
             return new RateLimitContext(RateLimitType.LOGIN, properties.getLogin());
         }
 
-        if (uri.equals("/api/v1/auth/register")) {
+        if (uri.equals("/api/auth/register")) {
             return new RateLimitContext(RateLimitType.REGISTER, properties.getRegister());
         }
 
-        if (uri.startsWith("/api/v1/search")) {
+        if (uri.startsWith("/api/search")) {
             return new RateLimitContext(RateLimitType.SEARCH, properties.getSearch());
         }
 
         return new RateLimitContext(RateLimitType.DEFAULT, properties.getDefaultPolicy());
     }
 
-    public static class RateLimitContext {
-
-        private RateLimitType type;
-
-        private RateLimitProperties.Policy policy;
-
-        public RateLimitContext(RateLimitType type, RateLimitProperties.Policy policy) {
-            this.type = type;
-            this.policy = policy;
-        }
-
-        public RateLimitType getType() {
-            return type;
-        }
-
-        public RateLimitProperties.Policy getPolicy() {
-            return policy;
-        }
+    public record RateLimitContext(RateLimitType type, RateLimitProperties.Policy policy) {
 
     }
 

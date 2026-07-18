@@ -71,14 +71,14 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
 
+                .addFilterAfter(rateLimitFilter, SecurityContextHolderFilter.class)
+
                 .sessionManagement(session ->
 
                         session.sessionCreationPolicy(
                                 SessionCreationPolicy.IF_REQUIRED
                         )
                 )
-
-                .addFilterAfter(rateLimitFilter, SecurityContextHolderFilter.class)
 
                 .exceptionHandling(exception -> exception
                         .authenticationEntryPoint(customAuthenticationEntryPoint)
