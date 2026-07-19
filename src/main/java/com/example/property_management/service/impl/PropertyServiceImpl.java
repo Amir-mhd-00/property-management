@@ -21,6 +21,7 @@ import com.example.property_management.repository.AssignmentRepository;
 import com.example.property_management.repository.PropertyRepository;
 import com.example.property_management.repository.UserRepository;
 import com.example.property_management.service.PropertyService;
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -70,7 +71,7 @@ public class PropertyServiceImpl implements PropertyService {
         return propertyMapper.toDTO(property);
     }
 
-
+    @Transactional
     @Override
     public PropertyResponseDTO createProperty(PropertyCreateDTO property){
 
@@ -128,10 +129,11 @@ public class PropertyServiceImpl implements PropertyService {
                 properties.isLast());
     }
 
+    @Transactional
     @Override
     public PropertyResponseDTO updateProperty(Long id, PropertyCreateDTO dto) {
-        //fix this shit
-        propertyAuthorizationService.canUpdateProperty(id);
+
+         propertyAuthorizationService.canUpdateProperty(id);
 
         PropertyEntity existingProperty = getPropertyOrThrow(id);
 
@@ -164,6 +166,7 @@ public class PropertyServiceImpl implements PropertyService {
         return propertyMapper.toDTO(updatedProperty);
     }
 
+    @Transactional
     @Override
     public PropertyResponseDTO partialUpdateProperty(Long id, PropertyUpdateDTO dto) {
 
@@ -196,6 +199,7 @@ public class PropertyServiceImpl implements PropertyService {
         return response;
     }
 
+    @Transactional
     @Override
     public void deleteProperty(Long id) {
 

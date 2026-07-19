@@ -13,6 +13,7 @@ import com.example.property_management.service.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -42,6 +43,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
+    @Transactional
     @Override
     public UserResponseDTO register(UserRegisterDTO dto) {
 

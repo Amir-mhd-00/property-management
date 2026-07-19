@@ -14,6 +14,7 @@ import com.example.property_management.mapper.UserMapper;
 import com.example.property_management.repository.AssignmentRepository;
 import com.example.property_management.repository.UserRepository;
 import com.example.property_management.service.UserService;
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
@@ -104,6 +105,7 @@ public class UserServiceImpl implements UserService {
         return response;
     }
 
+    @Transactional
     @Override
     public UserResponseDTO updateUser(Long id, UserUpdateDTO userUpdateDTO) {
 
@@ -127,6 +129,7 @@ public class UserServiceImpl implements UserService {
         return userMapper.toDTO(savedUser);
     }
 
+    @Transactional
     @Override
     public void deleteUser(Long id) {
 
