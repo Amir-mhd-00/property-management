@@ -22,10 +22,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class AssignmentServiceImpl implements AssignmentService {
-
-    //making the log messages show unique username and property name
 
     private final AssignmentRepository assignmentRepository;
     private final PropertyRepository propertyRepository;
@@ -46,8 +46,6 @@ public class AssignmentServiceImpl implements AssignmentService {
     @Override
     public AssignmentDTO createAssignment(CreateAssignmentRequestDTO dto) {
 
-        // property {id} is already assigned to {id} would u like to end their assignment and assign it to {id}?
-
         assignmentAuthorizationService.canCreateAssignment();
 
         PropertyEntity property = propertyRepository.findById(dto.getPropertyId())
@@ -58,14 +56,28 @@ public class AssignmentServiceImpl implements AssignmentService {
 
         if (user.getRole() != UserRole.AGENT) {throw new ForbiddenException("this user is not an agent");}
 
-        boolean isAssigned = assignmentRepository.existsByProperty_idAndStatus(
-                dto.getPropertyId(),
-                AssignmentStatus.ACTIVE
-        );
+        AssignmentEntity currentAssignment =
+                assignmentRepository.findByProperty_idAndStatus(
+                                dto.getPropertyId(),
+                                AssignmentStatus.ACTIVE)
+                        .orElse(null);
 
-        if (isAssigned) {
-            log.warn("Property {} is already assigned to user {}", dto.getPropertyId(), dto.getUserId());
-            throw new PropertyAlreadyAssignedException("property already assigned");
+        if (currentAssignment != null &&
+                currentAssignment.getUser().getId().equals(user.getId())) {
+
+            throw new AssignmentAlreadyExistsException("Property is already assigned to this agent.");
+        }
+
+        if (currentAssignment != null) {
+
+            if (!dto.isReplaceExisting()){
+                log.warn("Property {} is already assigned to user {}",
+                        dto.getPropertyId(), currentAssignment.getUser().getId());
+                throw new PropertyAlreadyAssignedException("property already assigned");
+            }
+
+            currentAssignment.setStatus(AssignmentStatus.COMPLETED);
+            currentAssignment.setEndDate(LocalDateTime.now());
         }
 
         AssignmentEntity assignmentEntity = assignmentMapper.toEntity(dto);
@@ -145,6 +157,7 @@ public class AssignmentServiceImpl implements AssignmentService {
                 assignment.getProperty().getId(), assignment.getUser().getId());//test if the returned id is correct
 
         assignment.setStatus(AssignmentStatus.INACTIVE);
+        assignment.setEndDate(LocalDateTime.now());
         assignmentRepository.save(assignment);
 
         log.info("Assignment of property {} ended for user {}.",

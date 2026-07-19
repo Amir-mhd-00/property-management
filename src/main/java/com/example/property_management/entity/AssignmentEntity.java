@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Property_assignment")
@@ -34,9 +34,9 @@ public class AssignmentEntity {
     @Column(nullable = false)
     private AssignmentRole role;
 
-    private LocalDate assignedDate;
+    private LocalDateTime assignedDate;
 
-    private LocalDate endDate;
+    private LocalDateTime endDate;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

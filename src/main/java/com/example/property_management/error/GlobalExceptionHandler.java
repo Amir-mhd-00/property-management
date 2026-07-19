@@ -121,6 +121,18 @@ public class GlobalExceptionHandler {
         );
     }
 
+    @ExceptionHandler(AssignmentAlreadyExistsException.class)
+    public ResponseEntity<ErrorResponse> handleAssignmentAlreadyExistsException(AssignmentAlreadyExistsException ex) {
+
+        logger.warn("Assignment already exists: {}", ex.getMessage());
+
+        return BuildErrorResponse(
+                HttpStatus.CONFLICT,
+                "CONFLICT",
+                ex.getMessage()
+        );
+    }
+
     @ExceptionHandler(UnauthorizedException.class)
     public ResponseEntity<ErrorResponse> handleUnauthorizedException(UnauthorizedException ex) {
 

@@ -70,4 +70,6 @@ public class CreateAssignmentRequestDTO {
             example = "ACTIVE"
     )
     private AssignmentStatus status;
+
+    private boolean isReplaceExisting ;
 }
