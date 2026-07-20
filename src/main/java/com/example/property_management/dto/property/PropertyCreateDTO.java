@@ -44,9 +44,10 @@ public class PropertyCreateDTO {
     )
     private Double propertyValue;
 
+    @NotNull(message = "property type cannot be empty")
     @Schema(
             description = "Type of property.",
-            example = "Residential",
+            example = "APARTMENT",
             allowableValues = {
                     "HOUSE",
                     "APARTMENT",
@@ -61,10 +62,10 @@ public class PropertyCreateDTO {
     )
     private PropertyType propertyType;
 
-    @NotBlank(message = "property status cannot be empty")
+    @NotNull(message = "property status cannot be empty")
     @Schema(
             description = "Current status of the property.",
-            example = "Available",
+            example = "AVAILABLE",
             requiredMode = Schema.RequiredMode.REQUIRED,
             allowableValues = {
                     "AVAILABLE",

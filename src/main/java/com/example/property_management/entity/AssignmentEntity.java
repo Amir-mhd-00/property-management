@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AssignmentEntity {
+public class AssignmentEntity extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,8 +33,6 @@ public class AssignmentEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private AssignmentRole role;
-
-    private LocalDateTime assignedDate;
 
     private LocalDateTime endDate;
 

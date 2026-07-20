@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -17,7 +16,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PropertyEntity {
+public class PropertyEntity extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +32,6 @@ public class PropertyEntity {
     private PropertyStatus propertyStatus;
     private Integer rooms;
     private String location;
-    private LocalDateTime createdDate;
 
     @ManyToOne
     @JoinColumn(name = "owner_id",  nullable = false)

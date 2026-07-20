@@ -30,7 +30,7 @@ public class PropertyUpdateDTO {
 
     @Schema(
             description = "Updated type of the property.",
-            example = "Residential",
+            example = "APARTMENT",
             allowableValues = {
                     "HOUSE",
                     "APARTMENT",
@@ -47,7 +47,7 @@ public class PropertyUpdateDTO {
 
     @Schema(
             description = "Updated status of the property.",
-            example = "Available",
+            example = "AVAILABLE",
             allowableValues = {
                     "AVAILABLE",
                     "OCCUPIED",
