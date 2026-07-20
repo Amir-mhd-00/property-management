@@ -1,18 +1,23 @@
 package com.example.property_management.service.impl;
 
 import com.example.property_management.authorization.UserAuthorizationService;
+import com.example.property_management.dto.auditLog.UserAuditSnapshot;
 import com.example.property_management.dto.PageResponse;
 import com.example.property_management.dto.assignment.AssignmentDTO;
 import com.example.property_management.dto.user.UserResponseDTO;
 import com.example.property_management.dto.user.UserUpdateDTO;
 import com.example.property_management.entity.AssignmentEntity;
 import com.example.property_management.entity.UserEntity;
+import com.example.property_management.enums.UserRole;
+import com.example.property_management.error.exception.CannotDeleteUserException;
 import com.example.property_management.error.exception.UserAlreadyExistsException;
 import com.example.property_management.error.exception.UserNotFoundException;
 import com.example.property_management.mapper.AssignmentMapper;
 import com.example.property_management.mapper.UserMapper;
 import com.example.property_management.repository.AssignmentRepository;
+import com.example.property_management.repository.PropertyRepository;
 import com.example.property_management.repository.UserRepository;
+import com.example.property_management.service.AuditLogService;
 import com.example.property_management.service.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
@@ -31,16 +36,20 @@ public class UserServiceImpl implements UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
     private final UserRepository userRepository;
     private final AssignmentRepository assignmentRepository;
+    private final PropertyRepository propertyRepository;
     private final UserAuthorizationService userAuthorizationService;
     private final UserMapper userMapper;
     private final AssignmentMapper assignmentMapper;
+    private final AuditLogService auditLogService;
 
-    public UserServiceImpl(UserRepository userRepository, AssignmentRepository assignmentRepository, UserMapper userMapper, UserAuthorizationService userAuthorizationService, AssignmentMapper assignmentMapper) {
+    public UserServiceImpl(UserRepository userRepository, AssignmentRepository assignmentRepository, PropertyRepository propertyRepository, UserMapper userMapper, UserAuthorizationService userAuthorizationService, AssignmentMapper assignmentMapper, AuditLogService auditLogService) {
         this.userRepository = userRepository;
         this.assignmentRepository = assignmentRepository;
+        this.propertyRepository = propertyRepository;
         this.userMapper = userMapper;
         this.userAuthorizationService = userAuthorizationService;
         this.assignmentMapper = assignmentMapper;
+        this.auditLogService = auditLogService;
     }
 
 
@@ -112,6 +121,8 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = userRepository.findById(id).
                 orElseThrow(() -> new UserNotFoundException("User not found"));
 
+        UserAuditSnapshot before = UserAuditSnapshot.from(userEntity);
+
         userAuthorizationService.canUpdateUser(userEntity);
 
         logger.info("'PATCH' Updating User id={}", id);
@@ -126,6 +137,9 @@ public class UserServiceImpl implements UserService {
 
         UserEntity savedUser = userRepository.save(userEntity);
 
+        auditLogService.userLog("User", id.toString(), "Update",
+                before, UserAuditSnapshot.from(savedUser));
+
         return userMapper.toDTO(savedUser);
     }
 
@@ -138,9 +152,26 @@ public class UserServiceImpl implements UserService {
 
         userAuthorizationService.canDeleteUser(userEntity);
 
+        int userProperties = propertyRepository.findAllByOwnerId(id).size();
+        int userAssignments = assignmentRepository.findAllByUser_id(id).size();
+
+        if (userEntity.getRole() == UserRole.OWNER && userProperties > 0) {
+
+            throw new CannotDeleteUserException("User is an Owner and has " + userProperties + " properties registered in the system");
+        }
+        if (userEntity.getRole() == UserRole.AGENT && userAssignments > 0) {
+
+            throw new CannotDeleteUserException("User is an Agent and has " + userAssignments + " assignment registered in the system");
+        }
+
+        //what's the correct business logic. right now we are not able to delete agent and owners with assignments and properties
+
         logger.info("Deleting user with id={}", id);
 
         userRepository.delete(userEntity);
+
+        auditLogService.userLog("User", id.toString(), "Delete",
+                UserAuditSnapshot.from(userEntity), "Deleted");
 
         logger.info("Deleted user with id={}", id);
     }

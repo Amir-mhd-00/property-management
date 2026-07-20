@@ -14,5 +14,6 @@ public interface PropertyRepository extends JpaRepository<PropertyEntity, Long> 
     Optional<PropertyEntity> findByPropertyName(String propertyName);
     List<PropertyEntity> findAllByPropertyStatus(PropertyStatus propertyStatus);
     boolean existsByIdAndOwnerId(Long propertyId, Long ownerId);
+    List<PropertyEntity> findAllByOwnerId(Long ownerId);
 
 }

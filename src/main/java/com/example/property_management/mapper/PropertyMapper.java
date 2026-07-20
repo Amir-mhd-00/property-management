@@ -18,14 +18,12 @@ public interface PropertyMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "assignments", ignore = true)
-    @Mapping(target = "createdDate", ignore = true)
     @Mapping(source = "ownerId", target = "owner.id")
     PropertyEntity toEntity(PropertyCreateDTO dto);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "assignments", ignore = true)
     @Mapping(target = "owner", ignore = true)
-    @Mapping(target = "createdDate", ignore = true)
     PropertyEntity toEntity(PropertyUpdateDTO dto);
 
 }

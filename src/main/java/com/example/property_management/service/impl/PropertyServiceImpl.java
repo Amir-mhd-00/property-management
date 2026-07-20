@@ -1,6 +1,7 @@
 package com.example.property_management.service.impl;
 
 import com.example.property_management.authorization.PropertyAuthorizationService;
+import com.example.property_management.dto.auditLog.PropertyAuditSnapshot;
 import com.example.property_management.dto.assignment.AssignmentDTO;
 import com.example.property_management.dto.PageResponse;
 import com.example.property_management.dto.property.PropertyCreateDTO;
@@ -20,6 +21,7 @@ import com.example.property_management.mapper.PropertyMapper;
 import com.example.property_management.repository.AssignmentRepository;
 import com.example.property_management.repository.PropertyRepository;
 import com.example.property_management.repository.UserRepository;
+import com.example.property_management.service.AuditLogService;
 import com.example.property_management.service.PropertyService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -41,11 +43,12 @@ public class PropertyServiceImpl implements PropertyService {
     private final AssignmentMapper assignmentMapper;
     private final PropertyAuthorizationService propertyAuthorizationService;
     private final UserRepository userRepository;
+    private final AuditLogService auditLogService;
 
     public PropertyServiceImpl(PropertyRepository propertyRepository,
                                AssignmentRepository assignmentRepository,
                                PropertyMapper propertyMapper, AssignmentMapper assignmentMapper,
-                               PropertyAuthorizationService propertyAuthorizationService, UserRepository userRepository) {
+                               PropertyAuthorizationService propertyAuthorizationService, UserRepository userRepository, AuditLogService auditLogService) {
 
         this.propertyRepository = propertyRepository;
         this.assignmentRepository = assignmentRepository;
@@ -53,6 +56,7 @@ public class PropertyServiceImpl implements PropertyService {
         this.assignmentMapper = assignmentMapper;
         this.propertyAuthorizationService = propertyAuthorizationService;
         this.userRepository = userRepository;
+        this.auditLogService = auditLogService;
     }
 
     private static final Logger logger = LoggerFactory.getLogger(PropertyServiceImpl.class);
@@ -95,6 +99,9 @@ public class PropertyServiceImpl implements PropertyService {
         propertyEntity.setOwner(userEntity);
         PropertyEntity responseEntity = propertyRepository.save(propertyEntity);
 
+        auditLogService.propertyLog("Property", responseEntity.getId().toString(), "Create",
+                "Created", PropertyAuditSnapshot.from(responseEntity));
+
         logger.info(
                 "Property '{}' created successfully. id={}",
                 propertyEntity.getPropertyName(),
@@ -130,9 +137,13 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public PropertyResponseDTO updateProperty(Long id, PropertyCreateDTO dto) {
 
+        //should we be able to update ownerId ? we are now
+
          propertyAuthorizationService.canUpdateProperty(id);
 
         PropertyEntity existingProperty = getPropertyOrThrow(id);
+
+        PropertyAuditSnapshot before = PropertyAuditSnapshot.from(existingProperty);
 
         logger.info("'PUT' updating property id={}", id);
 
@@ -157,6 +168,9 @@ public class PropertyServiceImpl implements PropertyService {
 
         propertyRepository.save(updatedProperty);
 
+        auditLogService.propertyLog("Property", updatedProperty.getId().toString(), "Update",
+                before, PropertyAuditSnapshot.from(updatedProperty));
+
         logger.info("'PUT' Property updated successfully. id={}", id);
 
         return propertyMapper.toDTO(updatedProperty);
@@ -169,6 +183,8 @@ public class PropertyServiceImpl implements PropertyService {
         propertyAuthorizationService.canUpdateProperty(id);
 
         PropertyEntity property = getPropertyOrThrow(id);
+
+        PropertyAuditSnapshot before = PropertyAuditSnapshot.from(property);
 
         logger.info("'PATCH' Updating property id={}", id);
 
@@ -186,6 +202,9 @@ public class PropertyServiceImpl implements PropertyService {
         propertyMapper.updateProperty(dto, property);
 
         PropertyEntity savedProperty = propertyRepository.save(property);
+
+        auditLogService.propertyLog("Property", savedProperty.getId().toString(), "Update",
+                before, PropertyAuditSnapshot.from(savedProperty));
 
         logger.info("'PATCH' Property updated successfully. id={}", id);
 
@@ -206,6 +225,9 @@ public class PropertyServiceImpl implements PropertyService {
         propertyAuthorizationService.canDeleteProperty();
 
         propertyRepository.delete(property);
+
+        auditLogService.propertyLog("Property", id.toString(), "Delete",
+                PropertyAuditSnapshot.from(property), "Deleted");
 
         logger.info("Property deleted successfully. id={}", id);
     }

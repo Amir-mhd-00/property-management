@@ -109,6 +109,18 @@ public class GlobalExceptionHandler {
         );
     }
 
+    @ExceptionHandler(CannotDeleteUserException.class)
+    public ResponseEntity<ErrorResponse> handleCannotDeleteUserException(CannotDeleteUserException ex) {
+
+        logger.warn("CannotDeleteUser: {}", ex.getMessage());
+
+        return BuildErrorResponse(
+                HttpStatus.CONFLICT,
+                "CONFLICT",
+                ex.getMessage()
+        );
+    }
+
     @ExceptionHandler(AssignmentAlreadyInactiveException.class)
     public ResponseEntity<ErrorResponse> handleAssignmentAlreadyInactiveException(AssignmentAlreadyInactiveException ex) {
 
