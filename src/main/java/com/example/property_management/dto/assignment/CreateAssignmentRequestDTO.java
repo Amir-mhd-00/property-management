@@ -71,5 +71,10 @@ public class CreateAssignmentRequestDTO {
     )
     private AssignmentStatus status;
 
+    @NotNull(message = "status is isReplaceExisting")
+    @Schema(
+            description = "if there's an active assignment for this property to another user would you want to end their assignment and assign the property to this user ?.",
+            example = "false"
+    )
     private boolean isReplaceExisting ;
 }

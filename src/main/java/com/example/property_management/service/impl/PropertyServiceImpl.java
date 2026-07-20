@@ -28,8 +28,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Pageable;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,7 +93,6 @@ public class PropertyServiceImpl implements PropertyService {
         logger.info("creating property {}", property.getPropertyName());
 
         propertyEntity.setOwner(userEntity);
-        propertyEntity.setCreatedDate(LocalDateTime.now(ZoneId.of("UTC")));
         PropertyEntity responseEntity = propertyRepository.save(propertyEntity);
 
         logger.info(
@@ -157,7 +154,6 @@ public class PropertyServiceImpl implements PropertyService {
         PropertyEntity updatedProperty =  propertyMapper.toEntity(dto);
 
         updatedProperty.setId(existingProperty.getId());
-        updatedProperty.setCreatedDate(existingProperty.getCreatedDate());
 
         propertyRepository.save(updatedProperty);
 
