@@ -1,5 +1,6 @@
 package com.example.property_management.service.impl;
 
+import com.example.property_management.dto.auditLog.UserAuditSnapshot;
 import com.example.property_management.dto.auth.LoginRequestDTO;
 import com.example.property_management.dto.auth.LoginResponseDTO;
 import com.example.property_management.dto.user.UserRegisterDTO;
@@ -9,6 +10,7 @@ import com.example.property_management.enums.UserRole;
 import com.example.property_management.error.exception.UserAlreadyExistsException;
 import com.example.property_management.repository.UserRepository;
 import com.example.property_management.security.CustomUserDetails;
+import com.example.property_management.service.AuditLogService;
 import com.example.property_management.service.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -34,12 +36,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final SecurityContextRepository securityContextRepository;
+    private final AuditLogService auditLogService;
     private static final Logger logger = LoggerFactory.getLogger(AuthenticationServiceImpl.class);
 
-    public AuthenticationServiceImpl(UserRepository userRepository ,AuthenticationManager authenticationManager, SecurityContextRepository securityContextRepository) {
+    public AuthenticationServiceImpl(UserRepository userRepository , AuthenticationManager authenticationManager, SecurityContextRepository securityContextRepository, AuditLogService auditLogService) {
         this.authenticationManager = authenticationManager;
         this.securityContextRepository = securityContextRepository;
         this.userRepository = userRepository;
+        this.auditLogService = auditLogService;
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
@@ -60,6 +64,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         user.setRole(UserRole.GUEST);
 
         UserEntity savedUser = userRepository.save(user);
+
+        auditLogService.userLog("User", savedUser.getId().toString(), "Create",
+                "Created", UserAuditSnapshot.from(savedUser));
 
         logger.info("User registered successfully.   email = {} id = {}",
                 savedUser.getEmail(),  savedUser.getId());

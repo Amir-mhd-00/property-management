@@ -45,7 +45,8 @@ public class AuditLogServiceImpl implements AuditLogService {
     }
 
     @Override
-    public void userLog(String entityName, String entityId, String action, Object oldValue, Object newValue) {
+    public void userLog(String entityName, String entityId, String action,
+                        Object oldValue, Object newValue) {
 
         try {
             AuditLogEntity log = new AuditLogEntity();
@@ -65,8 +66,24 @@ public class AuditLogServiceImpl implements AuditLogService {
     }
 
     @Override
-    public void assignmentLog(String entityName, String entityId, String action, Object oldValue, Object newValue) {
-        
+    public void assignmentLog(String entityName, String entityId, String action,
+                              Object oldValue, Object newValue) {
+
+        try {
+            AuditLogEntity log = new AuditLogEntity();
+            log.setEntityName(entityName);
+            log.setEntityId(entityId);
+            log.setAction(action);
+            log.setPerformedBy(getCurrentUser());
+            log.setTimestamp(Instant.now());
+            log.setOldValue(oldValue != null ? objectMapper.writeValueAsString((oldValue)) : null);
+            log.setNewValue(newValue != null ? objectMapper.writeValueAsString(newValue) : null);
+            log.setIpAddress(getCurrentRequestIp());
+
+            auditLogRepository.save(log);
+        } catch (Exception e) {
+            logger.error("couldn't save the audit log something went wrong ", e);
+        }
     }
 
     private String getCurrentUser() {

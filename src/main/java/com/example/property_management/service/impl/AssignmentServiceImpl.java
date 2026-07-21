@@ -4,6 +4,7 @@ import com.example.property_management.authorization.AssignmentAuthorizationServ
 import com.example.property_management.dto.PageResponse;
 import com.example.property_management.dto.assignment.AssignmentDTO;
 import com.example.property_management.dto.assignment.CreateAssignmentRequestDTO;
+import com.example.property_management.dto.auditLog.AssignmentAuditSnapshot;
 import com.example.property_management.entity.AssignmentEntity;
 import com.example.property_management.entity.PropertyEntity;
 import com.example.property_management.entity.UserEntity;
@@ -15,6 +16,7 @@ import com.example.property_management.repository.AssignmentRepository;
 import com.example.property_management.repository.PropertyRepository;
 import com.example.property_management.repository.UserRepository;
 import com.example.property_management.service.AssignmentService;
+import com.example.property_management.service.AuditLogService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,12 +34,15 @@ public class AssignmentServiceImpl implements AssignmentService {
     private final UserRepository userRepository;
     private final AssignmentAuthorizationService assignmentAuthorizationService;
     private final AssignmentMapper assignmentMapper;
-    public AssignmentServiceImpl(AssignmentRepository assignmentRepository, PropertyRepository propertyRepository, UserRepository userRepository, AssignmentAuthorizationService assignmentAuthorizationService, AssignmentMapper assignmentMapper) {
+    private final AuditLogService auditLogService;
+
+    public AssignmentServiceImpl(AssignmentRepository assignmentRepository, PropertyRepository propertyRepository, UserRepository userRepository, AssignmentAuthorizationService assignmentAuthorizationService, AssignmentMapper assignmentMapper, AuditLogService auditLogService) {
         this.assignmentRepository = assignmentRepository;
         this.propertyRepository = propertyRepository;
         this.userRepository = userRepository;
         this.assignmentAuthorizationService = assignmentAuthorizationService;
         this.assignmentMapper = assignmentMapper;
+        this.auditLogService = auditLogService;
     }
 
     private static final Logger log = LoggerFactory.getLogger(AssignmentServiceImpl.class);
@@ -88,6 +93,9 @@ public class AssignmentServiceImpl implements AssignmentService {
                 dto.getPropertyId(), dto.getUserId());
 
         AssignmentEntity result = assignmentRepository.save(assignmentEntity);
+
+        auditLogService.assignmentLog("Assignment", result.getId().toString(), "Create",
+                "Created", AssignmentAuditSnapshot.from(result));
 
         log.info("Assignment created for propertyId={} and employeeId={}",
                 dto.getPropertyId(), dto.getUserId());
@@ -148,6 +156,8 @@ public class AssignmentServiceImpl implements AssignmentService {
         AssignmentEntity assignment = assignmentRepository.findById(id).
                 orElseThrow(() -> new AssignmentNotFoundException("Assignment not found"));
 
+        AssignmentAuditSnapshot before = AssignmentAuditSnapshot.from(assignment);
+
         if (assignment.getStatus() == AssignmentStatus.INACTIVE) {
             log.warn("Attempt to end inactive assignment id={}", id);
             throw new AssignmentAlreadyInactiveException("Assignment is already inactive");
@@ -158,7 +168,10 @@ public class AssignmentServiceImpl implements AssignmentService {
 
         assignment.setStatus(AssignmentStatus.INACTIVE);
         assignment.setEndDate(LocalDateTime.now());
-        assignmentRepository.save(assignment);
+        AssignmentEntity saved = assignmentRepository.save(assignment);
+
+        auditLogService.assignmentLog("Assignment", id.toString(), "End",
+                before, AssignmentAuditSnapshot.from(saved));
 
         log.info("Assignment of property {} ended for user {}.",
                 assignment.getProperty().getId(), assignment.getUser().getId());
