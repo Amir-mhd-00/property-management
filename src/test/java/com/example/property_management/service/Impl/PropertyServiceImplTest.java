@@ -2,6 +2,7 @@ package com.example.property_management.service.Impl;
 
 import com.example.property_management.dto.property.PropertyCreateDTO;
 import com.example.property_management.dto.property.PropertyResponseDTO;
+import com.example.property_management.dto.property.PropertyUpdateDTO;
 import com.example.property_management.entity.PropertyEntity;
 import com.example.property_management.enums.PropertyStatus;
 import com.example.property_management.enums.PropertyType;
@@ -165,15 +166,13 @@ class PropertyServiceImplTest {
 
         Long id = 1L;
 
-        PropertyCreateDTO propertyDTO = new PropertyCreateDTO(
-                0L,
+        PropertyUpdateDTO propertyDTO = new PropertyUpdateDTO(
                 "villa",
                 6700000.0,
                 PropertyType.HOUSE,
                 PropertyStatus.AVAILABLE,
                 4,
-                "456 test Blv",
-                0L
+                "456 test Blv"
         );
 
         when(propertyRepository.findById(id)).

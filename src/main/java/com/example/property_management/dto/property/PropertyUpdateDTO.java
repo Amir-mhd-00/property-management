@@ -3,33 +3,43 @@ package com.example.property_management.dto.property;
 import com.example.property_management.enums.PropertyStatus;
 import com.example.property_management.enums.PropertyType;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Schema(
-        name = "PropertyUpdate",
-        description = "Request payload used to update an existing property. Only the provided fields will be updated."
+        name = "Property",
+        description = "Represents a property within the property management system."
 )
 public class PropertyUpdateDTO {
 
+    @NotBlank(message = "property name cannot be empty")
     @Schema(
-            description = "Updated name of the property.",
-            example = "Sunset Villa"
+            description = "Name of the property.",
+            example = "Sunset Villa",
+            requiredMode = Schema.RequiredMode.REQUIRED
     )
     private String propertyName;
 
+    @NotNull(message = "Property value cannot be empty")
     @Schema(
-            description = "Updated market value of the property.",
-            example = "425000.00"
+            description = "Estimated market value of the property.",
+            example = "350000.00",
+            requiredMode = Schema.RequiredMode.REQUIRED
     )
     private Double propertyValue;
 
+    @NotNull(message = "property type cannot be empty")
     @Schema(
-            description = "Updated type of the property.",
+            description = "Type of property.",
             example = "APARTMENT",
             allowableValues = {
                     "HOUSE",
@@ -45,9 +55,11 @@ public class PropertyUpdateDTO {
     )
     private PropertyType propertyType;
 
+    @NotNull(message = "property status cannot be empty")
     @Schema(
-            description = "Updated status of the property.",
+            description = "Current status of the property.",
             example = "AVAILABLE",
+            requiredMode = Schema.RequiredMode.REQUIRED,
             allowableValues = {
                     "AVAILABLE",
                     "OCCUPIED",
@@ -59,15 +71,20 @@ public class PropertyUpdateDTO {
     )
     private PropertyStatus propertyStatus;
 
+    @NotNull
     @Schema(
-            description = "Updated number of rooms.",
-            example = "5"
+            description = "Number of rooms in the property.",
+            example = "4"
     )
     private Integer rooms;
 
+    @NotBlank(message = "property location cannot be empty")
     @Schema(
-            description = "Updated property location or address.",
-            example = "456 Oak Avenue, Los Angeles, CA"
+            description = "Physical location or address of the property.",
+            example = "123 Main Street, New York, NY",
+            requiredMode = Schema.RequiredMode.REQUIRED
     )
     private String location;
+
 }
+

@@ -3,6 +3,8 @@ package com.example.property_management.dto.user;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -53,5 +55,10 @@ public class UserRegisterDTO {
             format = "password",
             requiredMode = Schema.RequiredMode.REQUIRED
     )
+//    @Size(min = 8, max = 64)
+//    @Pattern(
+//            regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&#^()_+=-]).+$",
+//            message = "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
+//    )
     private String password;
 }

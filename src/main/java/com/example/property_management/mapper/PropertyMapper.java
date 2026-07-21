@@ -1,6 +1,7 @@
 package com.example.property_management.mapper;
 
 import com.example.property_management.dto.property.PropertyCreateDTO;
+import com.example.property_management.dto.property.PropertyPatchDTO;
 import com.example.property_management.dto.property.PropertyResponseDTO;
 import com.example.property_management.dto.property.PropertyUpdateDTO;
 import com.example.property_management.entity.PropertyEntity;
@@ -13,6 +14,11 @@ public interface PropertyMapper {
     void updateProperty(PropertyUpdateDTO dto,
                         @MappingTarget PropertyEntity entity);
 
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void updateProperty(PropertyPatchDTO dto,
+                        @MappingTarget PropertyEntity entity);
+
+
     @Mapping(source = "owner.id", target = "ownerId")
     PropertyResponseDTO toDTO(PropertyEntity property);
 
@@ -24,6 +30,6 @@ public interface PropertyMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "assignments", ignore = true)
     @Mapping(target = "owner", ignore = true)
-    PropertyEntity toEntity(PropertyUpdateDTO dto);
+    PropertyEntity toEntity(PropertyPatchDTO dto);
 
 }

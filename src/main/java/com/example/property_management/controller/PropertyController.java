@@ -3,6 +3,7 @@ package com.example.property_management.controller;
 import com.example.property_management.dto.assignment.AssignmentDTO;
 import com.example.property_management.dto.PageResponse;
 import com.example.property_management.dto.property.PropertyCreateDTO;
+import com.example.property_management.dto.property.PropertyPatchDTO;
 import com.example.property_management.dto.property.PropertyResponseDTO;
 import com.example.property_management.dto.property.PropertyUpdateDTO;
 import com.example.property_management.enums.PropertyStatus;
@@ -118,11 +119,11 @@ public class PropertyController {
     public ResponseEntity<PropertyResponseDTO> updateProperty(
             @Parameter(description = "Unique identifier of the property", example = "1")
             @PathVariable Long id,
-            @Valid @RequestBody PropertyCreateDTO propertyCreateDTO){
+            @Valid @RequestBody PropertyUpdateDTO propertyUpdateDTO){
 
         logger.info("PUT request for updating property with id {}", id);
 
-        PropertyResponseDTO updatedProperty = propertyService.updateProperty(id, propertyCreateDTO);
+        PropertyResponseDTO updatedProperty = propertyService.updateProperty(id, propertyUpdateDTO);
 
         return ResponseEntity.ok(updatedProperty);
     }
@@ -141,11 +142,11 @@ public class PropertyController {
     @PatchMapping("/{id}")
     public ResponseEntity<PropertyResponseDTO> partialUpdateProperty(
             @Parameter(description = "Unique identifier of the property", example = "1")
-            @PathVariable Long id, @RequestBody PropertyUpdateDTO propertyUpdateDTO){
+            @PathVariable Long id, @RequestBody PropertyPatchDTO propertyPatchDTO){
 
         logger.info("PATCH request for updating property with id {}", id);
 
-        PropertyResponseDTO updatedProperty = propertyService.partialUpdateProperty(id, propertyUpdateDTO);
+        PropertyResponseDTO updatedProperty = propertyService.partialUpdateProperty(id, propertyPatchDTO);
 
         return ResponseEntity.ok(updatedProperty);
     }

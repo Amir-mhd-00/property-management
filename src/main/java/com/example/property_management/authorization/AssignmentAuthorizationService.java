@@ -48,7 +48,6 @@ public class AssignmentAuthorizationService {
         }
     }
 
-
     private UserRole currentRole() {
         return securityUtils.getCurrentUserRole();
     }

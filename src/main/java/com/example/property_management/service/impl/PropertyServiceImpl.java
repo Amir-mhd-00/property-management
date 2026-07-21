@@ -5,6 +5,7 @@ import com.example.property_management.dto.auditLog.PropertyAuditSnapshot;
 import com.example.property_management.dto.assignment.AssignmentDTO;
 import com.example.property_management.dto.PageResponse;
 import com.example.property_management.dto.property.PropertyCreateDTO;
+import com.example.property_management.dto.property.PropertyPatchDTO;
 import com.example.property_management.dto.property.PropertyResponseDTO;
 import com.example.property_management.dto.property.PropertyUpdateDTO;
 import com.example.property_management.entity.AssignmentEntity;
@@ -135,11 +136,9 @@ public class PropertyServiceImpl implements PropertyService {
 
     @Transactional
     @Override
-    public PropertyResponseDTO updateProperty(Long id, PropertyCreateDTO dto) {
-
-        //should we be able to update ownerId ? we are now
-
-         propertyAuthorizationService.canUpdateProperty(id);
+    public PropertyResponseDTO updateProperty(Long id, PropertyUpdateDTO dto) {
+        
+        propertyAuthorizationService.canUpdateProperty(id);
 
         PropertyEntity existingProperty = getPropertyOrThrow(id);
 
@@ -157,28 +156,21 @@ public class PropertyServiceImpl implements PropertyService {
                     String.format("Property with name %s already exists", dto.getPropertyName()));
         }
 
-        UserEntity owner = userRepository.findById(dto.getOwnerId()).
-                orElseThrow(() -> new UserNotFoundException("user not found"));
+        propertyMapper.updateProperty(dto, existingProperty);
 
-        if (owner.getRole() != UserRole.OWNER) {throw new ForbiddenException("user is not an owner");}
+        propertyRepository.save(existingProperty);
 
-        PropertyEntity updatedProperty =  propertyMapper.toEntity(dto);
-
-        updatedProperty.setId(existingProperty.getId());
-
-        propertyRepository.save(updatedProperty);
-
-        auditLogService.propertyLog("Property", updatedProperty.getId().toString(), "Update",
-                before, PropertyAuditSnapshot.from(updatedProperty));
+        auditLogService.propertyLog("Property", id.toString(), "Update",
+                before, PropertyAuditSnapshot.from(existingProperty));
 
         logger.info("'PUT' Property updated successfully. id={}", id);
 
-        return propertyMapper.toDTO(updatedProperty);
+        return propertyMapper.toDTO(existingProperty);
     }
 
     @Transactional
     @Override
-    public PropertyResponseDTO partialUpdateProperty(Long id, PropertyUpdateDTO dto) {
+    public PropertyResponseDTO partialUpdateProperty(Long id, PropertyPatchDTO dto) {
 
         propertyAuthorizationService.canUpdateProperty(id);
 
@@ -203,7 +195,7 @@ public class PropertyServiceImpl implements PropertyService {
 
         PropertyEntity savedProperty = propertyRepository.save(property);
 
-        auditLogService.propertyLog("Property", savedProperty.getId().toString(), "Update",
+        auditLogService.propertyLog("Property", id.toString(), "Update",
                 before, PropertyAuditSnapshot.from(savedProperty));
 
         logger.info("'PATCH' Property updated successfully. id={}", id);
