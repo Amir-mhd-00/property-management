@@ -8,6 +8,7 @@ import com.example.property_management.dto.user.UserResponseDTO;
 import com.example.property_management.entity.UserEntity;
 import com.example.property_management.enums.UserRole;
 import com.example.property_management.error.exception.UserAlreadyExistsException;
+import com.example.property_management.mapper.UserMapper;
 import com.example.property_management.repository.UserRepository;
 import com.example.property_management.security.CustomUserDetails;
 import com.example.property_management.service.AuditLogService;
@@ -18,13 +19,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.stereotype.Service;
@@ -38,13 +37,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final SecurityContextRepository securityContextRepository;
     private final AuditLogService auditLogService;
     private static final Logger logger = LoggerFactory.getLogger(AuthenticationServiceImpl.class);
+    private final UserMapper userMapper;
 
-    public AuthenticationServiceImpl(UserRepository userRepository , AuthenticationManager authenticationManager, SecurityContextRepository securityContextRepository, AuditLogService auditLogService) {
+    public AuthenticationServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, SecurityContextRepository securityContextRepository, AuditLogService auditLogService, UserMapper userMapper) {
         this.authenticationManager = authenticationManager;
         this.securityContextRepository = securityContextRepository;
         this.userRepository = userRepository;
         this.auditLogService = auditLogService;
-        this.passwordEncoder = new BCryptPasswordEncoder();
+        this.passwordEncoder = passwordEncoder;
+        this.userMapper = userMapper;
     }
 
     @Transactional
@@ -57,8 +58,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throw new UserAlreadyExistsException("Email Already Exists");
         }
 
-        UserEntity user = new UserEntity();
-        BeanUtils.copyProperties(dto, user);
+        UserEntity user = userMapper.toEntity(dto);
 
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
         user.setRole(UserRole.GUEST);
@@ -71,11 +71,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         logger.info("User registered successfully.   email = {} id = {}",
                 savedUser.getEmail(),  savedUser.getId());
 
-        UserResponseDTO response = new UserResponseDTO();
-        BeanUtils.copyProperties(savedUser, response);
-        System.out.println(response.getRole());
-
-        return response;
+        return userMapper.toDTO(savedUser);
     }
 
     public LoginResponseDTO login(LoginRequestDTO request,

@@ -127,7 +127,7 @@ public class UserServiceImpl implements UserService {
 
         logger.info("'PATCH' Updating User id={}", id);
 
-        if (userRepository.findByEmail(userUpdateDTO.getEmail())
+        if ( userUpdateDTO.getEmail() != null && userRepository.findByEmail(userUpdateDTO.getEmail())
                 .filter(existingUser -> !existingUser.getId().equals(id))
                 .isPresent()) {
             throw new UserAlreadyExistsException("Email already exists");

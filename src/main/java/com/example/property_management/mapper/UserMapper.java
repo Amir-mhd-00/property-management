@@ -1,5 +1,6 @@
 package com.example.property_management.mapper;
 
+import com.example.property_management.dto.user.UserRegisterDTO;
 import com.example.property_management.dto.user.UserResponseDTO;
 import com.example.property_management.dto.user.UserUpdateDTO;
 import com.example.property_management.entity.UserEntity;
@@ -18,4 +19,5 @@ public interface UserMapper {
                     @MappingTarget UserEntity entity);
 
     UserResponseDTO toDTO(UserEntity entity);
+    UserEntity toEntity(UserRegisterDTO dto);
 }

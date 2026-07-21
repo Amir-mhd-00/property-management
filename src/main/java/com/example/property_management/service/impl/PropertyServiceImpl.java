@@ -137,16 +137,17 @@ public class PropertyServiceImpl implements PropertyService {
     @Transactional
     @Override
     public PropertyResponseDTO updateProperty(Long id, PropertyUpdateDTO dto) {
-        
+
+        PropertyEntity property = getPropertyOrThrow(id);
+
         propertyAuthorizationService.canUpdateProperty(id);
 
-        PropertyEntity existingProperty = getPropertyOrThrow(id);
-
-        PropertyAuditSnapshot before = PropertyAuditSnapshot.from(existingProperty);
+        PropertyAuditSnapshot before = PropertyAuditSnapshot.from(property);
 
         logger.info("'PUT' updating property id={}", id);
 
-        if (propertyRepository.findByPropertyName(dto.getPropertyName())
+        if (!property.getPropertyName().equals(dto.getPropertyName()) &&
+                propertyRepository.findByPropertyName(dto.getPropertyName())
                 .filter(existing -> !existing.getId().equals(id))
                 .isPresent()) {
 
@@ -156,32 +157,31 @@ public class PropertyServiceImpl implements PropertyService {
                     String.format("Property with name %s already exists", dto.getPropertyName()));
         }
 
-        propertyMapper.updateProperty(dto, existingProperty);
+        propertyMapper.updateProperty(dto, property);
 
-        propertyRepository.save(existingProperty);
-
-        auditLogService.propertyLog("Property", id.toString(), "Update",
-                before, PropertyAuditSnapshot.from(existingProperty));
+        auditLogService.propertyLog("Property", id.toString(), "PUT",
+                before, PropertyAuditSnapshot.from(property));
 
         logger.info("'PUT' Property updated successfully. id={}", id);
 
-        return propertyMapper.toDTO(existingProperty);
+        return propertyMapper.toDTO(property);
     }
 
     @Transactional
     @Override
     public PropertyResponseDTO partialUpdateProperty(Long id, PropertyPatchDTO dto) {
+        
+        PropertyEntity property = getPropertyOrThrow(id);
 
         propertyAuthorizationService.canUpdateProperty(id);
-
-        PropertyEntity property = getPropertyOrThrow(id);
 
         PropertyAuditSnapshot before = PropertyAuditSnapshot.from(property);
 
         logger.info("'PATCH' Updating property id={}", id);
 
-        if (dto.getPropertyName() != null &&
-                propertyRepository.findByPropertyName(dto.getPropertyName())
+        if (dto.getPropertyName() != null
+                && !property.getPropertyName().equals(dto.getPropertyName())
+                && propertyRepository.findByPropertyName(dto.getPropertyName())
                 .filter(existing -> !existing.getId().equals(id))
                 .isPresent()) {
 
@@ -193,28 +193,23 @@ public class PropertyServiceImpl implements PropertyService {
 
         propertyMapper.updateProperty(dto, property);
 
-        PropertyEntity savedProperty = propertyRepository.save(property);
-
-        auditLogService.propertyLog("Property", id.toString(), "Update",
-                before, PropertyAuditSnapshot.from(savedProperty));
+        auditLogService.propertyLog("Property", id.toString(), "PATCH",
+                before, PropertyAuditSnapshot.from(property));
 
         logger.info("'PATCH' Property updated successfully. id={}", id);
 
-        PropertyResponseDTO response = propertyMapper.toDTO(savedProperty);
-        response.setOwnerId(property.getOwner().getId());
-
-        return response;
+        return propertyMapper.toDTO(property);
     }
 
     @Transactional
     @Override
     public void deleteProperty(Long id) {
 
+        propertyAuthorizationService.canDeleteProperty();
+
         logger.info("deleting property id={}", id);
 
         PropertyEntity property = getPropertyOrThrow(id);
-
-        propertyAuthorizationService.canDeleteProperty();
 
         propertyRepository.delete(property);
 
@@ -246,10 +241,10 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public List<AssignmentDTO> getAssignmentsByProperty(Long id) {
 
+        propertyAuthorizationService.canGetAssignmentsByProperty();
+
         propertyRepository.findById(id).orElseThrow(() ->
                 new PropertyNotFoundException("Property not found"));
-
-        propertyAuthorizationService.canGetAssignmentsByProperty();
 
         logger.info("Fetching assignments for propertyId={}", id);
 
