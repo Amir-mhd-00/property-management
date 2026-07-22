@@ -170,7 +170,7 @@ public class PropertyServiceImpl implements PropertyService {
     @Transactional
     @Override
     public PropertyResponseDTO partialUpdateProperty(Long id, PropertyPatchDTO dto) {
-        
+
         PropertyEntity property = getPropertyOrThrow(id);
 
         propertyAuthorizationService.canUpdateProperty(id);
