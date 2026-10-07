@@ -1,6 +1,8 @@
 package com.example.property_management.repository;
 
 import com.example.property_management.config.JpaConfig;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
 import com.example.property_management.entity.AssignmentEntity;
 import com.example.property_management.entity.PropertyEntity;
 import com.example.property_management.entity.UserEntity;
@@ -24,8 +26,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @ActiveProfiles("test")
-@Import({JpaConfig.class, SpringSecurityAuditorAware.class})
+@Import(JpaConfig.class)
 class AssignmentRepositoryTest {
+
+    @TestConfiguration
+    static class AuditorAwareTestConfig {
+        @Bean
+        SpringSecurityAuditorAware springSecurityAuditorAware() {
+            return new SpringSecurityAuditorAware();
+        }
+    }
+
 
     @Autowired
     private TestEntityManager entityManager;
@@ -60,7 +71,8 @@ class AssignmentRepositoryTest {
         assignment.setUser(agent);
         assignment.setRole(AssignmentRole.PROPERTY_MANAGER);
         assignment.setStatus(status);
-        return entityManager.persistFlushFind(assignment);// return value never used
+
+        return entityManager.persistFlushFind(assignment);
     }
 
     @Test

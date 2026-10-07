@@ -18,7 +18,6 @@ public interface PropertyMapper {
     void updateProperty(PropertyPatchDTO dto,
                         @MappingTarget PropertyEntity entity);
 
-
     @Mapping(source = "owner.id", target = "ownerId")
     PropertyResponseDTO toDTO(PropertyEntity property);
 

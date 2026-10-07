@@ -1,6 +1,8 @@
 package com.example.property_management.repository;
 
 import com.example.property_management.config.JpaConfig;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
 import com.example.property_management.entity.UserEntity;
 import com.example.property_management.enums.UserRole;
 import com.example.property_management.security.SpringSecurityAuditorAware;
@@ -17,8 +19,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @ActiveProfiles("test")
-@Import({JpaConfig.class, SpringSecurityAuditorAware.class})
+@Import(JpaConfig.class)
 class UserRepositoryTest {
+
+    @TestConfiguration
+    static class AuditorAwareTestConfig {
+        @Bean
+        SpringSecurityAuditorAware springSecurityAuditorAware() {
+            return new SpringSecurityAuditorAware();
+        }
+    }
+
 
     @Autowired
     private TestEntityManager entityManager;

@@ -34,8 +34,6 @@ public class RateLimitPolicyResolver {
         return new RateLimitContext(RateLimitType.DEFAULT, properties.getDefaultPolicy());
     }
 
-    public record RateLimitContext(RateLimitType type, RateLimitProperties.Policy policy) {
-
-    }
+    public record RateLimitContext(RateLimitType type, RateLimitProperties.Policy policy) {}
 
 }

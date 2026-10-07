@@ -72,7 +72,6 @@ class UserAuthorizationServiceTest {
     @Test
     void canGetUser_higherRoleViewingLowerRole_allowed() {
         when(securityUtils.getCurrentUserRole()).thenReturn(UserRole.MANAGER);
-        when(securityUtils.getCurrentUserId()).thenReturn(1L);
         targetUser.setRole(UserRole.AGENT);
         targetUser.setId(2L);
 

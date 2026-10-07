@@ -8,7 +8,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +29,7 @@ class AuditLogRepositoryTest {
         log.setEntityId(entityId);
         log.setAction(action);
         log.setPerformedBy(performedBy);
-        log.setTimestamp(Instant.from(LocalDateTime.now()));
+        log.setTimestamp(Instant.now());
         return entityManager.persistFlushFind(log);
     }
 
@@ -110,7 +109,7 @@ class AuditLogRepositoryTest {
         log.setPerformedBy("SYSTEM");
         log.setOldValue(null);
         log.setNewValue(null);
-        log.setTimestamp(Instant.from(LocalDateTime.now()));
+        log.setTimestamp(Instant.now());
 
         AuditLogEntity saved = entityManager.persistFlushFind(log);
 

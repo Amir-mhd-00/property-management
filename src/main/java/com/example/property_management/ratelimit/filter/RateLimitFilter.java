@@ -44,7 +44,7 @@ public class RateLimitFilter extends OncePerRequestFilter {
                 context.policy());
 
         if (!allowed) {
-            response.setStatus(429); // HttpServletResponse has no TOO_MANY_REQUESTS constant
+            response.setStatus(429);
             response.setContentType("application/json");
             response.getWriter().write(
                     "{\"error\":\"Too many requests\",\"message\":\"Rate limit exceeded, please try again later.\"}");

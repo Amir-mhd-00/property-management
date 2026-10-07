@@ -188,10 +188,14 @@ class AuthenticationControllerTest {
         user.setEmail("john@example.com");
 
         CustomUserDetails details = new CustomUserDetails(user);
-        SecurityContextHolder.getContext().setAuthentication(
-                new UsernamePasswordAuthenticationToken(details, null, details.getAuthorities()));
+        UsernamePasswordAuthenticationToken authentication =
+                new UsernamePasswordAuthenticationToken(details, null, details.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        mockMvc.perform(post("/api/auth/logout"))
+        // With addFilters=false, Spring Security's request-wrapping filter never runs, so
+        // request.getUserPrincipal() (used to resolve the Authentication controller argument)
+        // stays null unless we set it explicitly via .principal(...).
+        mockMvc.perform(post("/api/auth/logout").principal(authentication))
                 .andExpect(status().isOk());
     }
 

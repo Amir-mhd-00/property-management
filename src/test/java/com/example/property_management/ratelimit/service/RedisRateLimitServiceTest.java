@@ -2,7 +2,6 @@ package com.example.property_management.ratelimit.service;
 
 import com.example.property_management.ratelimit.config.RateLimitProperties;
 import com.example.property_management.ratelimit.model.RateLimitType;
-import io.github.bucket4j.Bucket;
 import io.github.bucket4j.BucketConfiguration;
 import io.github.bucket4j.distributed.BucketProxy;
 import io.github.bucket4j.distributed.proxy.ProxyManager;
@@ -30,7 +29,7 @@ class RedisRateLimitServiceTest {
 
     @Mock private ProxyManager<String> proxyManager;
     @Mock private RemoteBucketBuilder<String> remoteBucketBuilder;
-    @Mock private Bucket bucket;
+    @Mock private BucketProxy bucket;
 
     private RedisRateLimitService redisRateLimitService;
 
@@ -50,7 +49,7 @@ class RedisRateLimitServiceTest {
     @SuppressWarnings("unchecked")
     void allowRequest_bucketAllows_returnsTrue() {
         when(proxyManager.builder()).thenReturn(remoteBucketBuilder);
-        when(remoteBucketBuilder.build(anyString(), any(Supplier.class))).thenReturn((BucketProxy) bucket);
+        when(remoteBucketBuilder.build(anyString(), any(Supplier.class))).thenReturn(bucket);
         when(bucket.tryConsume(1)).thenReturn(true);
 
         boolean result = redisRateLimitService.allowRequest("USER:1", RateLimitType.LOGIN, policy);
@@ -63,7 +62,7 @@ class RedisRateLimitServiceTest {
     @SuppressWarnings("unchecked")
     void allowRequest_bucketDenies_returnsFalse() {
         when(proxyManager.builder()).thenReturn(remoteBucketBuilder);
-        when(remoteBucketBuilder.build(anyString(), any(Supplier.class))).thenReturn((BucketProxy) bucket);
+        when(remoteBucketBuilder.build(anyString(), any(Supplier.class))).thenReturn(bucket);
         when(bucket.tryConsume(1)).thenReturn(false);
 
         boolean result = redisRateLimitService.allowRequest("USER:1", RateLimitType.LOGIN, policy);
@@ -75,7 +74,7 @@ class RedisRateLimitServiceTest {
     @SuppressWarnings("unchecked")
     void allowRequest_buildsKeyWithTypeAndClientId() {
         when(proxyManager.builder()).thenReturn(remoteBucketBuilder);
-        when(remoteBucketBuilder.build(anyString(), any(Supplier.class))).thenReturn((BucketProxy) bucket);
+        when(remoteBucketBuilder.build(anyString(), any(Supplier.class))).thenReturn(bucket);
         when(bucket.tryConsume(1)).thenReturn(true);
 
         redisRateLimitService.allowRequest("USER:7", RateLimitType.SEARCH, policy);
@@ -90,7 +89,7 @@ class RedisRateLimitServiceTest {
     @SuppressWarnings("unchecked")
     void allowRequest_configurationSupplierProducesExpectedBandwidth() {
         when(proxyManager.builder()).thenReturn(remoteBucketBuilder);
-        when(remoteBucketBuilder.build(anyString(), any(Supplier.class))).thenReturn((BucketProxy) bucket);
+        when(remoteBucketBuilder.build(anyString(), any(Supplier.class))).thenReturn(bucket);
         when(bucket.tryConsume(1)).thenReturn(true);
 
         ArgumentCaptor<Supplier<BucketConfiguration>> supplierCaptor = ArgumentCaptor.forClass(Supplier.class);
